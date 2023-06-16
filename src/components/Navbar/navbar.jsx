@@ -5,6 +5,13 @@ import appData from "../../data/app.json";
 import { handleDropdown, handleMobileDropdown } from "../../common/navbar";
 
 const Navbar = ({ lr, nr, theme }) => {
+  const categorias = [
+    { id: 1, name: "mochilas" },
+    { id: 2, name: "bikinis" },
+    { id: 3, name: "sofas" },
+    { id: 4, name: "empapelados" },
+    { id: 5, name: "cuadros" },
+  ];
   return (
     <nav
       ref={nr}
@@ -49,10 +56,25 @@ const Navbar = ({ lr, nr, theme }) => {
                 <a className="nav-link">Inicio</a>
               </Link>
             </li>
-            <li className="nav-item ">
-              <Link href="/shop">
-                <a className="nav-link">Shop</a>
-              </Link>
+            <li className="nav-item dropdown" onClick={handleDropdown}>
+              <span
+                className="nav-link dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+              >
+                Shop
+              </span>
+              <div className="dropdown-menu">
+                {categorias.map((category) => (
+                  <Link
+                    href={`/shop/?categoria=${category.name}`}
+                    as="/shop"
+                    key={category.id}
+                  >
+                    <a className="dropdown-item">{category.name}</a>
+                  </Link>
+                ))}
+              </div>
             </li>
             <li className="nav-item ">
               <Link href="/informacion">
