@@ -5,6 +5,9 @@ import Cursor from "../components/cursor";
 import ScrollToTop from "../components/scrollToTop";
 import LoadingScreen from "../components/Loading-Screen";
 import "../styles/main.scss";
+import { Provider } from "react-redux";
+
+import reduxStore from "../../redux/store";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -15,7 +18,9 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Cursor />
       <LoadingScreen />
-      <Component {...pageProps} />
+      <Provider store={reduxStore}>
+        <Component {...pageProps} />
+      </Provider>
       <ScrollToTop />
       <Script id="wow" src="/js/wow.min.js"></Script>
       <Script
