@@ -9,6 +9,7 @@ import Works2 from "../../components/Works2/works2";
 import { useSelector, useDispatch } from "react-redux";
 import { SET_NAME } from "../../../redux/reducers/profile";
 import { useState } from "react";
+import AboutUs from "../../components/About-us/about-us";
 
 const Homepage1 = () => {
   const fixedSlider = React.useRef(null);
@@ -66,6 +67,7 @@ const Homepage1 = () => {
         <h1>{name}</h1> */}
         <WorksStyle3 />
         <Works2 />
+        <AboutUs />
         <FullTestimonials />
         <Footer2 />
       </div>
