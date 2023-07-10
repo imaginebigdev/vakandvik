@@ -3,17 +3,15 @@ import Navbar from "../../components/Navbar/navbar";
 import CallToAction from "../../components/Call-to-action/call-to-action";
 import LightTheme from "../../layouts/Light";
 import Shop from "../../components/Shop/shop";
-import Footer2 from "../../components/Footer2/footer2";
 import { useRouter } from "next/router";
+
+import Footer2 from "../../components/Footer2/footer2";
 
 const About = () => {
   const navbarRef = React.useRef(null);
   const logoRef = React.useRef(null);
-
   const router = useRouter();
   const query = router.query;
-
-  console.log(query);
 
   React.useEffect(() => {
     var navbar = navbarRef.current,
