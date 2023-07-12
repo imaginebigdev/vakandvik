@@ -10,8 +10,6 @@ import Footer2 from "../../components/Footer2/footer2";
 const About = () => {
   const navbarRef = React.useRef(null);
   const logoRef = React.useRef(null);
-  const router = useRouter();
-  const query = router.query;
 
   React.useEffect(() => {
     var navbar = navbarRef.current,

@@ -1,6 +1,11 @@
 import React from "react";
 import { fetchCategories } from "../../../redux/reducers/categories";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchProductsByCategory,
+  filterBySearchBar,
+} from "../../../redux/reducers/products";
+import { useState } from "react";
 
 const ShopSidebar = () => {
   //REDUX
@@ -11,6 +16,18 @@ const ShopSidebar = () => {
   React.useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
+
+  const handleCategoriesChange = (e) => {
+    dispatch(fetchProductsByCategory(e));
+  };
+
+  const [searchParameter, setSearchParameter] = useState("");
+
+  const handleSearchBar = (e) => {
+    e.preventDefault();
+    dispatch(filterBySearchBar(searchParameter));
+  };
+
   //REDUX
   const tooltipRef = React.useRef(),
     setValue = (range) => {
@@ -37,8 +54,14 @@ const ShopSidebar = () => {
           <div className="search mb-30">
             <form action="">
               <div className="form-group">
-                <input type="text" name="shop-search" placeholder="Search" />
-                <button>
+                <input
+                  type="text"
+                  name="shop-search"
+                  value={searchParameter}
+                  placeholder="Search"
+                  onChange={(e) => setSearchParameter(e.target.value)}
+                />
+                <button onClick={handleSearchBar} style={{ cursor: "pointer" }}>
                   <span className="icon pe-7s-search"></span>
                 </button>
               </div>
@@ -51,8 +74,8 @@ const ShopSidebar = () => {
             <h6 className="title mb-30">Categorias</h6>
             <ul>
               {categories?.map((c) => (
-                <li key={c.id}>
-                  <a href="#0">{c.name}</a>
+                <li key={c.id} style={{ cursor: "pointer" }}>
+                  <a onClick={(e) => handleCategoriesChange(c.id)}>{c.name}</a>
                 </li>
               ))}
             </ul>
