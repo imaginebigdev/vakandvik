@@ -1,6 +1,17 @@
 import React from "react";
+import { fetchCategories } from "../../../redux/reducers/categories";
+import { useDispatch, useSelector } from "react-redux";
 
 const ShopSidebar = () => {
+  //REDUX
+  const dispatch = useDispatch();
+  const { categories, loading, error } = useSelector(
+    (state) => state.categories
+  );
+  React.useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
+  //REDUX
   const tooltipRef = React.useRef(),
     setValue = (range) => {
       const newValue = Number(
@@ -13,8 +24,8 @@ const ShopSidebar = () => {
         "--range-progress",
         `calc(${newValue}% + (${newPosition}px))`
       );
-      let a = range.value
-      range.value = a
+      let a = range.value;
+      range.value = a;
     };
   React.useEffect(() => {
     setValue(document.querySelector("#range"));
@@ -37,38 +48,13 @@ const ShopSidebar = () => {
 
         <div className="col-lg-12 col-md-6">
           <div className="box gat mb-30">
-            <h6 className="title mb-30">Category</h6>
+            <h6 className="title mb-30">Categorias</h6>
             <ul>
-              <li>
-                <a href="#0">
-                  App Design <span>05</span>
-                </a>
-              </li>
-              <li>
-                <a href="#0">
-                  Development <span>03</span>
-                </a>
-              </li>
-              <li>
-                <a href="#0">
-                  Web Design <span>07</span>
-                </a>
-              </li>
-              <li>
-                <a href="#0">
-                  Dashboard <span>04</span>
-                </a>
-              </li>
-              <li>
-                <a href="#0">
-                  Logo Design <span>09</span>
-                </a>
-              </li>
-              <li>
-                <a href="#0">
-                  Branding <span>14</span>
-                </a>
-              </li>
+              {categories?.map((c) => (
+                <li key={c.id}>
+                  <a href="#0">{c.name}</a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -84,25 +70,10 @@ const ShopSidebar = () => {
                 id="range"
                 type="range"
                 step="10"
-                min="5"
-                max="800"
+                min="3000"
+                max="100000"
               />
-              <div className="start-pointe">$ 5</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-lg-12 col-md-6">
-          <div className="box tags">
-            <h6 className="title mb-30">Popular Tags</h6>
-
-            <div>
-              <a href="#0">Apps</a>
-              <a href="#0">Design</a>
-              <a href="#0">Branding</a>
-              <a href="#0">Software</a>
-              <a href="#0">Development</a>
-              <a href="#0">Web</a>
+              <div className="start-pointe">$3000</div>
             </div>
           </div>
         </div>
