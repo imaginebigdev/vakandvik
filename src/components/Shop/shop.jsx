@@ -11,10 +11,11 @@ import { useRouter } from "next/router";
 const Shop = () => {
   const router = useRouter();
   const query = router.query.categoria;
-  console.log(query);
   // REDUX
   const dispatch = useDispatch();
-  const { products, loading, error } = useSelector((state) => state.products);
+  const { products, loading, error, filterProducts } = useSelector(
+    (state) => state.products
+  );
   React.useEffect(() => {
     if (query !== undefined) {
       dispatch(fetchProductsByCategory(query));
@@ -32,7 +33,7 @@ const Shop = () => {
             <ShopSidebar />
           </div>
           <div className="col-lg-9">
-            <ShopStore products={products} category={query} />
+            <ShopStore products={filterProducts} category={query} />
           </div>
         </div>
       </div>
