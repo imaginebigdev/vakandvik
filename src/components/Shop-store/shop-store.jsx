@@ -7,7 +7,7 @@ const ShopStore = ({ products, category }) => {
         <div className="row">
           <div className="col-lg-4 valign">
             <div className="result-text">
-              <span>Mostrando {products.length} productos</span>
+              <span>Mostrando {products?.length} productos</span>
             </div>
           </div>
           <div className="col-lg-8 d-flex justify-content-end">
