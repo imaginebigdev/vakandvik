@@ -1,13 +1,13 @@
 import React from "react";
 
-const ShopStore = ({ products }) => {
+const ShopStore = ({ products, category }) => {
   return (
     <div className="store">
       <div className="top-area">
         <div className="row">
           <div className="col-lg-4 valign">
             <div className="result-text">
-              <span>Mostrando 9 productos de {products?.length} totales</span>
+              <span>Mostrando {products?.length} productos</span>
             </div>
           </div>
           <div className="col-lg-8 d-flex justify-content-end">

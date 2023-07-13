@@ -3,8 +3,15 @@ import React from "react";
 import Link from "next/link";
 import appData from "../../data/app.json";
 import { handleDropdown, handleMobileDropdown } from "../../common/navbar";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from "../../../redux/reducers/categories";
 
 const Navbar = ({ lr, nr, theme }) => {
+  const dispatch = useDispatch();
+  const allcategories = useSelector((state) => state.categories);
+  React.useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
   const categorias = [
     { id: 1, name: "mochilas" },
     { id: 2, name: "bikinis" },
@@ -65,9 +72,9 @@ const Navbar = ({ lr, nr, theme }) => {
                 Shop
               </span>
               <div className="dropdown-menu">
-                {categorias.map((category) => (
+                {allcategories.categories?.map((category) => (
                   <Link
-                    href={`/shop/?categoria=${category.name}`}
+                    href={`/shop/?categoria=${category.id}`}
                     as="/shop"
                     key={category.id}
                   >
