@@ -1,6 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import {
+  orderByPriceASC,
+  orderByRelevant,
+  orderByPriceDESC,
+} from "../../../redux/reducers/products";
 
 const ShopStore = ({ products, category }) => {
+  const dispatch = useDispatch();
+
+  const handleSort = (type) => {
+    if (type === "relevant") return dispatch(orderByRelevant());
+    if (type === "asc") return dispatch(orderByPriceASC());
+    if (type === "desc") return dispatch(orderByPriceDESC());
+  };
   return (
     <div className="store">
       <div className="top-area">
@@ -15,11 +28,16 @@ const ShopStore = ({ products, category }) => {
               <select
                 className="form-select"
                 aria-label="Default select example"
+                onChange={(e) => {
+                  handleSort(e.target.value);
+                }}
               >
-                <option defaultValue>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option defaultChecked disabled selected hidden>
+                  Ordenar por...
+                </option>
+                <option value="relevant">Relevantes</option>
+                <option value="asc">Precio mayor a menor</option>
+                <option value="desc">Precio menor a mayor</option>
               </select>
             </div>
           </div>
@@ -34,13 +52,14 @@ const ShopStore = ({ products, category }) => {
                 <span className="tag">{p.categories[0].name}</span>
                 <div className="add">
                   <a href="#0">
-                    Add To Cart <span className="pe-7s-angle-right"></span>
+                    Agregar al carrito{" "}
+                    <span className="pe-7s-angle-right"></span>
                   </a>
                 </div>
               </div>
               <div className="info">
                 <h6>{p.name}</h6>
-                <span>$1253</span>
+                <span>$ {p.price}</span>
               </div>
             </div>
           </div>

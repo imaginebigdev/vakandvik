@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProductsByCategory,
   filterBySearchBar,
+  filterByPrice,
+  cleanFilters,
 } from "../../../redux/reducers/products";
 import { useState } from "react";
 
@@ -28,7 +30,11 @@ const ShopSidebar = () => {
     dispatch(filterBySearchBar(searchParameter));
   };
 
+  const handleClean = () => {
+    dispatch(cleanFilters());
+  };
   //REDUX
+
   const tooltipRef = React.useRef(),
     setValue = (range) => {
       const newValue = Number(
@@ -44,6 +50,11 @@ const ShopSidebar = () => {
       let a = range.value;
       range.value = a;
     };
+
+  const orderByPrice = (number) => {
+    dispatch(filterByPrice(number));
+  };
+
   React.useEffect(() => {
     setValue(document.querySelector("#range"));
   }, []);
@@ -84,7 +95,7 @@ const ShopSidebar = () => {
 
         <div className="col-lg-12 col-md-6">
           <div className="box filter-price mb-30">
-            <h6 className="title mb-30">Filter By Price</h6>
+            <h6 className="title mb-30">Filtro por precio</h6>
 
             <div className="range-slider mb-30">
               <div id="tooltip" ref={tooltipRef}></div>
@@ -93,11 +104,24 @@ const ShopSidebar = () => {
                 id="range"
                 type="range"
                 step="10"
-                min="3000"
+                min="300"
                 max="100000"
               />
-              <div className="start-pointe">$3000</div>
+              <div className="start-pointe">$300</div>
             </div>
+            <div className="text-center">
+              <button
+                className="butn bord mt-20 fz-15"
+                onClick={(e) => orderByPrice(tooltipRef.current.outerText)}
+              >
+                Aceptar
+              </button>
+            </div>
+          </div>
+          <div className="text-center">
+            <button className="butn bord mt-20 fz-15" onClick={handleClean}>
+              Limpiar filtros
+            </button>
           </div>
         </div>
       </div>

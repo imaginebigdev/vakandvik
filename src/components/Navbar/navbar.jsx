@@ -12,13 +12,7 @@ const Navbar = ({ lr, nr, theme }) => {
   React.useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
-  const categorias = [
-    { id: 1, name: "mochilas" },
-    { id: 2, name: "bikinis" },
-    { id: 3, name: "sofas" },
-    { id: 4, name: "empapelados" },
-    { id: 5, name: "cuadros" },
-  ];
+
   return (
     <nav
       ref={nr}

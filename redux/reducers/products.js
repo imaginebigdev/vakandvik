@@ -6,11 +6,12 @@ const productsSlice = createSlice({
   name: "products",
   initialState: {
     products: null,
-    productsCopy: null,
+    filterProducts: null,
     loading: false,
     error: null,
   },
   reducers: {
+    // General GET //
     fetchProductStart(state, action) {
       state.loading = true;
       state.error = null;
@@ -18,39 +19,91 @@ const productsSlice = createSlice({
     fetchProductSuccesfull(state, action) {
       state.loading = false;
       state.products = action.payload.response;
-      state.productsCopy = action.payload.response;
+      state.filterProducts = action.payload.response;
     },
     fetchProductFailiure(state, action) {
       state.loading = false;
       state.error = action.payload;
     },
+    // General GET //
+
+    // Filter by category //
     filterByCategoryStart(state, action) {
       state.loading = true;
       state.error = null;
     },
     filterByCategorySuccesfull(state, action) {
       state.loading = false;
-      state.products = action.payload.response;
+      state.filterProducts = action.payload.response;
     },
     filterByCategoryFailiure(state, action) {
       state.loading = false;
       state.error = action.payload;
     },
+    // Filter by category //
+
+    // Order by price//
+    orderByPriceASC(state, action) {
+      state.loading = true;
+      const sortedProducts = [...state.filterProducts].sort(
+        (a, b) => b.price - a.price
+      );
+      state.filterProducts = sortedProducts;
+      state.loading = false;
+    },
+    orderByPriceDESC(state, action) {
+      state.loading = true;
+      const sortedProducts = [...state.filterProducts].sort(
+        (a, b) => a.price - b.price
+      );
+      state.filterProducts = sortedProducts;
+      state.loading = false;
+    },
+    // order by price //
+
+    //order by relevant //
+    orderByRelevant(state, action) {
+      state.loading = true;
+      const sortedProducts = [...state.filterProducts].filter(
+        (p) => p.is_featured
+      );
+
+      state.filterProducts = sortedProducts;
+      state.loading = false;
+    },
+    //order by relevant //
+
+    // SearchBar //
     filterBySearchBar(state, action) {
       state.loading = true;
-      if (state.products.length === 0) {
-        state.products = [...state.productsCopy];
-      }
-      if (action.payload === undefined) {
-        state.products = [...state.productsCopy];
-        return;
-      }
-      const filterProducts = state.products.filter((product) =>
+
+      const filter = state.products.filter((product) =>
         product.name.toLowerCase().includes(action.payload.toLowerCase())
       );
       state.loading = false;
-      state.products = filterProducts;
+      state.filterProducts = filter;
     },
+    // SearchBar //
+
+    // filter by price //
+    filterByPrice(state, action) {
+      state.loading = true;
+      const filterPrice = state.filterProducts?.filter(
+        (p) => p.price < action.payload
+      );
+      state.filterProducts = filterPrice;
+      state.loading = false;
+    },
+
+    // filter by price //
+
+    // Clean Filters //
+    cleanFilters(state, action) {
+      state.loading = true;
+      state.filterProducts = state.products;
+      state.loading = false;
+    },
+    // Clean Filters //
   },
 });
 
@@ -62,6 +115,11 @@ export const {
   filterByCategorySuccesfull,
   filterByCategoryFailiure,
   filterBySearchBar,
+  filterByPrice,
+  orderByPriceASC,
+  orderByPriceDESC,
+  orderByRelevant,
+  cleanFilters,
 } = productsSlice.actions;
 export default productsSlice.reducer;
 
