@@ -58,24 +58,9 @@ const Navbar = ({ lr, nr, theme }) => {
               </Link>
             </li>
             <li className="nav-item dropdown" onClick={handleDropdown}>
-              <span
-                className="nav-link dropdown-toggle"
-                data-toggle="dropdown"
-                role="button"
-              >
-                Shop
-              </span>
-              <div className="dropdown-menu">
-                {allcategories.categories?.map((category) => (
-                  <Link
-                    href={`/shop/?categoria=${category.id}`}
-                    as="/shop"
-                    key={category.id}
-                  >
-                    <a className="dropdown-item">{category.name}</a>
-                  </Link>
-                ))}
-              </div>
+              <Link href="/shop">
+                <a className="nav-link">Shop</a>
+              </Link>
             </li>
             <li className="nav-item ">
               <Link href="/informacion">
