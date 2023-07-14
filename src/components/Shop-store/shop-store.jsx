@@ -6,7 +6,7 @@ import {
   orderByPriceDESC,
 } from "../../../redux/reducers/products";
 
-const ShopStore = ({ products, category }) => {
+const ShopStore = ({ products }) => {
   const dispatch = useDispatch();
 
   const handleSort = (type) => {

@@ -28,6 +28,23 @@ const productsSlice = createSlice({
     // General GET //
 
     // Filter by category //
+
+    filterByCategory(state, action) {
+      state.loading = true;
+      if (action.payload?.length === 0) {
+        state.filterProducts = [...state.products];
+        state.loading = false;
+
+        return;
+      }
+      const filteredProducts = state.products.filter((product) => {
+        return product.categories.some((category) =>
+          action.payload.includes(category.id)
+        );
+      });
+      state.filterProducts = filteredProducts;
+      state.loading = false;
+    },
     filterByCategoryStart(state, action) {
       state.loading = true;
       state.error = null;
@@ -111,6 +128,7 @@ export const {
   fetchProductStart,
   fetchProductSuccesfull,
   fetchProductFailiure,
+  filterByCategory,
   filterByCategoryStart,
   filterByCategorySuccesfull,
   filterByCategoryFailiure,

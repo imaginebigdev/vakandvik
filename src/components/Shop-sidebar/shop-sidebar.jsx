@@ -2,7 +2,7 @@ import React from "react";
 import { fetchCategories } from "../../../redux/reducers/categories";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchProductsByCategory,
+  filterByCategory,
   filterBySearchBar,
   filterByPrice,
   cleanFilters,
@@ -18,21 +18,46 @@ const ShopSidebar = () => {
   React.useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
+  // category //
 
-  const handleCategoriesChange = (e) => {
-    dispatch(fetchProductsByCategory(e));
+  const [filterCategory, setFiltersCategory] = useState([]);
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      // Agregar la categoría seleccionada al array
+      setFiltersCategory((prevCategories) => [...prevCategories, value]);
+    } else {
+      // Eliminar la categoría del array si se desmarca el checkbox
+      setFiltersCategory((prevCategories) =>
+        prevCategories.filter((category) => category !== value)
+      );
+    }
   };
+  const handleSubmitCategory = () => {
+    dispatch(filterByCategory(filterCategory));
+  };
+  // Category //
 
+  // Searchbar //
   const [searchParameter, setSearchParameter] = useState("");
 
   const handleSearchBar = (e) => {
     e.preventDefault();
     dispatch(filterBySearchBar(searchParameter));
+    setSearchParameter("");
   };
 
   const handleClean = () => {
     dispatch(cleanFilters());
+    setFiltersCategory([]);
+    setSearchParameter("");
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
   };
+  // Searchbar //
+
   //REDUX
 
   const tooltipRef = React.useRef(),
@@ -58,6 +83,7 @@ const ShopSidebar = () => {
   React.useEffect(() => {
     setValue(document.querySelector("#range"));
   }, []);
+
   return (
     <div className="sidebar md-mb50">
       <div className="row">
@@ -82,14 +108,31 @@ const ShopSidebar = () => {
 
         <div className="col-lg-12 col-md-6">
           <div className="box gat mb-30">
-            <h6 className="title mb-30">Categorias</h6>
+            <h5 className="title mb-30">Categorias</h5>
             <ul>
               {categories?.map((c) => (
-                <li key={c.id} style={{ cursor: "pointer" }}>
-                  <a onClick={(e) => handleCategoriesChange(c.id)}>{c.name}</a>
+                <li key={c.id}>
+                  <input
+                    style={{ marginRight: "5px" }}
+                    type="checkbox"
+                    name={c.name}
+                    value={c.id}
+                    checked={filterCategory?.find((f) => f.id === c.id)}
+                    onChange={handleCheckboxChange}
+                  />
+
+                  <label className="fz-18">{c.name}</label>
                 </li>
               ))}
             </ul>
+            <div className="text-center">
+              <button
+                className="butn bord mt-20 fz-15 text-center"
+                onClick={handleSubmitCategory}
+              >
+                Aplicar
+              </button>
+            </div>
           </div>
         </div>
 
@@ -114,7 +157,7 @@ const ShopSidebar = () => {
                 className="butn bord mt-20 fz-15"
                 onClick={(e) => orderByPrice(tooltipRef.current.outerText)}
               >
-                Aceptar
+                Aplicar
               </button>
             </div>
           </div>
