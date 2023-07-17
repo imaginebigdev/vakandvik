@@ -5223,6 +5223,7 @@ tbody.collapse.show {
   padding-left: 0;
   list-style: none;
   border-radius: 0.25rem;
+  justify-content: center;
 }
 
 .page-link {

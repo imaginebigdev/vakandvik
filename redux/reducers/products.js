@@ -79,15 +79,15 @@ const productsSlice = createSlice({
     // order by price //
 
     //order by relevant //
-    orderByRelevant(state, action) {
-      state.loading = true;
-      const sortedProducts = [...state.filterProducts].filter(
-        (p) => p.is_featured
-      );
+    // orderByRelevant(state, action) {
+    //   state.loading = true;
+    //   const sortedProducts = [...state.filterProducts].filter(
+    //     (p) => p.is_featured
+    //   );
 
-      state.filterProducts = sortedProducts;
-      state.loading = false;
-    },
+    //   state.filterProducts = sortedProducts;
+    //   state.loading = false;
+    // },
     //order by relevant //
 
     // SearchBar //
