@@ -9,13 +9,15 @@ import {
 } from "../../../redux/reducers/products";
 import { useState } from "react";
 
-const ShopSidebar = () => {
+const ShopSidebar = ({ setCurrentPage }) => {
   //REDUX
   const dispatch = useDispatch();
   const { categories, loading, error } = useSelector(
     (state) => state.categories
   );
   React.useEffect(() => {
+    setCurrentPage(0);
+
     dispatch(fetchCategories());
   }, [dispatch]);
   // category //
@@ -34,7 +36,11 @@ const ShopSidebar = () => {
     }
   };
   const handleSubmitCategory = () => {
+    setCurrentPage(0);
     dispatch(filterByCategory(filterCategory));
+    const range = document.querySelector("#range");
+    range.value = range.min;
+    setValue(range);
   };
   // Category //
 
@@ -42,12 +48,18 @@ const ShopSidebar = () => {
   const [searchParameter, setSearchParameter] = useState("");
 
   const handleSearchBar = (e) => {
+    setCurrentPage(0);
     e.preventDefault();
     dispatch(filterBySearchBar(searchParameter));
     setSearchParameter("");
+    const range = document.querySelector("#range");
+    range.value = range.min;
+    setValue(range);
   };
 
   const handleClean = () => {
+    setCurrentPage(0);
+
     dispatch(cleanFilters());
     setFiltersCategory([]);
     setSearchParameter("");
@@ -55,6 +67,9 @@ const ShopSidebar = () => {
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false;
     });
+    const range = document.querySelector("#range");
+    range.value = range.min;
+    setValue(range);
   };
   // Searchbar //
 
@@ -77,6 +92,8 @@ const ShopSidebar = () => {
     };
 
   const orderByPrice = (number) => {
+    setCurrentPage(0);
+
     dispatch(filterByPrice(number));
   };
 

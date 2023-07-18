@@ -2,15 +2,19 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import {
   orderByPriceASC,
-  orderByRelevant,
   orderByPriceDESC,
 } from "../../../redux/reducers/products";
 
-const ShopStore = ({ products }) => {
+const ShopStore = ({
+  products,
+  nextHandler,
+  prevHandler,
+  currentPage,
+  totalProducts,
+}) => {
   const dispatch = useDispatch();
 
   const handleSort = (type) => {
-    if (type === "relevant") return dispatch(orderByRelevant());
     if (type === "asc") return dispatch(orderByPriceASC());
     if (type === "desc") return dispatch(orderByPriceDESC());
   };
@@ -20,7 +24,9 @@ const ShopStore = ({ products }) => {
         <div className="row">
           <div className="col-lg-4 valign">
             <div className="result-text">
-              <span>Mostrando {products?.length} productos</span>
+              <span>
+                Mostrando {products?.length} productos de {totalProducts}{" "}
+              </span>
             </div>
           </div>
           <div className="col-lg-8 d-flex justify-content-end">
@@ -35,7 +41,6 @@ const ShopStore = ({ products }) => {
                 <option defaultChecked disabled selected hidden>
                   Ordenar por...
                 </option>
-                <option value="relevant">Relevantes</option>
                 <option value="asc">Precio mayor a menor</option>
                 <option value="desc">Precio menor a mayor</option>
               </select>
@@ -64,6 +69,23 @@ const ShopStore = ({ products }) => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="text-center mt-30">
+        <div className="pagination">
+          <span onClick={prevHandler} style={{ cursor: "pointer" }}>
+            <a>
+              <i className="fas fa-angle-left"></i>
+            </a>
+          </span>
+          <span className="active">
+            <a>{currentPage + 1}</a>
+          </span>
+          <span onClick={nextHandler} style={{ cursor: "pointer" }}>
+            <a>
+              <i className="fas fa-angle-right"></i>
+            </a>
+          </span>
+        </div>
       </div>
     </div>
   );
