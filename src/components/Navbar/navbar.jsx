@@ -3,16 +3,9 @@ import React from "react";
 import Link from "next/link";
 import appData from "../../data/app.json";
 import { handleDropdown, handleMobileDropdown } from "../../common/navbar";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories } from "../../../redux/reducers/categories";
+import { useDispatch } from "react-redux";
 
 const Navbar = ({ lr, nr, theme }) => {
-  const dispatch = useDispatch();
-  const allcategories = useSelector((state) => state.categories);
-  React.useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
-
   return (
     <nav
       ref={nr}

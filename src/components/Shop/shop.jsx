@@ -10,7 +10,7 @@ const Shop = () => {
   const { products, loading, error, filterProducts } = useSelector(
     (state) => state.products
   );
-  const totalProducts = filterProducts.length;
+  const totalProducts = filterProducts?.length;
   const [productsArray, setProductsArray] = React.useState([]);
   const [items, setItems] = React.useState([]);
   const [currentPage, setCurrentPage] = React.useState(0);
@@ -24,7 +24,6 @@ const Shop = () => {
       setProductsArray(filterProducts);
       setItems([...filterProducts].splice(0, itemPerPage));
       setCurrentPage(0);
-      console.log("activado");
     }
   }, [filterProducts]);
   /* ====================== [ End REDUX  ] ====================== */
