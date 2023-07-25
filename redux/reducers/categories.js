@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const url = "http://localhost:3001/api/";
+const url = "http://localhost:3001/";
 
 const categorySlice = createSlice({
   name: "categories",
@@ -16,7 +16,7 @@ const categorySlice = createSlice({
     },
     fetchCategorySuccesfull(state, action) {
       state.loading = false;
-      state.categories = action.payload.response;
+      state.categories = action.payload;
     },
     fetchCategoryFailiure(state, action) {
       state.loading = false;
@@ -35,7 +35,7 @@ export default categorySlice.reducer;
 export const fetchCategories = () => async (dispatch) => {
   try {
     dispatch(fetchCategoryStart());
-    const response = await axios.get(`${url}category`);
+    const response = await axios.get(`${url}categories`);
     dispatch(fetchCategorySuccesfull(response.data));
   } catch (error) {
     dispatch(fetchCategoryFailiure(error.message));

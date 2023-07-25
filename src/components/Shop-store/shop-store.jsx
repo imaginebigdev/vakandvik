@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   orderByPriceASC,
   orderByPriceDESC,
 } from "../../../redux/reducers/products";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const ShopStore = ({
   products,
@@ -14,9 +15,15 @@ const ShopStore = ({
 }) => {
   const dispatch = useDispatch();
 
+  const [itemCart, setItemCart] = useLocalStorage("cart", []);
+
   const handleSort = (type) => {
     if (type === "asc") return dispatch(orderByPriceASC());
     if (type === "desc") return dispatch(orderByPriceDESC());
+  };
+
+  const handleAddToCart = (product) => {
+    setItemCart([...itemCart, { ...product, quantity: 1 }]);
   };
   return (
     <div className="store">
@@ -54,10 +61,10 @@ const ShopStore = ({
             <div className="item">
               <div className="img">
                 <img src={p.image} alt="" />
-                <span className="tag">{p.categories[0].name}</span>
+                <span className="tag">{p.desing}</span>
                 <div className="add">
-                  <a href="#0">
-                    Agregar al carrito{" "}
+                  <a onClick={(e) => handleAddToCart(p)}>
+                    Agregar al carrito
                     <span className="pe-7s-angle-right"></span>
                   </a>
                 </div>

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const url = "http://localhost:3001/api/";
+const url = "http://localhost:3001/";
 
 const productsSlice = createSlice({
   name: "products",
@@ -18,8 +18,8 @@ const productsSlice = createSlice({
     },
     fetchProductSuccesfull(state, action) {
       state.loading = false;
-      state.products = action.payload.response;
-      state.filterProducts = action.payload.response;
+      state.products = action.payload;
+      state.filterProducts = action.payload;
     },
     fetchProductFailiure(state, action) {
       state.loading = false;
@@ -38,25 +38,14 @@ const productsSlice = createSlice({
         return;
       }
       const filteredProducts = state.products.filter((product) => {
-        return product.categories.some((category) =>
-          action.payload.includes(category.id)
+        return action.payload.some(
+          (categoryId) => Number(categoryId) === product.categoryId
         );
       });
       state.filterProducts = filteredProducts;
       state.loading = false;
     },
-    filterByCategoryStart(state, action) {
-      state.loading = true;
-      state.error = null;
-    },
-    filterByCategorySuccesfull(state, action) {
-      state.loading = false;
-      state.filterProducts = action.payload.response;
-    },
-    filterByCategoryFailiure(state, action) {
-      state.loading = false;
-      state.error = action.payload;
-    },
+
     // Filter by category //
 
     // Order by price//
@@ -77,18 +66,6 @@ const productsSlice = createSlice({
       state.loading = false;
     },
     // order by price //
-
-    //order by relevant //
-    // orderByRelevant(state, action) {
-    //   state.loading = true;
-    //   const sortedProducts = [...state.filterProducts].filter(
-    //     (p) => p.is_featured
-    //   );
-
-    //   state.filterProducts = sortedProducts;
-    //   state.loading = false;
-    // },
-    //order by relevant //
 
     // SearchBar //
     filterBySearchBar(state, action) {
@@ -144,18 +121,9 @@ export default productsSlice.reducer;
 export const fetchProducts = () => async (dispatch) => {
   try {
     dispatch(fetchProductStart());
-    const response = await axios.get(`${url}items`);
+    const response = await axios.get(`${url}products`);
     dispatch(fetchProductSuccesfull(response.data));
   } catch (error) {
     dispatch(fetchProductFailiure(error.message));
-  }
-};
-export const fetchProductsByCategory = (idCategory) => async (dispatch) => {
-  try {
-    dispatch(filterByCategoryStart());
-    const response = await axios.get(`${url}items/category/${idCategory}`);
-    dispatch(filterByCategorySuccesfull(response.data));
-  } catch (error) {
-    dispatch(filterByCategoryFailiure(error.message));
   }
 };
