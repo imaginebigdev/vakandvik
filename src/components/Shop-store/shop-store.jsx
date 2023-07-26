@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   orderByPriceASC,
   orderByPriceDESC,
 } from "../../../redux/reducers/products";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { setItems } from "../../../redux/reducers/cart";
 
 const ShopStore = ({
   products,
@@ -17,13 +18,27 @@ const ShopStore = ({
 
   const [itemCart, setItemCart] = useLocalStorage("cart", []);
 
+  const { itemsCart } = useSelector((state) => state.cart);
+
   const handleSort = (type) => {
     if (type === "asc") return dispatch(orderByPriceASC());
     if (type === "desc") return dispatch(orderByPriceDESC());
   };
-
   const handleAddToCart = (product) => {
-    setItemCart([...itemCart, { ...product, quantity: 1 }]);
+    const existingProduct = itemsCart.find((p) => p.id === product.id);
+
+    if (existingProduct) {
+      // If the product already exists in the cart, update its quantity
+      const updatedCart = itemsCart.map((p) =>
+        p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
+      );
+      setItemCart(updatedCart);
+      dispatch(setItems(updatedCart));
+    } else {
+      // If the product is not in the cart, add it with quantity 1
+      setItemCart([...itemsCart, { ...product, quantity: 1 }]);
+      dispatch(setItems([...itemsCart, { ...product, quantity: 1 }]));
+    }
   };
   return (
     <div className="store">
@@ -63,7 +78,10 @@ const ShopStore = ({
                 <img src={p.image} alt="" />
                 <span className="tag">{p.desing}</span>
                 <div className="add">
-                  <a onClick={(e) => handleAddToCart(p)}>
+                  <a
+                    onClick={(e) => handleAddToCart(p)}
+                    style={{ cursor: "pointer" }}
+                  >
                     Agregar al carrito
                     <span className="pe-7s-angle-right"></span>
                   </a>

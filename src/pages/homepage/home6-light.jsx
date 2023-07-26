@@ -6,9 +6,7 @@ import FullTestimonials from "../../components/Full-testimonials/full-testimonia
 import Footer2 from "../../components/Footer2/footer2";
 import WorksStyle3 from "../../components/Works-style3/works-style3";
 import Works2 from "../../components/Works2/works2";
-import { useSelector, useDispatch } from "react-redux";
-import { SET_NAME } from "../../../redux/reducers/profile";
-import { useState } from "react";
+
 import AboutUs from "../../components/About-us/about-us";
 
 const Homepage1 = () => {
@@ -16,16 +14,6 @@ const Homepage1 = () => {
   const MainContent = React.useRef(null);
   const navbarRef = React.useRef(null);
   const logoRef = React.useRef(null);
-
-  // Redux //
-  const dispatch = useDispatch();
-  const { name } = useSelector((state) => state.profile);
-  const [value, setValue] = useState("");
-  const changeName = () => {
-    console.log(name);
-    dispatch(SET_NAME(value));
-  };
-  // Redux //
 
   React.useEffect(() => {
     setInterval(() => {
@@ -56,15 +44,6 @@ const Homepage1 = () => {
       <Navbar nr={navbarRef} lr={logoRef} theme="themeL" />
       <IntroWithSlider sliderRef={fixedSlider} />
       <div ref={MainContent} className="main-content">
-        {/* <h1>Whats is your name?</h1>
-        <input
-          placeholder="name here"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <button onClick={changeName}>Change name!</button>
-        <h1>{value}</h1>
-        <h1>{name}</h1> */}
         <WorksStyle3 />
         <Works2 />
         <AboutUs />
