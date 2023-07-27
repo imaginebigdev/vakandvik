@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const url = "http://localhost:3001/";
+const url = process.env.NEXT_APP_URL_BACK;
 
 const productsSlice = createSlice({
   name: "products",

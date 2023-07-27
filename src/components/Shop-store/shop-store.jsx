@@ -16,14 +16,15 @@ const ShopStore = ({
 }) => {
   const dispatch = useDispatch();
 
-  const [itemCart, setItemCart] = useLocalStorage("cart", []);
-
-  const { itemsCart } = useSelector((state) => state.cart);
-
   const handleSort = (type) => {
     if (type === "asc") return dispatch(orderByPriceASC());
     if (type === "desc") return dispatch(orderByPriceDESC());
   };
+
+  const [itemCart, setItemCart] = useLocalStorage("cart", []);
+
+  const { itemsCart } = useSelector((state) => state.cart);
+
   const handleAddToCart = (product) => {
     const existingProduct = itemsCart.find((p) => p.id === product.id);
 

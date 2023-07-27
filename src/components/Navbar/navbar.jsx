@@ -10,16 +10,41 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 const Navbar = ({ lr, nr, theme }) => {
   const dispatch = useDispatch();
   const [itemCart, setItemCart] = useLocalStorage("cart", []);
+
   React.useEffect(() => {
     dispatch(setItems(JSON.parse(window.localStorage.getItem("cart"))));
   }, [dispatch]);
+
   const handleDeleteProduct = (id) => {
     const updateArray = itemsCart.filter((item) => item.id !== id);
     setItemCart(updateArray);
     dispatch(setItems(updateArray));
   };
+  const handleUpdateQuantity = (id, amount) => {
+    const updatedCart = itemsCart
+      .map((item) => {
+        if (item.id === id) {
+          const newQuantity = item.quantity + amount;
+          if (newQuantity <= 0) return null;
+          return { ...item, quantity: newQuantity };
+        }
+        return item;
+      })
+      .filter(Boolean);
+    setItemCart(updatedCart);
+    dispatch(setItems(updatedCart));
+  };
+
+  const handleCleanCart = () => {
+    setItemCart([]);
+    dispatch(setItems([]));
+  };
 
   const { itemsCart } = useSelector((state) => state.cart);
+  const totalProductsInCart = itemsCart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
   const totalPrice = itemsCart?.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -71,8 +96,13 @@ const Navbar = ({ lr, nr, theme }) => {
               >
                 <i
                   className="fa fa-shopping-cart"
-                  style={{ marginLeft: "5px" }}
+                  style={{ marginRight: "5px" }}
                 ></i>
+                {totalProductsInCart >= 0 && (
+                  <span className="badge badge-secondary">
+                    {totalProductsInCart}
+                  </span>
+                )}
               </span>
               <div className="dropdown-menu">
                 <table className="table table-bordered">
@@ -85,14 +115,32 @@ const Navbar = ({ lr, nr, theme }) => {
                       <th>Eliminar</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody className="text-center">
                     {itemsCart?.map((item) => (
                       <tr key={item.id}>
                         <td style={{ width: "30px" }}>
                           <img src={item.image} alt="itemImage" />
                         </td>
                         <td>{item.name}</td>
-                        <td>{item.quantity}</td>
+                        <td>
+                          <div className="quantity-container">
+                            <button
+                              type="button"
+                              className="btn btn-sm btn-secondary"
+                              onClick={() => handleUpdateQuantity(item.id, -1)}
+                            >
+                              -
+                            </button>
+                            <span>{item.quantity}</span>
+                            <button
+                              type="button"
+                              className="btn btn-sm btn-secondary"
+                              onClick={() => handleUpdateQuantity(item.id, 1)}
+                            >
+                              +
+                            </button>
+                          </div>
+                        </td>
                         <td>${item.price * item.quantity}</td>
                         <td>
                           <button
@@ -108,6 +156,20 @@ const Navbar = ({ lr, nr, theme }) => {
                     <tr>
                       <td>Total:</td>
                       <td> $ {totalPrice.toFixed(2)}</td>
+                      <td>
+                        <button
+                          type="button"
+                          className="btn btn-danger"
+                          onClick={() => handleCleanCart()}
+                        >
+                          Limpiar carrito
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" className="btn btn-success">
+                          <Link href="/carrito">Detalles</Link>
+                        </button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
