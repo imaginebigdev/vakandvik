@@ -6989,7 +6989,20 @@ span:hover {
   border-radius: 3px;
   overflow: hidden;
 }
+.quantity-container {
+  display: flex;
+  align-items: center;
+}
 
+.quantity-container button {
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+.quantity-container span {
+  margin: 0 10px;
+  font-size: 16px;
+}
 .blog-crv .item .content {
   padding: 30px 65px;
   text-align: center;

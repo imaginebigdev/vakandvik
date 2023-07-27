@@ -3,7 +3,6 @@ import Navbar from "../../components/Navbar/navbar";
 import CallToAction from "../../components/Call-to-action/call-to-action";
 import LightTheme from "../../layouts/Light";
 import Shop from "../../components/Shop/shop";
-import { useRouter } from "next/router";
 
 import Footer2 from "../../components/Footer2/footer2";
 

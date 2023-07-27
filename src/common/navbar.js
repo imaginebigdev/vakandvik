@@ -6,7 +6,7 @@ export const handleDropdown = (e) => {
     .map((item) => {
       item.classList.remove("show");
       if (item.childNodes[0]) {
-        item.childNodes[0].setAttribute("aria-expanded", false);
+        item.childNodes[0]?.setAttribute("aria-expanded", false);
       }
       if (item.childNodes[1]) {
         item.childNodes[1].classList.remove("show");
