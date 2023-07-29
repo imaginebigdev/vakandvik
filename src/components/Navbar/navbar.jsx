@@ -104,7 +104,7 @@ const Navbar = ({ lr, nr, theme }) => {
                   </span>
                 )}
               </span>
-              <div className="dropdown-menu">
+              <div className="dropdown-menu table-container">
                 <table className="table table-bordered">
                   <thead>
                     <tr>

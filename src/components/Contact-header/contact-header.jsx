@@ -29,11 +29,6 @@ const ContactHeader = ({ sliderRef, blackStar }) => {
         id="particles-js"
         options={blackStar ? particlesBlackConfig : particlesConfig}
       />
-
-      <div className="circle-color">
-        <div className="gradient-circle"></div>
-        <div className="gradient-circle two"></div>
-      </div>
     </header>
   );
 };
