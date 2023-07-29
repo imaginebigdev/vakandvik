@@ -6972,7 +6972,10 @@ span:hover {
   border: 1px solid #eee;
   font-size: 18px;
 }
-
+.table-container {
+  max-height: 300px;
+  overflow-y: auto;
+}
 .blog-crv
   .controls
   .swiper-pagination-fraction
@@ -6992,6 +6995,7 @@ span:hover {
 .quantity-container {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .quantity-container button {
