@@ -6,7 +6,7 @@ import CartComponent from "../../components/Cart/Cart-component";
 import NavbarCart from "../../components/Navbar/navbar-cart";
 import ContactHeader from "../../components/Contact-header/contact-header";
 
-const Contact = () => {
+const Carrito = () => {
   const navbarRef = React.useRef(null);
   const logoRef = React.useRef(null);
 
@@ -43,4 +43,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Carrito;

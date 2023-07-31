@@ -27,6 +27,34 @@ const productsSlice = createSlice({
     },
     // General GET //
 
+    // Modify product //
+    modifyProductStart(state, action) {
+      state.loading = true;
+      state.error = null;
+    },
+    modifyProductSuccesfull(state, action) {
+      state.loading = false;
+    },
+    modifyProductFailiure(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    // Modify product //
+
+    // Modify product //
+    deleteProductStart(state, action) {
+      state.loading = true;
+      state.error = null;
+    },
+    deleteProductSuccesfull(state, action) {
+      state.loading = false;
+    },
+    deleteProductFailiure(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    // Modify product //
+
     // Filter by category //
 
     filterByCategory(state, action) {
@@ -105,10 +133,13 @@ export const {
   fetchProductStart,
   fetchProductSuccesfull,
   fetchProductFailiure,
+  modifyProductStart,
+  modifyProductSuccesfull,
+  modifyProductFailiure,
+  deleteProductStart,
+  deleteProductSuccesfull,
+  deleteProductFailiure,
   filterByCategory,
-  filterByCategoryStart,
-  filterByCategorySuccesfull,
-  filterByCategoryFailiure,
   filterBySearchBar,
   filterByPrice,
   orderByPriceASC,
@@ -125,5 +156,31 @@ export const fetchProducts = () => async (dispatch) => {
     dispatch(fetchProductSuccesfull(response.data));
   } catch (error) {
     dispatch(fetchProductFailiure(error.message));
+  }
+};
+
+export const modifyProduct = (id, modify) => async (dispatch) => {
+  try {
+    dispatch(modifyProductStart());
+    dispatch(fetchProductStart());
+    await axios.put(`${url}products/${id}`, modify);
+    const response = await axios.get(`${url}products`);
+    dispatch(fetchProductSuccesfull(response.data));
+    dispatch(modifyProductSuccesfull());
+  } catch (error) {
+    dispatch(modifyProductFailiure());
+  }
+};
+
+export const deleteProduct = (id) => async (dispatch) => {
+  try {
+    dispatch(deleteProductStart());
+    dispatch(fetchProductStart());
+    await axios.delete(`${url}products/${id}`);
+    const response = await axios.get(`${url}products`);
+    dispatch(fetchProductSuccesfull(response.data));
+    dispatch(deleteProductSuccesfull());
+  } catch (error) {
+    dispatch(deleteProductFailiure());
   }
 };
