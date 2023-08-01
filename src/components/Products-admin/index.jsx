@@ -6,8 +6,10 @@ import {
   modifyProduct,
 } from "../../../redux/reducers/products";
 import { fetchCategories } from "../../../redux/reducers/categories";
+import Swal from "sweetalert2";
 
 const ProductsAdmin = () => {
+  const Swal = require("sweetalert2");
   const dispatch = useDispatch();
 
   const { products } = useSelector((state) => state.products);
@@ -24,14 +26,54 @@ const ProductsAdmin = () => {
 
   const handleModify = (id, modify) => {
     if (modify.price > 0 || modify.stock > 0) {
-      dispatch(modifyProduct(id, modify));
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "¿Quieres realizar la modificación?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(modifyProduct(id, modify));
+          Swal.fire(
+            "¡Modificación exitosa!",
+            "El producto ha sido modificado.",
+            "success"
+          );
+        }
+      });
     } else {
-      alert("Ingrese un numero positivo");
+      Swal.fire(
+        "Ingrese un numero",
+        "Intente ingresando un numero positivo",
+        "warning"
+      );
     }
   };
 
   const handleDelete = (id) => {
-    dispatch(deleteProduct(id));
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Quieres eliminar este producto?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteProduct(id));
+        Swal.fire(
+          "¡Eliminación exitosa!",
+          "El producto ha sido eliminado.",
+          "success"
+        );
+      }
+    });
   };
 
   return (

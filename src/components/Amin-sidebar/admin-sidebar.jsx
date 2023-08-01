@@ -28,6 +28,17 @@ const AdminSidebar = ({ setShow, show }) => {
                   Productos
                 </a>
               </li>
+              <li>
+                <a
+                  onClick={() => setShow("categories")}
+                  style={{ cursor: "pointer" }}
+                  className={
+                    show === "categories" ? "font-weight-bold fz-18" : ""
+                  }
+                >
+                  Categorias
+                </a>
+              </li>
             </ul>
           </div>
         </div>

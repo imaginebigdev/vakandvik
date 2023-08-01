@@ -1,61 +1,32 @@
-/* eslint-disable @next/next/no-sync-scripts */
-import React from "react";
-import LightTheme from "../../layouts/Light";
-import Footer2 from "../../components/Footer2/footer2";
-import OrdersComponent from "../../components/Orders";
-import ProductsAdmin from "../../components/Products-admin";
-import AdminSidebar from "../../components/Amin-sidebar/admin-sidebar";
-import NavbarAdmin from "../../components/Navbar/navbar-admin";
-import FormAdmin from "../../components/Form-admin/form-admin";
+import React, { useState } from "react";
 
-const Admin = () => {
-  const navbarRef = React.useRef(null);
-  const logoRef = React.useRef(null);
+import Logueo from "../logueo";
 
-  const [show, setShow] = React.useState("products");
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import firebaseVakandvik from "../../fb";
+import Admin from "../../components/admin";
 
-  React.useEffect(() => {
-    var navbar = navbarRef.current,
-      logo = logoRef.current;
-    if (window.pageYOffset > 300) {
-      navbar.classList.add("nav-scroll");
+const auth = getAuth(firebaseVakandvik);
+
+const HomeAdmin = () => {
+  const [usuarioGlobal, setUsuarioGlobal] = useState(null);
+
+  onAuthStateChanged(auth, (usuraioAdmin) => {
+    if (usuraioAdmin) {
+      setUsuarioGlobal(usuraioAdmin);
     } else {
-      navbar.classList.remove("nav-scroll");
+      setUsuarioGlobal(null);
     }
-    window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 300) {
-        navbar.classList.add("nav-scroll");
-      } else {
-        navbar.classList.remove("nav-scroll");
-      }
-    });
-  }, [navbarRef]);
-
+  });
   return (
-    <LightTheme mobileappstyle>
-      <NavbarAdmin nr={navbarRef} lr={logoRef} theme="themeL" />
-      <section className="shop section-padding">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-3">
-              <AdminSidebar setShow={setShow} show={show} />
-            </div>
-            <div className="col-lg-9">
-              {show === "orders" && <OrdersComponent />}
-              {show === "products" && (
-                <>
-                  <ProductsAdmin />
-                  <FormAdmin />
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Footer2 />
-    </LightTheme>
+    <>
+      {usuarioGlobal ? (
+        <Admin correoUsuario={usuarioGlobal.email} />
+      ) : (
+        <Logueo />
+      )}
+    </>
   );
 };
 
-export default Admin;
+export default HomeAdmin;

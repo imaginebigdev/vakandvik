@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOrders, modifyOrder } from "../../../redux/reducers/orders";
+import Swal from "sweetalert2";
 
 const OrdersComponent = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,25 @@ const OrdersComponent = () => {
   });
 
   const handleModifyOrder = (id) => {
-    dispatch(modifyOrder(id, modifyOrderState));
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Quieres modificar el estado de esta orden?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(modifyOrder(id, modifyOrderState));
+        Swal.fire(
+          "¡Modificación exitosa!",
+          "El estado de la orden ha sido modificado.",
+          "success"
+        );
+      }
+    });
   };
   const [showProductDetails, setShowProductDetails] = useState({});
   const [showClient, setShowClient] = useState({});

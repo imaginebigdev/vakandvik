@@ -3,8 +3,11 @@ import React from "react";
 import Link from "next/link";
 import appData from "../../data/app.json";
 import { handleDropdown, handleMobileDropdown } from "../../common/navbar";
+import firebaseVakandvik from "../../fb";
+import { getAuth, signOut } from "firebase/auth";
 
 const NavbarAdmin = ({ lr, nr, theme }) => {
+  const auth = getAuth(firebaseVakandvik);
   return (
     <nav
       ref={nr}
@@ -44,16 +47,16 @@ const NavbarAdmin = ({ lr, nr, theme }) => {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item ">
-              <Link href="/admin">
-                <a className="nav-link">Cerrar sesion</a>
-              </Link>
+            <li className="nav-link d-none d-sm-block">
+              <h4>Bienvenido Admin</h4>
             </li>
-
-            <li className="nav-item">
-              <Link href="/contacto">
-                <a className="nav-link">Volver a inicio</a>
-              </Link>
+            <li className="nav-link">
+              <button className="btn btn-info" onClick={() => signOut(auth)}>
+                Cerrar sesion
+              </button>
+            </li>
+            <li className="nav-link">
+              <Link href="/">Ir al inicio</Link>
             </li>
           </ul>
         </div>
