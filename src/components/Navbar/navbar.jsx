@@ -153,7 +153,7 @@ const Navbar = ({ lr, nr, theme }) => {
                         </td>
                       </tr>
                     ))}
-                    <tr>
+                    <tr key="sadasdas">
                       <td>Total:</td>
                       <td> $ {totalPrice.toFixed(2)}</td>
                       <td>

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const url = process.env.NEXT_APP_URL_BACK;
+const key_admin = process.env.NEXT_APP_KEY_ADMIN;
 
 const productsSlice = createSlice({
   name: "products",
@@ -180,7 +181,10 @@ export const modifyProduct = (id, modify) => async (dispatch) => {
   try {
     dispatch(modifyProductStart());
     dispatch(fetchProductStart());
-    await axios.put(`${url}products/${id}`, modify);
+    await axios.put(`${url}products/${id}`, {
+      ...modify,
+      key_admin: key_admin,
+    });
     const response = await axios.get(`${url}products`);
     dispatch(fetchProductSuccesfull(response.data));
     dispatch(modifyProductSuccesfull());
@@ -193,7 +197,9 @@ export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch(deleteProductStart());
     dispatch(fetchProductStart());
-    await axios.delete(`${url}products/${id}`);
+    await axios.delete(`${url}products/${id}`, {
+      data: { key_admin: key_admin },
+    });
     const response = await axios.get(`${url}products`);
     dispatch(fetchProductSuccesfull(response.data));
     dispatch(deleteProductSuccesfull());
@@ -206,7 +212,7 @@ export const createProduct = (body) => async (dispatch) => {
   try {
     dispatch(createProductStart());
     dispatch(fetchProductStart());
-    await axios.post(`${url}products`, body);
+    await axios.post(`${url}products`, { ...body, key_admin: key_admin });
     const response = await axios.get(`${url}products`);
     dispatch(fetchProductSuccesfull(response.data));
     dispatch(createProductSuccesfull());

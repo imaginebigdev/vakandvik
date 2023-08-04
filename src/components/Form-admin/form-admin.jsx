@@ -76,8 +76,6 @@ const FormAdmin = () => {
           icon: "success",
           title: "Producto creado exitosamente",
           text: "El producto se ha creado de manera exitosa.",
-        }).then(() => {
-          window.location.reload();
         });
       })
       .catch((error) => {
