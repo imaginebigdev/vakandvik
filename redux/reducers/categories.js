@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const url = process.env.NEXT_APP_URL_BACK;
+const key_admin = process.env.NEXT_APP_KEY_ADMIN;
 
 const categorySlice = createSlice({
   name: "categories",
@@ -74,7 +75,7 @@ export const createCategories = (body) => async (dispatch) => {
   try {
     dispatch(fetchCategoryStart());
     dispatch(createCategoryStart());
-    await axios.post(`${url}categories`, body);
+    await axios.post(`${url}categories`, { ...body, key_admin });
     const response = await axios.get(`${url}categories`);
     dispatch(fetchCategorySuccesfull(response.data));
     dispatch(createCategorySuccesfull());
@@ -87,7 +88,10 @@ export const deleteCategory = (id) => async (dispatch) => {
   try {
     dispatch(fetchCategoryStart());
     dispatch(deleteCategoryStart());
-    await axios.delete(`${url}categories/${id}`);
+    console.log(key_admin);
+    await axios.delete(`${url}categories/${id}`, {
+      data: { key_admin: key_admin },
+    });
     const response = await axios.get(`${url}categories`);
     dispatch(fetchCategorySuccesfull(response.data));
     dispatch(deleteCategorySuccesfull());

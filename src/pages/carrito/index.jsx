@@ -5,10 +5,13 @@ import Footer2 from "../../components/Footer2/footer2";
 import CartComponent from "../../components/Cart/Cart-component";
 import NavbarCart from "../../components/Navbar/navbar-cart";
 import ContactHeader from "../../components/Contact-header/contact-header";
+import { useState } from "react";
+import FormCheckout from "../../components/form-checkout/form-checkout";
 
 const Carrito = () => {
   const navbarRef = React.useRef(null);
   const logoRef = React.useRef(null);
+  const [showForm, setShowForm] = useState(false);
 
   React.useEffect(() => {
     document.querySelector("body").classList.add("contact-page");
@@ -36,7 +39,8 @@ const Carrito = () => {
       <NavbarCart nr={navbarRef} lr={logoRef} theme="themeL" />
       <ContactHeader blackStar />
       <div className="main-content">
-        <CartComponent />
+        <CartComponent setShowForm={setShowForm} showForm={showForm} />
+        <FormCheckout show={showForm} />
         <Footer2 />
       </div>
     </LightTheme>

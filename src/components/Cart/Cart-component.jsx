@@ -4,7 +4,7 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useDispatch, useSelector } from "react-redux";
 import { setItems } from "../../../redux/reducers/cart";
 
-const CartComponent = () => {
+const CartComponent = ({ showForm, setShowForm }) => {
   const dispatch = useDispatch();
   const [itemCart, setItemCart] = useLocalStorage("cart", []);
   React.useEffect(() => {
@@ -37,10 +37,7 @@ const CartComponent = () => {
   };
 
   const { itemsCart } = useSelector((state) => state.cart);
-  const totalProductsInCart = itemsCart.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+
   const totalPrice = itemsCart?.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -103,8 +100,12 @@ const CartComponent = () => {
             <td>Total:</td>
             <td> $ {totalPrice.toFixed(2)}</td>
             <td>
-              <button type="button" className="btn btn-info">
-                Pagar / Generar orden
+              <button
+                type="button"
+                className="btn btn-info"
+                onClick={() => setShowForm(!showForm)}
+              >
+                Continuar compra
               </button>
             </td>
             <td>
