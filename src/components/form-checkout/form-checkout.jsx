@@ -15,6 +15,7 @@ const FormCheckout = ({ show }) => {
   const SignupSchema = Yup.object().shape({
     clientName: Yup.string().required("Ingrese un nombre"),
     address: Yup.string().required("Ingrese una dirección"),
+    postalCode: Yup.number().required("Ingrese un codigo postal"),
     province: Yup.string().required("Ingrese una provincia"),
     phone: Yup.number().required("Ingrese un numero de telefono"),
     email: Yup.string().email().required("Ingrese un email"),
@@ -64,6 +65,7 @@ const FormCheckout = ({ show }) => {
                   address: "",
                   province: "",
                   phone: 0,
+                  postalCode: 0,
                   email: "",
                 }}
                 validationSchema={SignupSchema}
@@ -103,6 +105,23 @@ const FormCheckout = ({ show }) => {
                             formProps.touched.address ? (
                               <div className="text-danger">
                                 {formProps.errors.address}
+                              </div>
+                            ) : null}
+                          </div>
+                        </div>
+                        <div className="col-lg-12">
+                          <div className="form-group">
+                            <Field
+                              id="form_address"
+                              type="number"
+                              name="postalCode"
+                              placeholder="Codigo postal"
+                              required="Obligatorio"
+                            />
+                            {formProps.errors.postalCode &&
+                            formProps.touched.postalCode ? (
+                              <div className="text-danger">
+                                {formProps.errors.postalCode}
                               </div>
                             ) : null}
                           </div>
