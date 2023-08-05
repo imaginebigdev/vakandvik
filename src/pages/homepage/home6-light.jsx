@@ -2,10 +2,12 @@ import React from "react";
 import Navbar from "../../components/Navbar/navbar";
 import IntroWithSlider from "../../components/Intro-with-slider/intro-with-slider";
 import LightTheme from "../../layouts/Light";
-import Services4 from "../../components/Services4/services4";
 import FullTestimonials from "../../components/Full-testimonials/full-testimonials";
-import WorksStyle4 from "../../components/Works-style4/works-style4";
 import Footer2 from "../../components/Footer2/footer2";
+import WorksStyle3 from "../../components/Works-style3/works-style3";
+import Works2 from "../../components/Works2/works2";
+
+import AboutUs from "../../components/About-us/about-us";
 
 const Homepage1 = () => {
   const fixedSlider = React.useRef(null);
@@ -42,8 +44,9 @@ const Homepage1 = () => {
       <Navbar nr={navbarRef} lr={logoRef} theme="themeL" />
       <IntroWithSlider sliderRef={fixedSlider} />
       <div ref={MainContent} className="main-content">
-        <WorksStyle4 />
-        <Services4 />
+        <WorksStyle3 />
+        <Works2 />
+        <AboutUs />
         <FullTestimonials />
         <Footer2 />
       </div>

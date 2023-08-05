@@ -13,7 +13,7 @@ const WorksStyle3 = () => {
     <section className="portfolio-cr section-padding pb-50">
       <div className="container">
         <div className="row">
-          <div className="filtering text-center col-12">
+          {/* <div className="filtering text-center col-12">
             <div className="filter">
               <span data-filter="*" className="active">
                 All
@@ -22,7 +22,7 @@ const WorksStyle3 = () => {
               <span data-filter=".web">Mobile App</span>
               <span data-filter=".graphic">Creative</span>
             </div>
-          </div>
+          </div> */}
 
           <div className="gallery-mons full-width">
             <div className="items graphic wow fadeInUp" data-wow-delay=".4s">
@@ -42,7 +42,7 @@ const WorksStyle3 = () => {
               </div>
             </div>
 
-            <div className="items web brand wow fadeInUp" data-wow-delay=".4s">
+            <div className="items web brand wow fadeInUp">
               <div className="item-img">
                 <Link href={`/project-details2/project-details2-dark`}>
                   <a className="imago wow">
@@ -59,10 +59,7 @@ const WorksStyle3 = () => {
               </div>
             </div>
 
-            <div
-              className="items width2 brand wow fadeInUp"
-              data-wow-delay=".4s"
-            >
+            <div className="items width2 brand wow fadeInUp">
               <div className="item-img">
                 <Link href={`/project-details2/project-details2-dark`}>
                   <a className="imago wow">
@@ -79,10 +76,7 @@ const WorksStyle3 = () => {
               </div>
             </div>
 
-            <div
-              className="items width2 graphic wow fadeInUp"
-              data-wow-delay=".4s"
-            >
+            <div className="items width2 graphic wow fadeInUp">
               <div className="item-img">
                 <Link href={`/project-details2/project-details2-dark`}>
                   <a className="imago wow">

@@ -101,14 +101,13 @@ const Works2 = ({ sliderRef }) => {
                           <div
                             className="item-img bg-img wow imago"
                             style={{
-                              backgroundImage: "url(/img/portfolio/curs/1.jpg)",
+                              backgroundImage:
+                                "url(https://thumbs.dreamstime.com/b/nueva-cartera-negra-de-cuero-ganado-aislado-genuino-vacuno-sin-sombras-en-fondo-blanco-captura-cierre-195831673.jpg)",
                             }}
                           ></div>
                           <div className="cont bgbox">
                             <h6>
-                              <Link
-                                href={`/works2/works2-dark`}
-                              >
+                              <Link href={`/works2/works2-dark`}>
                                 <a>art &amp; illustration</a>
                               </Link>
                             </h6>
@@ -130,14 +129,13 @@ const Works2 = ({ sliderRef }) => {
                           <div
                             className="item-img bg-img wow imago"
                             style={{
-                              backgroundImage: "url(/img/portfolio/curs/2.jpg)",
+                              backgroundImage:
+                                "url(https://carterasybolsosdemarca.com/upload/productos/portada/normal/cartera-kelly-de-hermes-modelo-byc3075kelly-a0b5fdf3b820fef7f83a0eb3a1f3ad17.webp)",
                             }}
                           ></div>
                           <div className="cont bgbox">
                             <h6>
-                              <Link
-                                href={`/works2/works2-dark`}
-                              >
+                              <Link href={`/works2/works2-dark`}>
                                 <a>art &amp; illustration</a>
                               </Link>
                             </h6>
@@ -159,14 +157,13 @@ const Works2 = ({ sliderRef }) => {
                           <div
                             className="item-img bg-img wow imago"
                             style={{
-                              backgroundImage: "url(/img/portfolio/curs/3.jpg)",
+                              backgroundImage:
+                                "url(https://thumbs.dreamstime.com/b/bolso-para-mujer-del-negocio-oficinista-en-la-mesa-de-madera-el-fondo-borroso-oficina-cartera-cuero-empresaria-accesorios-concepto-201859056.jpg)",
                             }}
                           ></div>
                           <div className="cont bgbox">
                             <h6>
-                              <Link
-                                href={`/works2/works2-dark`}
-                              >
+                              <Link href={`/works2/works2-dark`}>
                                 <a>art &amp; illustration</a>
                               </Link>
                             </h6>
@@ -188,14 +185,13 @@ const Works2 = ({ sliderRef }) => {
                           <div
                             className="item-img bg-img wow imago"
                             style={{
-                              backgroundImage: "url(/img/portfolio/curs/4.jpg)",
+                              backgroundImage:
+                                "url(https://cdn.shopify.com/s/files/1/0553/7136/6485/products/73133_H_1.jpg?v=1663596285)",
                             }}
                           ></div>
                           <div className="cont bgbox">
                             <h6>
-                              <Link
-                                href={`/works2/works2-dark`}
-                              >
+                              <Link href={`/works2/works2-dark`}>
                                 <a>art &amp; illustration</a>
                               </Link>
                             </h6>
@@ -217,14 +213,13 @@ const Works2 = ({ sliderRef }) => {
                           <div
                             className="item-img bg-img wow imago"
                             style={{
-                              backgroundImage: "url(/img/portfolio/curs/5.jpg)",
+                              backgroundImage:
+                                "url(https://cdn.shopify.com/s/files/1/0553/7136/6485/products/73133_H_1.jpg?v=1663596285)",
                             }}
                           ></div>
                           <div className="cont bgbox">
                             <h6>
-                              <Link
-                                href={`/works2/works2-dark`}
-                              >
+                              <Link href={`/works2/works2-dark`}>
                                 <a>art &amp; illustration</a>
                               </Link>
                             </h6>

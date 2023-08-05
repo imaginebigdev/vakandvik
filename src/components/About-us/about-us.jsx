@@ -17,26 +17,10 @@ const AboutUs = () => {
                 {AboutUs1Date.title}
               </h3>
               <p>{AboutUs1Date.content}</p>
-              <Link href="/about/about-dark">
-                <a className="butn bord curve mt-30">
-                  <span>Read More</span>
-                </a>
-              </Link>
             </div>
           </div>
           <div className="col-lg-7 img">
             <img src={AboutUs1Date.image} alt="" />
-            <div className="stauts">
-              {AboutUs1Date.stauts.map((item) => (
-                <div className="item" key={item.id}>
-                  <h4>
-                    {item.number}
-                    <span>{item.letter}</span>
-                  </h4>
-                  <h6>{item.stautsName}</h6>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>

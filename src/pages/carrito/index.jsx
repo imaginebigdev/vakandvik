@@ -1,14 +1,17 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import React from "react";
-import Navbar from "../../components/Navbar/navbar";
 import LightTheme from "../../layouts/Light";
-import ContactHeader from "../../components/Contact-header/contact-header";
-import ContactForm from "../../components/Contact-form/contact-form";
 import Footer2 from "../../components/Footer2/footer2";
+import CartComponent from "../../components/Cart/Cart-component";
+import NavbarCart from "../../components/Navbar/navbar-cart";
+import ContactHeader from "../../components/Contact-header/contact-header";
+import { useState } from "react";
+import FormCheckout from "../../components/form-checkout/form-checkout";
 
-const Contact = () => {
+const Carrito = () => {
   const navbarRef = React.useRef(null);
   const logoRef = React.useRef(null);
+  const [showForm, setShowForm] = useState(false);
 
   React.useEffect(() => {
     document.querySelector("body").classList.add("contact-page");
@@ -33,15 +36,15 @@ const Contact = () => {
 
   return (
     <LightTheme mobileappstyle>
-      <Navbar nr={navbarRef} lr={logoRef} theme="themeL" />
+      <NavbarCart nr={navbarRef} lr={logoRef} theme="themeL" />
       <ContactHeader blackStar />
       <div className="main-content">
-        <ContactForm />
-
+        <CartComponent setShowForm={setShowForm} showForm={showForm} />
+        <FormCheckout show={showForm} />
         <Footer2 />
       </div>
     </LightTheme>
   );
 };
 
-export default Contact;
+export default Carrito;
