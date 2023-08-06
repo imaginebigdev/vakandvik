@@ -98,7 +98,7 @@ const CartComponent = ({ showForm, setShowForm }) => {
           <tr>
             <td></td>
             <td>Total:</td>
-            <td> $ {totalPrice.toFixed(2)}</td>
+            <td> $ {totalPrice?.toFixed(2)}</td>
             <td>
               <button
                 type="button"
