@@ -6,7 +6,7 @@ const key_admin = process.env.NEXT_APP_KEY_ADMIN;
 const categorySlice = createSlice({
   name: "categories",
   initialState: {
-    categories: null,
+    categories: [],
     loading: false,
     error: null,
   },

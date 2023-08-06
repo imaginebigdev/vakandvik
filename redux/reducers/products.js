@@ -6,8 +6,8 @@ const key_admin = process.env.NEXT_APP_KEY_ADMIN;
 const productsSlice = createSlice({
   name: "products",
   initialState: {
-    products: null,
-    filterProducts: null,
+    products: [],
+    filterProducts: [],
     loading: false,
     error: null,
   },

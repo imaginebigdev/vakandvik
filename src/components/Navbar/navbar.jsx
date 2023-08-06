@@ -41,7 +41,7 @@ const Navbar = ({ lr, nr, theme }) => {
   };
 
   const { itemsCart } = useSelector((state) => state.cart);
-  const totalProductsInCart = itemsCart.reduce(
+  const totalProductsInCart = itemsCart?.reduce(
     (total, item) => total + item.quantity,
     0
   );
