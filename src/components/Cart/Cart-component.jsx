@@ -7,6 +7,12 @@ import { setItems } from "../../../redux/reducers/cart";
 const CartComponent = ({ showForm, setShowForm }) => {
   const dispatch = useDispatch();
   const [itemCart, setItemCart] = useLocalStorage("cart", []);
+  const { itemsCart } = useSelector((state) => state.cart);
+  let totalPrice = itemsCart?.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
   React.useEffect(() => {
     dispatch(setItems(JSON.parse(window.localStorage.getItem("cart"))));
   }, [dispatch]);
@@ -36,12 +42,6 @@ const CartComponent = ({ showForm, setShowForm }) => {
     dispatch(setItems([]));
   };
 
-  const { itemsCart } = useSelector((state) => state.cart);
-
-  const totalPrice = itemsCart?.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
   return (
     <section className="text-center">
       <table
@@ -98,7 +98,7 @@ const CartComponent = ({ showForm, setShowForm }) => {
           <tr>
             <td></td>
             <td>Total:</td>
-            <td> $ {totalPrice?.toFixed(2)}</td>
+            <td> $ {0 || totalPrice?.toFixed(2)}</td>
             <td>
               <button
                 type="button"
