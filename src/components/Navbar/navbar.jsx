@@ -10,7 +10,16 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 const Navbar = ({ lr, nr, theme }) => {
   const dispatch = useDispatch();
   const [itemCart, setItemCart] = useLocalStorage("cart", []);
+  const { itemsCart } = useSelector((state) => state.cart);
 
+  let totalPrice = itemsCart?.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+  let totalProductsInCart = itemsCart?.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
   React.useEffect(() => {
     dispatch(setItems(JSON.parse(window.localStorage.getItem("cart"))));
   }, [dispatch]);
@@ -40,15 +49,6 @@ const Navbar = ({ lr, nr, theme }) => {
     dispatch(setItems([]));
   };
 
-  const { itemsCart } = useSelector((state) => state.cart);
-  const totalProductsInCart = itemsCart.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
-  const totalPrice = itemsCart?.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
   return (
     <nav
       ref={nr}
@@ -155,7 +155,7 @@ const Navbar = ({ lr, nr, theme }) => {
                     ))}
                     <tr key="sadasdas">
                       <td>Total:</td>
-                      <td> $ {totalPrice.toFixed(2)}</td>
+                      <td> $ {0 || totalPrice?.toFixed(2)}</td>
                       <td>
                         <button
                           type="button"
