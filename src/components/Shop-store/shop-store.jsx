@@ -26,7 +26,7 @@ const ShopStore = ({
   const { itemsCart } = useSelector((state) => state.cart);
 
   const handleAddToCart = (product) => {
-    const existingProduct = itemsCart.find((p) => p.id === product.id);
+    const existingProduct = itemsCart?.find((p) => p.id === product.id);
 
     if (existingProduct) {
       // If the product already exists in the cart, update its quantity

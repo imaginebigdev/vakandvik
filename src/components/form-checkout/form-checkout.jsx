@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const FormCheckout = ({ show }) => {
   const messageRef = React.useRef(null);
-
+  const [dataUser, setDataUser] = useLocalStorage("user", []);
+  console.log(dataUser);
   const { itemsCart } = useSelector((state) => state.cart);
   const [readyToPay, setReadyToPay] = useState(false);
   const [urlCheckout, setUrlCheckout] = useState("");
@@ -37,13 +39,14 @@ const FormCheckout = ({ show }) => {
     };
 
     const response = await axios.post(
-      `${process.env.NEXT_APP_URL_BACK}orders`,
-      newValues
+      `${process.env.NEXT_APP_URL_BACK}orders/create-order-uala`,
+      { total_price: newValues.total_price }
     );
-    setUrlCheckout(response.data.checkoutLink);
+    console.log(response);
+    setDataUser([{ ...newValues, paymentId: response.data.uuid }]);
+    setUrlCheckout(response.data.links.checkoutLink);
     setReadyToPay(true);
     // Setea el item paymentUser para despues cuando regrese a la pagina buscarlo desde el localstorage //
-    window.localStorage.setItem("paymentUser", response.data.paymentId);
     // console.log(window.localStorage.getItem("paymentUser"));
 
     loading = false;
