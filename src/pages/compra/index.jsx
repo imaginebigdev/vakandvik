@@ -62,6 +62,7 @@ const Homepage1 = () => {
           pending: false,
           key_admin: key_admin,
         });
+
         window.localStorage.setItem("paymentUser", "");
         setItemCart([]);
         dispatch(setItems([]));
