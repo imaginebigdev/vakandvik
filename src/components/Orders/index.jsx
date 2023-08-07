@@ -113,7 +113,7 @@ const OrdersComponent = () => {
                   </select>
                   <button
                     className="btn btn-secondary"
-                    onClick={() => handleModifyOrder(orden.id)}
+                    onClick={() => handleModifyOrder(orden.paymentId)}
                   >
                     Aplicar
                   </button>
