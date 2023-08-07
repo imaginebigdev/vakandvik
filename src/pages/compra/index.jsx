@@ -57,12 +57,18 @@ const Homepage1 = () => {
       }
       const orderBack = await axios.get(`${url}orders/${orderId}`);
       if (orderBack) {
-        await axios.put(`${url}orders/${orderId}`, {
+        const putBack = await axios.put(`${url}orders/${orderId}`, {
           succesfull: true,
           pending: false,
           key_admin: key_admin,
         });
-
+        if (putBack.message === "Orden pendiente") {
+          Swal.fire({
+            icon: "info",
+            title: "Su compra esta siendo procesada, aguarde unos instantes",
+            text: "Su compra se realizo de manera exitosa",
+          });
+        }
         window.localStorage.setItem("paymentUser", "");
         setItemCart([]);
         dispatch(setItems([]));
