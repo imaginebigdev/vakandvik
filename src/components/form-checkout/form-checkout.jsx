@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import Swal from "sweetalert2";
+import { useRouter } from "next/dist/client/router";
 
 const FormCheckout = ({ show }) => {
   const messageRef = React.useRef(null);
@@ -12,7 +14,8 @@ const FormCheckout = ({ show }) => {
   const { itemsCart } = useSelector((state) => state.cart);
   const [readyToPay, setReadyToPay] = useState(false);
   const [urlCheckout, setUrlCheckout] = useState("");
-  let loading = false;
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const SignupSchema = Yup.object().shape({
     clientName: Yup.string().required("Ingrese un nombre"),
@@ -27,8 +30,15 @@ const FormCheckout = ({ show }) => {
     0
   );
 
+  React.useEffect(() => {
+    // Realizar la redirección una vez que urlCheckout esté actualizado
+    if (readyToPay && urlCheckout) {
+      window.location.href = urlCheckout;
+    }
+  }, [readyToPay, urlCheckout]);
+
   const handleSubmitForm = async (values) => {
-    loading = true;
+    setLoading(true);
     const newValues = {
       ...values,
       total_price: totalPrice,
@@ -38,18 +48,35 @@ const FormCheckout = ({ show }) => {
       }),
     };
 
-    const response = await axios.post(
-      `${process.env.NEXT_APP_URL_BACK}orders/create-order-uala`,
-      { total_price: newValues.total_price }
-    );
-    console.log(response);
-    setDataUser([{ ...newValues, paymentId: response.data.uuid }]);
-    setUrlCheckout(response.data.links.checkoutLink);
-    setReadyToPay(true);
-    // Setea el item paymentUser para despues cuando regrese a la pagina buscarlo desde el localstorage //
-    // console.log(window.localStorage.getItem("paymentUser"));
+    await axios
+      .post(`${process.env.NEXT_APP_URL_BACK}orders/create-order-uala`, {
+        total_price: newValues.total_price,
+      })
+      .then((res) => {
+        setDataUser([{ ...newValues, paymentId: res.data.uuid }]);
+        setUrlCheckout(res.data.links.checkoutLink);
 
-    loading = false;
+        Swal.fire({
+          icon: "success",
+          title: "Los datos han sido cargados correctamente",
+          text: "Presione okay para continuar con su pago",
+        }).then((response) => {
+          if (response.isConfirmed) {
+            setReadyToPay(true);
+          }
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Ocurrio un error",
+          text: "Ha ocurrido un error al cargar los datos",
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -187,8 +214,11 @@ const FormCheckout = ({ show }) => {
                               <button
                                 type="submit"
                                 className="btn btn-success mt-30 full-width"
+                                disabled={!loading}
                               >
-                                Cargar datos
+                                {loading
+                                  ? "Cargando datos, por favor espere"
+                                  : "Cargar datos / pagar"}
                               </button>
                             )}
                           </div>
@@ -200,11 +230,6 @@ const FormCheckout = ({ show }) => {
                   </Form>
                 )}
               </Formik>
-              {readyToPay && (
-                <a href={urlCheckout} className="btn btn-info mt-30 full-width">
-                  Pagar
-                </a>
-              )}
             </div>
           </div>
         </div>

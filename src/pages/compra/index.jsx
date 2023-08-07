@@ -52,15 +52,25 @@ const Homepage1 = () => {
   useEffect(() => {
     async function fetchData() {
       if (!dataUser.length) return router.push("/");
-      await axios.post(`${url}orders`, { ...dataUser[0] });
-      setIDataUser([]);
-      setItemCart([]);
-      dispatch(setItems([]));
-      Swal.fire({
-        icon: "success",
-        title: "Compra realizada exitosamente",
-        text: "Su compra se realizo de manera exitosa",
-      });
+      await axios
+        .post(`${url}orders`, { ...dataUser[0] })
+        .then((res) => {
+          setIDataUser([]);
+          setItemCart([]);
+          dispatch(setItems([]));
+          Swal.fire({
+            icon: "success",
+            title: "Compra realizada exitosamente",
+            text: "Su compra se realizo de manera exitosa",
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "Ocurrio un error",
+            text: "Ha ocurrido un error con su compra",
+          });
+        });
     }
     fetchData();
   }, []);
