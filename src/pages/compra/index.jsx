@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/Navbar/navbar";
 import LightTheme from "../../layouts/Light";
 import Footer2 from "../../components/Footer2/footer2";
@@ -14,7 +14,6 @@ import { setItems } from "../../../redux/reducers/cart";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useRouter } from "next/dist/client/router";
 const url = process.env.NEXT_APP_URL_BACK;
-const key_admin = process.env.NEXT_APP_KEY_ADMIN;
 
 const Homepage1 = () => {
   const dispatch = useDispatch();
@@ -23,6 +22,7 @@ const Homepage1 = () => {
   const navbarRef = React.useRef(null);
   const logoRef = React.useRef(null);
   const [itemCart, setItemCart] = useLocalStorage("cart", []);
+  const [dataUser, setIDataUser] = useLocalStorage("user", []);
   const router = useRouter();
 
   React.useEffect(() => {
@@ -49,37 +49,20 @@ const Homepage1 = () => {
     });
   }, [fixedSlider, MainContent, navbarRef]);
 
-  React.useEffect(async () => {
-    async function fetchOrderById() {
-      const orderId = window.localStorage.getItem("paymentUser");
-      if (!orderId) {
-        return router.push("/");
-      }
-      const orderBack = await axios.get(`${url}orders/${orderId}`);
-      if (orderBack) {
-        const putBack = await axios.put(`${url}orders/${orderId}`, {
-          succesfull: true,
-          pending: false,
-          key_admin: key_admin,
-        });
-        if (putBack.message === "Orden pendiente") {
-          Swal.fire({
-            icon: "info",
-            title: "Su compra esta siendo procesada, aguarde unos instantes",
-            text: "Su compra se realizo de manera exitosa",
-          });
-        }
-        window.localStorage.setItem("paymentUser", "");
-        setItemCart([]);
-        dispatch(setItems([]));
-        Swal.fire({
-          icon: "success",
-          title: "Compra realizada exitosamente",
-          text: "Su compra se realizo de manera exitosa",
-        });
-      }
+  useEffect(() => {
+    async function fetchData() {
+      if (!dataUser.length) return router.push("/");
+      await axios.post(`${url}orders`, { ...dataUser[0] });
+      setIDataUser([]);
+      setItemCart([]);
+      dispatch(setItems([]));
+      Swal.fire({
+        icon: "success",
+        title: "Compra realizada exitosamente",
+        text: "Su compra se realizo de manera exitosa",
+      });
     }
-    fetchOrderById();
+    fetchData();
   }, []);
 
   return (
