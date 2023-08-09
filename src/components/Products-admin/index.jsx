@@ -1,28 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteProduct,
   fetchProducts,
   modifyProduct,
 } from "../../../redux/reducers/products";
-import { fetchCategories } from "../../../redux/reducers/categories";
 import Swal from "sweetalert2";
+import { fetchCategories } from "../../../redux/reducers/categories";
 
 const ProductsAdmin = () => {
-  const Swal = require("sweetalert2");
   const dispatch = useDispatch();
 
   const { products } = useSelector((state) => state.products);
   const { categories } = useSelector((state) => state.categories);
-  const category = categories;
-
-  React.useEffect(() => {
-    dispatch(fetchProducts());
-    dispatch(fetchCategories());
-  }, [dispatch]);
 
   const [changeStock, setChangeStock] = useState(0);
   const [changePrice, setChangePrice] = useState(0);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   const handleModify = (id, modify) => {
     if (modify.price > 0 || modify.stock > 0) {
@@ -47,8 +45,8 @@ const ProductsAdmin = () => {
       });
     } else {
       Swal.fire(
-        "Ingrese un numero",
-        "Intente ingresando un numero positivo",
+        "Ingrese un número",
+        "Intente ingresando un número positivo",
         "warning"
       );
     }
@@ -78,9 +76,65 @@ const ProductsAdmin = () => {
 
   return (
     <section className="text-center">
-      <h2>Productos</h2>
-      <button className="btn btn-primary">Crear un nuevo producto</button>
-      <table
+      <div className="store">
+        <div className="row">
+          {products?.map((p) => (
+            <div className="col-md-4 col-sm-6 col-xs-12" key={p.id}>
+              <div className="card">
+                <div
+                  className="cover item-a"
+                  style={{ backgroundImage: `url(${p.image})` }}
+                >
+                  <h5>{p.name}</h5>
+                  <h6>stock: {p.stock}</h6>
+                  <span className="price">$ {p.price}</span>
+                  <div className="card-back">
+                    <button
+                      className="btn btn-danger delete-button"
+                      onClick={() => handleDelete(p.id)}
+                    >
+                      <i className="fa fa-trash" />
+                    </button>
+
+                    <label>Modificar Stock:</label>
+                    <input
+                      id={`stock-${p.id}`}
+                      type="number"
+                      onChange={(e) => setChangeStock(e.target.value)}
+                    />
+                    <button
+                      className="btn btn-info"
+                      onClick={() => handleModify(p.id, { stock: changeStock })}
+                    >
+                      Modificar Stock
+                    </button>
+                    <label>Modificar Precio:</label>
+                    <input
+                      id={`price-${p.id}`}
+                      type="number"
+                      onChange={(e) => setChangePrice(e.target.value)}
+                    />
+                    <button
+                      className="btn btn-info"
+                      onClick={() => handleModify(p.id, { price: changePrice })}
+                    >
+                      Modificar Precio
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ProductsAdmin;
+
+{
+  /* <table
         className="table table-bordered text-center"
         style={{ margin: "100px 5%", maxWidth: "90%" }}
       >
@@ -162,9 +216,49 @@ const ProductsAdmin = () => {
             ))
             .reverse()}
         </tbody>
-      </table>
-    </section>
-  );
-};
+      </table> */
+}
 
-export default ProductsAdmin;
+{
+  /*  <div className="store">
+<div className="row">
+          {products?.map((p) => (
+            <div className="col-lg-4 col-md-6" key={p.id}>
+              <div className="item">
+                <h5>{p.name}</h5>
+                <div className="img">
+                  <img src={p.image} alt="" />
+                  <span className="tag">{p.desing}</span>
+                  <div className="add">
+                    <div>
+                      <h6>{p.stock}</h6>
+                      <input
+                        id="stock"
+                        type="number"
+                        onChange={(e) => setChangeStock(e.target.value)}
+                      />
+
+                      <button
+                        className="btn btn-info"
+                        onClick={() =>
+                          handleModify(p.id, {
+                            stock: changeStock,
+                          })
+                        }
+                      >
+                        Modificar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className="info">
+                  <h6>stock: {p.stock}</h6>
+                  <span> precio: ${p.price}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>  */
+}
