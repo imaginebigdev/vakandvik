@@ -2,6 +2,8 @@ import Link from "next/dist/client/link";
 import React from "react";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+
 import { setItems } from "../../../redux/reducers/cart";
 
 const CartComponent = ({ showForm, setShowForm }) => {
@@ -18,9 +20,22 @@ const CartComponent = ({ showForm, setShowForm }) => {
   }, [dispatch]);
 
   const handleDeleteProduct = (id) => {
-    const updateArray = itemsCart.filter((item) => item.id !== id);
-    setItemCart(updateArray);
-    dispatch(setItems(updateArray));
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Quiere eliminar el producto?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí",
+      cancelButtonText: "Cancelar",
+    }).then((response) => {
+      if (response.isConfirmed) {
+        const updateArray = itemsCart.filter((item) => item.id !== id);
+        setItemCart(updateArray);
+        dispatch(setItems(updateArray));
+      }
+    });
   };
   const handleUpdateQuantity = (id, amount) => {
     const updatedCart = itemsCart
@@ -38,8 +53,21 @@ const CartComponent = ({ showForm, setShowForm }) => {
   };
 
   const handleCleanCart = () => {
-    setItemCart([]);
-    dispatch(setItems([]));
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Esta seguro que quiere limpiar el carrito?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí",
+      cancelButtonText: "Cancelar",
+    }).then((response) => {
+      if (response.isConfirmed) {
+        setItemCart([]);
+        dispatch(setItems([]));
+      }
+    });
   };
 
   return (
@@ -104,6 +132,7 @@ const CartComponent = ({ showForm, setShowForm }) => {
                 type="button"
                 className="btn btn-info"
                 onClick={() => setShowForm(!showForm)}
+                disabled={totalPrice === 0}
               >
                 Continuar compra
               </button>
@@ -113,6 +142,7 @@ const CartComponent = ({ showForm, setShowForm }) => {
                 type="button"
                 className="btn btn-danger"
                 onClick={() => handleCleanCart()}
+                disabled={totalPrice === 0}
               >
                 Limpiar carrito
               </button>

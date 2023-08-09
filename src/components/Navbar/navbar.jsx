@@ -6,6 +6,7 @@ import { handleDropdown, handleMobileDropdown } from "../../common/navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { setItems } from "../../../redux/reducers/cart";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import Swal from "sweetalert2";
 
 const Navbar = ({ lr, nr, theme }) => {
   const dispatch = useDispatch();
@@ -25,9 +26,22 @@ const Navbar = ({ lr, nr, theme }) => {
   }, [dispatch]);
 
   const handleDeleteProduct = (id) => {
-    const updateArray = itemsCart.filter((item) => item.id !== id);
-    setItemCart(updateArray);
-    dispatch(setItems(updateArray));
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Quiere eliminar el producto?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí",
+      cancelButtonText: "Cancelar",
+    }).then((response) => {
+      if (response.isConfirmed) {
+        const updateArray = itemsCart.filter((item) => item.id !== id);
+        setItemCart(updateArray);
+        dispatch(setItems(updateArray));
+      }
+    });
   };
   const handleUpdateQuantity = (id, amount) => {
     const updatedCart = itemsCart
@@ -45,8 +59,21 @@ const Navbar = ({ lr, nr, theme }) => {
   };
 
   const handleCleanCart = () => {
-    setItemCart([]);
-    dispatch(setItems([]));
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Esta seguro que quiere limpiar el carrito?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí",
+      cancelButtonText: "Cancelar",
+    }).then((response) => {
+      if (response.isConfirmed) {
+        setItemCart([]);
+        dispatch(setItems([]));
+      }
+    });
   };
 
   return (

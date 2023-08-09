@@ -214,7 +214,7 @@ const FormCheckout = ({ show }) => {
                               <button
                                 type="submit"
                                 className="btn btn-success mt-30 full-width"
-                                disabled={!loading}
+                                disabled={loading}
                               >
                                 {loading
                                   ? "Cargando datos, por favor espere"

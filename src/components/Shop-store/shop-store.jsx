@@ -6,6 +6,7 @@ import {
 } from "../../../redux/reducers/products";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { setItems } from "../../../redux/reducers/cart";
+import Swal from "sweetalert2";
 
 const ShopStore = ({
   products,
@@ -29,16 +30,24 @@ const ShopStore = ({
     const existingProduct = itemsCart?.find((p) => p.id === product.id);
 
     if (existingProduct) {
-      // If the product already exists in the cart, update its quantity
       const updatedCart = itemsCart.map((p) =>
         p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
       );
       setItemCart(updatedCart);
       dispatch(setItems(updatedCart));
+      Swal.fire({
+        icon: "success",
+        title: "Producto agregado correctamente",
+        text: "",
+      });
     } else {
-      // If the product is not in the cart, add it with quantity 1
       setItemCart([...itemsCart, { ...product, quantity: 1 }]);
       dispatch(setItems([...itemsCart, { ...product, quantity: 1 }]));
+      Swal.fire({
+        icon: "success",
+        title: "Producto agregado correctamente",
+        text: "",
+      });
     }
   };
   return (

@@ -12,9 +12,9 @@ const cloud_name = process.env.NEXT_APP_CLOUD_NAME;
 const FormAdmin = () => {
   const messageRef = React.useRef(null);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const { categories } = useSelector((state) => state.categories);
-  let loading = false;
   React.useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
@@ -29,7 +29,7 @@ const FormAdmin = () => {
   });
 
   const handleSubmitForm = async (values) => {
-    loading = true;
+    setLoading(true);
     let submitValues = {
       ...values,
       categoryId: Number(values.categoryId),
@@ -68,7 +68,6 @@ const FormAdmin = () => {
         .catch((err) => console.log(err));
     }
     submitValues = { ...submitValues, image_galery: newArr };
-    loading = false;
 
     dispatch(createProduct(submitValues))
       .then(() => {
@@ -81,6 +80,7 @@ const FormAdmin = () => {
       .catch((error) => {
         console.log("Error al crear el producto:", error);
       });
+    setLoading(false);
   };
 
   return (
@@ -280,13 +280,15 @@ const FormAdmin = () => {
                             <button
                               type="submit"
                               className="btn btn-success mt-30 full-width"
+                              disabled={loading}
                             >
-                              Cargar producto
+                              {loading
+                                ? "Cargando producto, por favor espere"
+                                : "Cargar producto"}
                             </button>
                           </div>
                         </div>
                         <br />
-                        <div className="messages" ref={messageRef}></div>
                       </div>
                     </div>
                   </Form>
