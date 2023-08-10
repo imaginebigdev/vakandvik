@@ -8090,7 +8090,7 @@ footer .item .copy-right p a {
 /* ====================== [ Start Card Admin ] ====================== */
 .card {
   position: relative;
-  height: 400px;
+  height: 300px;
   width: 100%;
   margin: 10px 0;
   perspective: 1200px;
@@ -8263,7 +8263,7 @@ footer .item .copy-right p a {
   outline: none;
   text-decoration: none;
 
-margin-top: 20px;
+/* margin-top: 20px; */
 text-align: center;
 }
 
