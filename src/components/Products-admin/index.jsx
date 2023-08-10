@@ -14,16 +14,28 @@ const ProductsAdmin = () => {
   const { products } = useSelector((state) => state.products);
   const { categories } = useSelector((state) => state.categories);
 
-  const [changeStock, setChangeStock] = useState(0);
-  const [changePrice, setChangePrice] = useState(0);
-
   useEffect(() => {
     dispatch(fetchProducts());
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  const handleModify = (id, modify) => {
-    if (modify.price > 0 || modify.stock > 0) {
+  const [changeStock, setChangeStock] = useState("");
+  const [changePrice, setChangePrice] = useState("");
+
+  const handleModify = (id) => {
+    if (changePrice === "" && changeStock === "") {
+      Swal.fire("Sin cambios", "No se han realizado modificaciones.", "info");
+    } else {
+      const modifications = {};
+
+      if (changePrice !== "") {
+        modifications.price = parseFloat(changePrice);
+      }
+
+      if (changeStock !== "") {
+        modifications.stock = parseInt(changeStock);
+      }
+
       Swal.fire({
         title: "¿Estás seguro?",
         text: "¿Quieres realizar la modificación?",
@@ -35,7 +47,7 @@ const ProductsAdmin = () => {
         cancelButtonText: "Cancelar",
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(modifyProduct(id, modify));
+          dispatch(modifyProduct(id, modifications));
           Swal.fire(
             "¡Modificación exitosa!",
             "El producto ha sido modificado.",
@@ -43,13 +55,9 @@ const ProductsAdmin = () => {
           );
         }
       });
-    } else {
-      Swal.fire(
-        "Ingrese un número",
-        "Intente ingresando un número positivo",
-        "warning"
-      );
     }
+    setChangePrice(""); // Vaciar el input de precio
+    setChangeStock(""); // Vaciar el input de stock
   };
 
   const handleDelete = (id) => {
@@ -76,6 +84,8 @@ const ProductsAdmin = () => {
 
   return (
     <section className="text-center">
+      <h1>Productos</h1>
+      {/* <button className="btn btn-primary">Agregar Producto</button> */}
       <div className="store">
         <div className="row">
           {products?.map((p) => (
@@ -85,8 +95,10 @@ const ProductsAdmin = () => {
                   className="cover item-a"
                   style={{ backgroundImage: `url(${p.image})` }}
                 >
-                  <h5>{p.name}</h5>
-                  <h6>stock: {p.stock}</h6>
+                  <h4>{p.name}</h4>
+                  <h6 className={p.stock < 10 ? "red-stock" : ""}>
+                    stock: {p.stock}
+                  </h6>
                   <span className="price">$ {p.price}</span>
                   <div className="card-back">
                     <button
@@ -95,30 +107,29 @@ const ProductsAdmin = () => {
                     >
                       <i className="fa fa-trash" />
                     </button>
-
-                    <label>Modificar Stock:</label>
-                    <input
-                      id={`stock-${p.id}`}
-                      type="number"
-                      onChange={(e) => setChangeStock(e.target.value)}
-                    />
+                    <div className="input-group">
+                      <label htmlFor={`stock-${p.id}`}>Modificar Stock:</label>
+                      <input
+                        id={`stock-${p.id}`}
+                        type="number"
+                        onChange={(e) => setChangeStock(e.target.value)}
+                        /*   placeholder="Stock" */
+                      />
+                    </div>
+                    <div className="input-group">
+                      <label htmlFor={`price-${p.id}`}>Modificar Precio:</label>
+                      <input
+                        id={`price-${p.id}`}
+                        type="number"
+                        onChange={(e) => setChangePrice(e.target.value)}
+                        /* placeholder="Precio" */
+                      />
+                    </div>
                     <button
                       className="btn btn-info"
-                      onClick={() => handleModify(p.id, { stock: changeStock })}
+                      onClick={() => handleModify(p.id)}
                     >
-                      Modificar Stock
-                    </button>
-                    <label>Modificar Precio:</label>
-                    <input
-                      id={`price-${p.id}`}
-                      type="number"
-                      onChange={(e) => setChangePrice(e.target.value)}
-                    />
-                    <button
-                      className="btn btn-info"
-                      onClick={() => handleModify(p.id, { price: changePrice })}
-                    >
-                      Modificar Precio
+                      Confirmar Cambios
                     </button>
                   </div>
                 </div>

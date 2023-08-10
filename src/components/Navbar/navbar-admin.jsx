@@ -55,9 +55,6 @@ const NavbarAdmin = ({ lr, nr, theme }) => {
                 Cerrar sesion
               </button>
             </li>
-            <li className="nav-link">
-              <Link href="/">Ir al inicio</Link>
-            </li>
           </ul>
         </div>
       </div>

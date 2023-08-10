@@ -43,8 +43,6 @@ const CategoriesAdmin = () => {
     <section className="text-center">
       <h2>Categorias</h2>
 
-      <h5 className="btn btn-primary">Crear una nueva categoria</h5>
-
       <table
         className="table table-bordered text-center"
         style={{ margin: "100px 5%", maxWidth: "90%" }}

@@ -8112,7 +8112,7 @@ footer .item .copy-right p a {
   transition: ease all 1.5s;
 }
 
-.card:hover .cover h5 {
+.card:hover .cover h4 {
   transform: translateZ(100px);
   transition: ease all 1.5s;
 }
@@ -8168,9 +8168,10 @@ footer .item .copy-right p a {
   z-index: 2;
   transition: ease all 1.3s;
   background: transparent;
+  text-align: center;
 }
 
-.cover h5 {
+.cover h4 {
   font-weight: 600;
   position: absolute;
   bottom: 60px;
@@ -8179,7 +8180,7 @@ footer .item .copy-right p a {
   transform-style: preserve-3d;
   transition: ease all 0.3s;
   z-index: 3;
-  font-size: 25px;
+  font-size: 35px;
   transform: translateZ(0px);
 }
 
@@ -8219,8 +8220,9 @@ footer .item .copy-right p a {
   transform: translateZ(-1px);
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content:space-around;
   align-items: center;
+  text-align: center;
 }
 
 .card-back button {
@@ -8237,15 +8239,77 @@ footer .item .copy-right p a {
   text-decoration: none;
 }
 
+.card-back label {
+  transform-style: preserve-3d;
+  transition: ease transform 0.3s, ease background 0.5s;
+  transform: translateZ(-1px) rotateY(-180deg);
+  background: transparent;
+  font-weight: 200;
+  font-size: 16px;
+  color: white;
+  outline: none;
+  text-decoration: none; 
+}
 
+.card-back input {
+  transform-style: preserve-3d;
+  transition: ease transform 0.3s, ease background 0.5s;
+  transform: translateZ(-1px) rotateY(-180deg);
+  background: transparent;
+  border: 1px solid #fff;
+  font-weight: 200;
+  font-size: 16px;
+  color: white;
+  outline: none;
+  text-decoration: none;
 
-/* .card-back :hover {
-  background-color: white;
-  color: #0b0f08;
-} */
+margin-top: 20px;
+text-align: center;
+}
+
+.input-group {
+  margin-bottom: 0px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Centrar los elementos horizontalmente */
+}
+
+.input-group:hover{
+  cursor:text;
+}
+
+.red-stock {
+  color: red;
+}
+
 /* ====================== [ End Card Admin ] ====================== */
 
+.custom-modal-content {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
 
+/* Estilos para el botón de cierre */
+.btn-close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  font-size: 18px;
+}
 
 /* ====================== [ Start Responsive ] ====================== */
 .navbar .navbar-collapse.show-with-trans {

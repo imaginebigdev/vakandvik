@@ -90,8 +90,9 @@ const FormAdmin = () => {
     >
       <div className="container">
         <div className="row justify-content-center">
+          <h2 className="pb-50">Agregar Producto</h2>
           <div className="col-lg-10">
-            <div className="form wow fadeInUp" data-wow-delay=".5s">
+            <div className="form">
               <Formik
                 initialValues={{
                   name: "",
