@@ -84,9 +84,9 @@ const ProductsAdmin = () => {
 
   return (
     <section className="text-center">
-      <h1>Productos</h1>
+      <h2>Productos</h2>
       {/* <button className="btn btn-primary">Agregar Producto</button> */}
-      <div className="store">
+      <div className="store pt-50">
         <div className="row">
           {products?.map((p) => (
             <div className="col-md-4 col-sm-6 col-xs-12" key={p.id}>
