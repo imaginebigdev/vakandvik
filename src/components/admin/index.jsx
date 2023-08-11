@@ -9,21 +9,18 @@ import NavbarAdmin from "../Navbar/navbar-admin";
 import FormAdmin from "../Form-admin/form-admin";
 import CategoriesAdmin from "../Categories-component/categories-component";
 import FormAdminCategories from "../Categories-component/form-admin-categories";
-import Modal from "react-modal";
+import Modal from "react-bootstrap/Modal";
 
 const Admin = () => {
   const navbarRef = React.useRef(null);
   const logoRef = React.useRef(null);
 
   const [show, setShow] = React.useState("orders");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modal, setModal] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const abrirModal = (e) => {
+    e.preventDefault();
+    setModal(true);
   };
 
   React.useEffect(() => {
@@ -43,7 +40,7 @@ const Admin = () => {
     });
   }, [navbarRef]);
 
-  const customModalStyles = {
+  /*  const customModalStyles = {
     content: {
       top: "50%",
       left: "50%",
@@ -51,7 +48,7 @@ const Admin = () => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      maxWidth: "800px", // Ajusta el ancho máximo del modal según tus preferencias
+      maxWidth: "600px", // Ajusta el ancho máximo del modal según tus preferencias
       maxHeight: "400px",
       padding: "20px",
       border: "none", // Elimina el borde si lo deseas
@@ -59,7 +56,7 @@ const Admin = () => {
       boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
       backgroundColor: "white", // Ajusta el color de fondo
     },
-  };
+  }; */
 
   return (
     <LightTheme mobileappstyle>
@@ -70,12 +67,18 @@ const Admin = () => {
             <div className="col-lg-3">
               <AdminSidebar setShow={setShow} show={show} />
               {show === "products" && (
-                <button className="btn btn-primary" onClick={openModal}>
+                <button
+                  className="btn btn-primary"
+                  onClick={(e) => abrirModal(e)}
+                >
                   Agregar Producto
                 </button>
               )}
               {show === "categories" && (
-                <button className="btn btn-primary" onClick={openModal}>
+                <button
+                  className="btn btn-primary"
+                  onClick={(e) => abrirModal(e)}
+                >
                   Crear Nueva Categoría
                 </button>
               )}
@@ -85,33 +88,15 @@ const Admin = () => {
               {show === "products" && (
                 <>
                   <ProductsAdmin />
-                  <Modal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                    contentLabel="Agregar Producto"
-                    style={customModalStyles}
-                  >
-                    <button className="btn btn-danger" onClick={closeModal}>
-                      X
-                    </button>
-                    <FormAdmin closeModal={closeModal} />
-                  </Modal>
+
+                  <FormAdmin setModal={setModal} modal={modal} />
                 </>
               )}
               {show === "categories" && (
                 <>
                   <CategoriesAdmin />
-                  <Modal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                    contentLabel="Agregar Producto"
-                    style={customModalStyles}
-                  >
-                    <button className="btn btn-danger" onClick={closeModal}>
-                      X
-                    </button>
-                    <FormAdminCategories closeModal={closeModal} />
-                  </Modal>
+
+                  <FormAdminCategories setModal={setModal} modal={modal} />
                 </>
               )}
             </div>
