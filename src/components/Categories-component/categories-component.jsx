@@ -41,7 +41,7 @@ const CategoriesAdmin = () => {
 
   return (
     <section className="text-center">
-      <h2>Categorias</h2>
+      <h2 style={{ color: "#61218cff" }}>Categorías</h2>
 
       <table
         className="table table-bordered text-center"

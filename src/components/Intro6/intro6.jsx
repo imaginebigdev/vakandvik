@@ -50,6 +50,7 @@ const Intro6 = () => {
           </div>
         </div>
       </div>
+      <div className="line bottom left"></div>
     </header>
   );
 };

@@ -23,7 +23,7 @@ const AdminSidebar = ({ setShow, show }) => {
                   style={{ cursor: "pointer" }}
                   className={show === "orders" ? "font-weight-bold fz-18" : ""}
                 >
-                  Ordenes
+                  Órdenes
                 </a>
               </li>
               <li>
@@ -42,16 +42,20 @@ const AdminSidebar = ({ setShow, show }) => {
                   onClick={() => setShow("categories")}
                   style={{ cursor: "pointer" }}
                   className={
-                    show === "categories" ? "font-weight-bold fz-18" : ""
+                    show === "categories" ? "font-weight-bold fz-18 " : ""
                   }
                 >
-                  Categorias
+                  Categoría
                 </a>
               </li>
               {show === "products" && (
                 <button
                   className="btn btn-primary mt-3"
                   onClick={(e) => abrirModal(e)}
+                  style={{
+                    backgroundColor: "#8068f0ff",
+                    borderColor: "#8068f0ff",
+                  }}
                 >
                   Agregar Producto
                 </button>
@@ -59,6 +63,10 @@ const AdminSidebar = ({ setShow, show }) => {
               {show === "categories" && (
                 <button
                   className="btn btn-primary mt-3"
+                  style={{
+                    backgroundColor: "#8068f0ff",
+                    borderColor: "#8068f0ff",
+                  }}
                   onClick={(e) => abrirModal(e)}
                 >
                   Crear Nueva Categoría

@@ -56,7 +56,7 @@ const OrdersComponent = () => {
   };
   return (
     <section className="text-center">
-      <h2>Ordenes</h2>
+      <h2 style={{ color: "#61218cff" }}>Órdenes</h2>
       <table
         className="table table-bordered text-center"
         style={{ margin: "100px 5%", maxWidth: "90%" }}

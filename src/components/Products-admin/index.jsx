@@ -41,43 +41,42 @@ const ProductsAdmin = () => {
 
   return (
     <section className="text-center">
-      <h2>Productos</h2>
+      <h2 style={{ color: "#61218cff" }}>Productos</h2>
 
       <div className="store pt-50">
         <div className="row">
           {products?.map((p) => (
             <div className="col-md-4 col-sm-6 col-xs-12" key={p.id}>
               <div className="card">
-                <div className="card-body">
-                  <div
-                    className="cover item-a"
-                    style={{
-                      backgroundImage: `url(${p.image})`,
-                      height: "50%",
-                      backgroundSize: "cover",
-                    }}
+                <div className="card-header-delete">
+                  <button
+                    className="btn btn-danger delete-button float-right"
+                    onClick={() => handleDelete(p.id)}
                   >
-                    <h4>{p.name}</h4>
-                    <h6 className={p.stock < 10 ? "red-stock" : ""}>
-                      stock: {p.stock}
-                    </h6>
-                    <span className="price">$ {p.price}</span>
-                  </div>
-                  <div className="card-footer">
-                    <button
-                      className="btn btn-primary float-left"
-                      onClick={() => handleEdit(p.id)}
-                    >
-                      Editar
-                    </button>
-                    <button
-                      className="btn btn-danger delete-button float-right"
-                      onClick={() => handleDelete(p.id)}
-                    >
-                      <i className="fa fa-trash" />
-                    </button>
-                  </div>
+                    <i className="fa fa-trash" />
+                  </button>
                 </div>
+                <div className="card-body">
+                  <div className="image-container">
+                    <img src={p.image} alt="" />
+                  </div>
+                  <h4>{p.name}</h4>
+                  <h6 style={{ color: p.stock < 10 ? "red" : null }}>
+                    stock: {p.stock}
+                  </h6>
+                  <span className="price">$ {p.price}</span>
+                </div>
+
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleEdit(p.id)}
+                  style={{
+                    backgroundColor: "#8068f0ff",
+                    borderColor: "#8068f0ff",
+                  }}
+                >
+                  Editar
+                </button>
               </div>
             </div>
           ))}

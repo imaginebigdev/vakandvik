@@ -8088,200 +8088,134 @@ footer .item .copy-right p a {
 /* ====================== [ End Footer ] ====================== */
 
 /* ====================== [ Start Card Admin ] ====================== */
-/* .card {
-  position: relative;
-  height: 300px;
+/* Estilos generales para la tarjeta */
+/* Estilos generales para la tarjeta */
+.card {
+  width: 240px; /* Ajusta este valor según tus preferencias */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Estilos para la imagen */
+.card img {
   width: 100%;
+  height: 120px; /* Ajusta este valor según tus preferencias */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.image-container {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Resto de los estilos permanecen iguales */
+
+/* Estilos para los encabezados */
+.card h4 {
   margin: 10px 0;
-  perspective: 1200px;
-  transition: all 1.5s;
+  font-size: 1.2rem; /* Ajusta el tamaño de la fuente según tus preferencias */
+  color: #333333;
 }
 
-.card:hover .cover {
-  transform: rotateX(0deg) rotateY(-180deg);
-  transition: ease all 1.5s;
+.card h6 {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #888888;
 }
 
-.card:hover .cover:before {
-  transform: translateZ(30px);
-  transition: ease all 1.5s;
-}
-
-.card:hover .cover:after {
-  background-color: black;
-  transition: ease all 1.5s;
-}
-
-.card:hover .cover h4 {
-  transform: translateZ(100px);
-  transition: ease all 1.5s;
-}
-
-.card:hover .cover h6 {
-  transform: translateZ(100px);
-  transition: ease all 1.5s;
-}
-
-.card:hover .cover .price {
-  transform: translateZ(60px);
-  transition: ease all 1.5s;
-}
-
-.card:hover .cover .buttons {
-  transform: translateZ(-60px) rotateY(-180deg);
-  transition: ease all 1.5s;
-}
-
-.cover {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  transform-style: preserve-3d;
-  transition: ease all 0.3s;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-
-.cover:before {
-  content: "";
-  position: absolute;
-  border: 5px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  z-index: 2;
-  transition: ease all 0.3s;
-  transform-style: preserve-3d;
-  transform: translateZ(0px);
-}
-
-.cover:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  transition: ease all 1.3s;
-  background: transparent;
-  text-align: center;
-}
-
-.cover h4 {
-  font-weight: 600;
-  position: absolute;
-  bottom: 60px;
-  left: 20px;
-  color: #fff;
-  transform-style: preserve-3d;
-  transition: ease all 0.3s;
-  z-index: 3;
-  font-size: 35px;
-  transform: translateZ(0px);
-}
-
-.cover h6 {
-  font-weight: 600;
-  position: absolute;
-  bottom: 40px;
-  left: 20px;
-  color: #fff;
-  transform-style: preserve-3d;
-  transition: ease all 0.3s;
-  z-index: 5;
-  font-size: 20px;
-  transform: translateZ(0px);
-}
-
-.cover .price {
-  font-weight: 200;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: white;
-  transform-style: preserve-3d;
-  transition: ease all 0.3s;
-  z-index: 4;
-  font-size: 2em;
-  transform: translateZ(0px);
-}
-
-.card-back {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: transparent;
-  transform-style: preserve-3d;
-  transition: ease all 0.3s;
-  transform: translateZ(-1px);
-  display: flex;
-  flex-direction: column;
-  justify-content:space-around;
-  align-items: center;
-  text-align: center;
-}
-
-.card-back button {
-  transform-style: preserve-3d;
-  transition: ease transform 0.3s, ease background 0.5s;
-  transform: translateZ(-1px) rotateY(-180deg);
-  background: transparent;
-  border: 1px solid white;
-  font-weight: 200;
-  font-size: 16px;
-  color: white;
-  padding: 0px 10px;
-  outline: none;
-  text-decoration: none;
-}
-
-.card-back label {
-  transform-style: preserve-3d;
-  transition: ease transform 0.3s, ease background 0.5s;
-  transform: translateZ(-1px) rotateY(-180deg);
-  background: transparent;
-  font-weight: 200;
-  font-size: 16px;
-  color: white;
-  outline: none;
-  text-decoration: none; 
-}
-
-.card-back input {
-  transform-style: preserve-3d;
-  transition: ease transform 0.3s, ease background 0.5s;
-  transform: translateZ(-1px) rotateY(-180deg);
-  background: transparent;
-  border: 1px solid #fff;
-  font-weight: 200;
-  font-size: 16px;
-  color: white;
-  outline: none;
-  text-decoration: none;
-
-/* margin-top: 20px; 
-text-align: center;
-}
-
-.input-group {
-  margin-bottom: 0px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;  /* Centrar los elementos horizontalmente 
-}
-
-.input-group:hover{
-  cursor:text;
-}
-
+/* Estilos para el stock en rojo */
 .red-stock {
-  color: red;
-} */
+  color: #ff4d4f;
+}
+
+/* Estilos para el precio */
+.card .price {
+  display: block;
+  font-size: 1rem; /* Ajusta el tamaño de la fuente según tus preferencias */
+  font-weight: bold;
+  color: #333333;
+  margin-top: 10px;
+}
+
+/* Estilos para el pie de la tarjeta */
+.card-footer {
+/*   margin-top: 15px; /* Ajusta el margen según tus preferencias 
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f0f0f0;  Cambia el color de fondo 
+ 
+  padding: 10px 0;  Ajusta el relleno vertical y horizontal 
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);  Efecto de profundidad */
+}
+
+.card-header-delete button {
+  padding: 6px 9px; /* Ajusta el relleno según tus preferencias */
+  font-size: 0.8rem; /* Ajusta el tamaño de la fuente según tus preferencias */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}
+
+.card-footer .btn-primary {
+  margin-top: 10px;
+}
+
+.card-footer button:hover {
+  background-color: #f0f0f0;
+}
+
+
+.delete-button {
+  color: #fff;
+  text-align: center;
+}
+
+.violet-text{
+  color: #8068f0ff;
+}
+
+.welcome-section {
+  width: 100%;
+  height: 30vh;
+  background: linear-gradient(135deg, #9913b6ff, #8068f0ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.title-admin {
+  font-size: 5.5rem;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
 
 /* ====================== [ End Card Admin ] ====================== */
 
