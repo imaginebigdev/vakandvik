@@ -1867,7 +1867,7 @@ span:hover {
 }
 
 .navbar .logo {
-  width: 50px;
+  width: 250px;
 }
 
 .nav-scroll {
@@ -1927,7 +1927,7 @@ span:hover {
 }
 
 .topnav .logo {
-  width: 50px;
+  width: 250px;
 }
 
 .topnav .menu-icon {
@@ -8056,7 +8056,7 @@ footer .item .logo {
 }
 
 footer .item .logo img {
-  width: 50px;
+  width: 150px;
 }
 
 footer .item .social a {
@@ -8285,30 +8285,188 @@ text-align: center;
 
 /* ====================== [ End Card Admin ] ====================== */
 
-.custom-modal-content {
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  transform: translate(-50%, -50%);
-  max-width: 400px;
-  padding: 20px;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  background-color: white;
+/* ====================== [ Start Form Admin ] ====================== */
+
+.form-container{
+  background-image: repeating-radial-gradient(circle farthest-corner at -1% 0,#61218cff ,#8068f0ff 100%/* 30%,#662d91 53%,#90088b 78%,#b1005e */);
 }
 
-/* Estilos para el botón de cierre */
-.btn-close-modal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: transparent;
-  border: none;
-  color: #333;
-  cursor: pointer;
+.form-container::-webkit-scrollbar {
+  margin-top: 20px;
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+.form-container::-webkit-scrollbar-track {
+  background: rgb(81, 81, 81);        /* color of the tracking area */
+}
+
+.form-container::-webkit-scrollbar-thumb {
+  background-color:#c0c0c0;    /* color of the scroll thumb */
+  border-radius: 15px;       /* roundness of the scroll thumb */
+  border: 3px solid #c0c0c0;  /* creates padding around scroll thumb */
+}
+
+.logo-modal{
+  width: 30vh;
+}
+
+.modal-header{
+  background-image: repeating-linear-gradient(180deg/* ,#131313 */,#9913b6ff 100%,#d4c6c6);
+}
+.contenedorInpputs{
+  align-content: center;
+  display:flex;
+  flex-direction:column;
+  width: 300px; 
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 35px auto;
+}
+
+
+.tituloInput{
+  color: rgba(75, 74, 74, 0.829);
+  font-family: 'Inter', sans-serif;
   font-size: 18px;
+  text-align: left;
+  margin-top: 15px;
+}
+
+.formEmail{
+  background-color: #fff;
+  border: 3px solid #9913b6ff;
+  width: 300px; 
+  color: rgba(75, 74, 74, 0.829);
+  font-size: 20px;
+  border-radius: 5px ;
+}
+
+
+.content-input input,
+.content-select select{
+appearance: none;
+-webkit-appearance: none;
+-moz-appearance: none;
+}
+
+.content-input input{
+visibility: hidden;
+position: absolute;
+right: 0;
+}
+
+.content-input{
+position: relative;
+margin-bottom: 20px;
+padding:5px 0 5px 60px; /* Damos un padding de 60px para posicionar 
+      el elemento <i> en este espacio*/
+display: block;
+  cursor: pointer;
+}
+
+/* Estas reglas se aplicarán a todos las elementos i 
+después de cualquier input*/
+.content-input input + i{
+     background: #f0f0f0;
+     border:2px solid rgba(0,0,0,0.2);
+     position: absolute; 
+     left: 0;
+     top: 0;
+}
+
+/* Estas reglas se aplicarán a todos los i despues 
+de un input de tipo checkbox*/
+.content-input input[type=checkbox ] + i{
+width: 52px;
+height: 30px;
+border-radius: 15px;
+}
+
+.content-input input[type=checkbox] + i:before{
+content: ''; /* No hay contenido */
+width: 26px;
+height: 26px;
+background: #fff;
+border-radius: 50%;
+position: absolute;
+z-index: 1;
+left: 0px;
+top: 0px;
+-webkit-box-shadow: 3px 0 3px 0 rgba(0,0,0,0.2);
+box-shadow: 3px 0 3px 0 rgba(0,0,0,0.2);
+}
+
+.content-input input[type=checkbox]:checked + i:before{
+left: 22px;
+-webkit-box-shadow: -3px 0 3px 0 rgba(0,0,0,0.2);
+box-shadow: 3px 0 -3px 0 rgba(0,0,0,0.2);
+}
+
+.content-input input[type=checkbox]:checked + i{
+background: #f1cf70;
+}
+
+.content-input input[type=checkbox] + i:after{
+content: 'OK';
+position: absolute;
+font-size: 10px;
+color: rgba(255,255,255,0.6);
+top: 8px;
+left: 4px;
+opacity: 0 /* Ocultamos este elemento */;
+transition: all 0.25s ease 0.25s;
+}
+
+/* Cuando esté checkeado cambiamos la opacidad a 1 y lo mostramos */
+.content-input input[type=checkbox]:checked + i:after{
+opacity: 1;
+}
+
+.modal-footer{
+  background-image: repeating-linear-gradient(180deg/* ,#131313 */,#d4c6c6 100%,#d4c6c6);
+}
+
+.buton-submit{
+  background-color: #6c757d;
+  color: #fff;
+  margin-top: 20px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  
+  border-radius: 5px;
+  width: 200px
+}
+
+.buton-submit:hover{
+  transform: scale(1.03);
+  transition: all 0.20s;
+}
+
+
+@media only screen and (max-width : 900px){
+  .contenedorInpputs{
+      width: 300px;
+      margin: 25px auto;
+  }
+  .tituloInput{
+      font-size: 15px;
+      margin-top: 5px;
+  }
+  .formEmail{
+      font-size: 16px;
+  }
+  .buton-submit{
+      width: 150px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      
+  }
+  .btn-container{
+      text-align: center;
+      margin: 5% auto;
+  }
+
 }
 
 /* ====================== [ Start Responsive ] ====================== */
