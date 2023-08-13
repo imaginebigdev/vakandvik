@@ -26,7 +26,7 @@ const Admin = () => {
           <div className="row">
             <div className="col-lg-3">
               <AdminSidebar setShow={setShow} show={show} />
-              {show === "products" && (
+              {/*    {show === "products" && (
                 <button
                   className="btn btn-primary mt-3"
                   onClick={(e) => abrirModal(e)}
@@ -41,7 +41,7 @@ const Admin = () => {
                 >
                   Crear Nueva Categoría
                 </button>
-              )}
+              )} */}
             </div>
             <div className="col-lg-9">
               {show === "orders" && <OrdersComponent />}

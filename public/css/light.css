@@ -8088,7 +8088,7 @@ footer .item .copy-right p a {
 /* ====================== [ End Footer ] ====================== */
 
 /* ====================== [ Start Card Admin ] ====================== */
-.card {
+/* .card {
   position: relative;
   height: 300px;
   width: 100%;
@@ -8263,7 +8263,7 @@ footer .item .copy-right p a {
   outline: none;
   text-decoration: none;
 
-/* margin-top: 20px; */
+/* margin-top: 20px; 
 text-align: center;
 }
 
@@ -8272,7 +8272,7 @@ text-align: center;
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;  /* Centrar los elementos horizontalmente */
+  align-items: center;  /* Centrar los elementos horizontalmente 
 }
 
 .input-group:hover{
@@ -8281,7 +8281,7 @@ text-align: center;
 
 .red-stock {
   color: red;
-}
+} */
 
 /* ====================== [ End Card Admin ] ====================== */
 

@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import ProductsAdmin from "../Products-admin";
+import FormAdmin from "../Form-admin/form-admin";
+import CategoriesAdmin from "../Categories-component/categories-component";
+import FormAdminCategories from "../Categories-component/form-admin-categories";
 
 const AdminSidebar = ({ setShow, show }) => {
+  const [modal, setModal] = useState(false);
+  const abrirModal = (e) => {
+    e.preventDefault();
+    setModal(true);
+  };
   return (
     <div className="sidebar md-mb50">
       <div className="row">
@@ -39,6 +48,36 @@ const AdminSidebar = ({ setShow, show }) => {
                   Categorias
                 </a>
               </li>
+              {show === "products" && (
+                <button
+                  className="btn btn-primary mt-3"
+                  onClick={(e) => abrirModal(e)}
+                >
+                  Agregar Producto
+                </button>
+              )}
+              {show === "categories" && (
+                <button
+                  className="btn btn-primary mt-3"
+                  onClick={(e) => abrirModal(e)}
+                >
+                  Crear Nueva Categoría
+                </button>
+              )}
+              {show === "products" && (
+                <>
+                  {/*     <ProductsAdmin /> */}
+
+                  <FormAdmin setModal={setModal} modal={modal} />
+                </>
+              )}
+              {show === "categories" && (
+                <>
+                  {/*  <CategoriesAdmin /> */}
+
+                  <FormAdminCategories setModal={setModal} modal={modal} />
+                </>
+              )}
             </ul>
           </div>
         </div>
