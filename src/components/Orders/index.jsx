@@ -138,29 +138,53 @@ const OrdersComponent = () => {
               )}
               {showClient[orden.id] && (
                 <div className="order-details">
-                  <table className="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Dirección</th>
-                        <th>Provincia</th>
-                        <th>Código Postal</th>
-                        <th>Teléfono</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{orden.clientName}</td>
-                        <td>{orden.email}</td>
-                        <td>{orden.address}</td>
-                        <td>{orden.province}</td>
-                        <td>{orden.postalCode}</td>
-                        <td>{orden.phone}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div className="product-list">
+                    <h6>Datos del cliente</h6>
+                    <ul className="text-justify">
+                      <li>
+                        <strong>Nombre: </strong> {orden.clientName}
+                        <br />
+                        <strong>Email: </strong> {orden.email}
+                        <br />
+                        <strong>Dirección: </strong>
+                        {orden.address}
+                        <br />
+                        <strong>Provincia: </strong>
+                        {orden.province}
+                        <br />
+                        <strong>Codigo Postal: </strong>
+                        {orden.postalCode}
+                        <br />
+                        <strong>Telefono: </strong>
+                        {orden.phone}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
+                // <div className="order-details">
+                //   <table className="table table-bordered">
+                //     <thead>
+                //       <tr>
+                //         <th>Nombre</th>
+                //         <th>Email</th>
+                //         <th>Dirección</th>
+                //         <th>Provincia</th>
+                //         <th>Código Postal</th>
+                //         <th>Teléfono</th>
+                //       </tr>
+                //     </thead>
+                //     <tbody>
+                //       <tr>
+                //         <td>{orden.clientName}</td>
+                //         <td>{orden.email}</td>
+                //         <td>{orden.address}</td>
+                //         <td>{orden.province}</td>
+                //         <td>{orden.postalCode}</td>
+                //         <td>{orden.phone}</td>
+                //       </tr>
+                //     </tbody>
+                //   </table>
+                // </div>
               )}
             </div>
           </div>

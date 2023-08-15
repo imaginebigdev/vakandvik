@@ -41,12 +41,12 @@ const FormEditProduct = ({ setModal, modal, selectedProductId }) => {
             "¡Modificación exitosa!",
             "El producto ha sido modificado.",
             "success"
-          );
+          ).then((response) => {
+            setModal(false);
+          });
         }
       });
     }
-
-    setModal(false); // Cerrar el modal
   };
 
   const handleClose = () => {

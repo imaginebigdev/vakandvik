@@ -44,9 +44,9 @@ const ProductsAdmin = () => {
       <h2 style={{ color: "#61218cff" }}>Productos</h2>
 
       <div className="store pt-50">
-        <div className="row">
+        <div className="row justify-content-center">
           {products?.map((p) => (
-            <div className="col-md-4 col-sm-6 col-xs-12" key={p.id}>
+            <div className="col-md-4 col-sm-6 col-xs-12 mr-5 " key={p.id}>
               <div className="card">
                 <div className="card-header-delete">
                   <button
