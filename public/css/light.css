@@ -8217,7 +8217,98 @@ footer .item .copy-right p a {
 
 
 
+
+
 /* ====================== [ End Card Admin ] ====================== */
+
+.order-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-evenly;
+}
+
+.order {
+  width: 100%;
+  max-width: 800px;
+ 
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pending {
+  border-color: #f76262;
+}
+
+.completed {
+  border-color: #4caf50;
+}
+
+.order-header {
+  margin-bottom: 10px;
+}
+
+.order-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.order-details {
+  margin-top: 20px;
+}
+
+.order-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-status {
+  margin: 0;
+}
+
+.modify-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-details {
+  margin-top: 20px;
+}
+
+.product-list {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.product-list h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.product-list ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.product-list li {
+  margin-bottom: 10px;
+}
+
 
 /* ====================== [ Start Form Admin ] ====================== */
 

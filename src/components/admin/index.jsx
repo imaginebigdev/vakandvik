@@ -42,9 +42,9 @@ const Admin = () => {
     <LightTheme mobileappstyle>
       <NavbarAdmin nr={navbarRef} lr={logoRef} theme="themeL" />
       <div ref={MainContent} className="main-content">
-        <div className="welcome-section">
+        {/*   <div className="welcome-section">
           <h1 className="title-admin pt-80">Bienvenid@ Admin</h1>
-        </div>
+        </div> */}
         <section className="shop section-padding">
           <div className="container pb-80">
             <div className="row">

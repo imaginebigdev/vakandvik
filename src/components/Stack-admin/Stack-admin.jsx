@@ -7,7 +7,7 @@ const IntegrationEsp = () => {
       <div className="section-head text-center style-4">
         <h5 className="color-font">Nuestro Stack</h5>
         <h2 className="mb-20">
-          Nostros usamos un Stack <span className="color-font"> MERN</span>{" "}
+          Nosotros usamos un Stack <span className="color-font"> MERN</span>{" "}
         </h2>
         <p>Realizamos tu proyecto con tecnologías de última generación.</p>
       </div>
