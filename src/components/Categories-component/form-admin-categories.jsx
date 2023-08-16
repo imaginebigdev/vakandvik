@@ -22,6 +22,8 @@ const FormAdminCategories = ({ setModal, modal }) => {
           icon: "success",
           title: "¡Categoria creada!",
           text: "La categoria se creo de manera exitosa",
+        }).then(() => {
+          handleClose();
         });
       })
       .catch((error) => {
@@ -56,7 +58,7 @@ const FormAdminCategories = ({ setModal, modal }) => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-10">
-              <div className="form wow fadeInUp" data-wow-delay=".5s">
+              <div>
                 <Formik
                   initialValues={{
                     name: "",

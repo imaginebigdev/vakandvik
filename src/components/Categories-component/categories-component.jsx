@@ -44,7 +44,7 @@ const CategoriesAdmin = () => {
       <h2 style={{ color: "#61218cff" }} className="pb-20">
         Categorías
       </h2>
-      <div className="order container">
+      <div>
         {categories?.map((c) => (
           <div className={`order container mb-20`} key={c.id}>
             <div className="row justify-content-around align-items-center">

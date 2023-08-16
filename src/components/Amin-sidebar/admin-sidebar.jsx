@@ -69,7 +69,7 @@ const AdminSidebar = ({ setShow, show }) => {
                   }}
                   onClick={(e) => abrirModal(e)}
                 >
-                  Crear Nueva Categoría
+                  Nueva Categoría
                 </button>
               )}
               {show === "products" && (
