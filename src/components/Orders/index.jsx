@@ -161,30 +161,6 @@ const OrdersComponent = () => {
                     </ul>
                   </div>
                 </div>
-                // <div className="order-details">
-                //   <table className="table table-bordered">
-                //     <thead>
-                //       <tr>
-                //         <th>Nombre</th>
-                //         <th>Email</th>
-                //         <th>Dirección</th>
-                //         <th>Provincia</th>
-                //         <th>Código Postal</th>
-                //         <th>Teléfono</th>
-                //       </tr>
-                //     </thead>
-                //     <tbody>
-                //       <tr>
-                //         <td>{orden.clientName}</td>
-                //         <td>{orden.email}</td>
-                //         <td>{orden.address}</td>
-                //         <td>{orden.province}</td>
-                //         <td>{orden.postalCode}</td>
-                //         <td>{orden.phone}</td>
-                //       </tr>
-                //     </tbody>
-                //   </table>
-                // </div>
               )}
             </div>
           </div>

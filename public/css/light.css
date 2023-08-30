@@ -151,50 +151,20 @@ span:hover {
 }
 
 .color-font {
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#12c2e9),
-    color-stop(#c471ed),
-    to(#f64f59)
-  );
-  background: -webkit-linear-gradient(left, #12c2e9, #c471ed, #f64f59);
-  background: -o-linear-gradient(left, #12c2e9, #c471ed, #f64f59);
-  background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+  background: #ef8152ff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .back-color {
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#12c2e9),
-    color-stop(#c471ed),
-    to(#f64f59)
-  );
-  background: -webkit-linear-gradient(left, #12c2e9, #c471ed, #f64f59);
-  background: -o-linear-gradient(left, #12c2e9, #c471ed, #f64f59);
-  background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+  background: #ef8152ff;
 }
 
 .line {
   position: absolute;
   height: 1px;
   width: 65%;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#12c2e9),
-    color-stop(#c471ed),
-    to(#f64f59)
-  );
-  background: -webkit-linear-gradient(left, #12c2e9, #c471ed, #f64f59);
-  background: -o-linear-gradient(left, #12c2e9, #c471ed, #f64f59);
-  background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+  background: #ef8152ff;
 }
 
 .line.top {
@@ -1604,10 +1574,13 @@ span:hover {
 .butn {
   padding: 15px 35px;
   font-size: 13px;
-  border: 1px solid transparent;
+  border: 1px solid #ef8152ff;
+  border-radius: 5px;
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   transition: all 0.4s;
+  cursor: pointer;
+  background-color: #ef8152ff;
 }
 
 .butn:hover .char {
@@ -1617,7 +1590,7 @@ span:hover {
   animation-delay: calc(30ms * var(--char-index));
 }
 
-.butn.bord {
+.butn:hover{
   border: 1px solid #000;
 }
 
@@ -1648,6 +1621,31 @@ span:hover {
   color: #333;
 }
 
+.butn2{
+  padding: 15px 35px;
+  font-size: 13px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+}
+
+.butn2:hover .char {
+  -webkit-animation: fadeInUp 0.3s cubic-bezier(0.3, 0, 0.7, 1) both;
+  animation: fadeInUp 0.3s cubic-bezier(0.3, 0, 0.7, 1) both;
+  -webkit-animation-delay: calc(30ms * var(--char-index));
+  animation-delay: calc(30ms * var(--char-index));
+}
+
+.butn2:hover{
+  background-color: #ef8152ff;
+  border: 1px solid #ef8152ff;
+  
+}
 .butn.color {
   background: -webkit-gradient(
     linear,
@@ -8304,6 +8302,40 @@ footer .item .copy-right p a {
   margin-bottom: 10px;
 }
 
+.pagination-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-button {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  color: #333;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-button.active {
+  background-color: #8068f0ff;
+  color: #ffffff;
+  border-color: #8068f0ff;
+}
+
+.pagination-button:hover {
+  background-color: #ddd;
+}
+
+.pagination-button:focus {
+  outline: none;
+ /*  outline: 5px auto -webkit-focus-ring-color; */
+}
+
+
+
 /* ====================== [ Start Form Admin ] ====================== */
 
 .form-container {
@@ -8428,8 +8460,15 @@ de un input de tipo checkbox*/
 }
 
 .content-input input[type="checkbox"]:checked + i {
-  background: #f1cf70;
+  background: #ef8152ff;
 }
+
+/* styles.css */
+.custom-checkbox:checked {
+  background-color: #ef8152ff;
+  border-color: #ef8152ff;
+}
+
 
 .content-input input[type="checkbox"] + i:after {
   content: "OK";
@@ -8494,6 +8533,64 @@ de un input de tipo checkbox*/
     margin: 5% auto;
   }
 }
+
+
+/* ====================== [ Start CarritoHome ] ====================== */
+
+.table-cart {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table-cart th,
+.table-cart td {
+  border: none;
+  border-bottom: 1px solid #dee2e6;
+  padding: 8px;
+  text-align: center;
+}
+
+.table-cart th:first-child,
+.table-cart td:first-child {
+  border-left: 1px solid #dee2e6;
+}
+
+.table-cart th:last-child,
+.table-cart td:last-child {
+  border-right: 1px solid #dee2e6;
+}
+
+.table-cart th {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table-cart tr:last-child td {
+  border-bottom: none;
+}
+
+
+@media (max-width: 768px) {
+  .table-cart tr td {
+    display: row;
+    text-align: center;
+    padding: 8px;
+  }
+  .table-cart img {
+    width: 80px;
+  }
+  .table-cart .btn {
+    margin-top: 5px;
+  }
+  .table-cart .btn-success {
+    margin-left: 5px;
+  }
+  #cantidad{
+    display: none;
+  }
+
+}
+
+
 
 /* ====================== [ Start Responsive ] ====================== */
 .navbar .navbar-collapse.show-with-trans {
@@ -8616,7 +8713,7 @@ de un input de tipo checkbox*/
 
   .navbar .logo {
     margin-left: 15px;
-    width: 50px;
+    width: 150px;
   }
 
   .nav-scroll .icon-bar,
@@ -9009,7 +9106,7 @@ de un input de tipo checkbox*/
   }
 
   .navbar .logo {
-    width: 40px;
+    width: 150px;
   }
 
   .hamenu .menu-links .main-menu > li {

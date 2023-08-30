@@ -8,6 +8,8 @@ const ProductsAdmin = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
   const [selectedProductId, setSelectedProductId] = useState(null);
+  const productsPerPage = 6;
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -39,14 +41,25 @@ const ProductsAdmin = () => {
     setSelectedProductId(productId);
   };
 
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <section className="text-center">
       <h2 style={{ color: "#61218cff" }}>Productos</h2>
 
       <div className="store pt-50">
         <div className="row justify-content-center">
-          {products?.map((p) => (
-            <div className="col-md-4 col-sm-6 col-xs-12 mr-5 " key={p.id}>
+          {currentProducts.map((p) => (
+            <div className="col-md-4 col-sm-6 col-xs-12 mb-4" key={p.id}>
               <div className="card">
                 <div className="card-header-delete">
                   <button
@@ -80,14 +93,29 @@ const ProductsAdmin = () => {
               </div>
             </div>
           ))}
-          {selectedProductId !== null && (
-            <FormEditProduct
-              setModal={() => setSelectedProductId(null)}
-              modal={selectedProductId !== null}
-              selectedProductId={selectedProductId}
-            />
-          )}
         </div>
+        <div className="pagination-container">
+          {Array.from({
+            length: Math.ceil(products.length / productsPerPage),
+          }).map((_, index) => (
+            <button
+              key={index}
+              className={`pagination-button ${
+                currentPage === index + 1 ? "active" : ""
+              }`}
+              onClick={() => paginate(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+        {selectedProductId !== null && (
+          <FormEditProduct
+            setModal={() => setSelectedProductId(null)}
+            modal={selectedProductId !== null}
+            selectedProductId={selectedProductId}
+          />
+        )}
       </div>
     </section>
   );

@@ -12,6 +12,7 @@ const Carrito = () => {
   const navbarRef = React.useRef(null);
   const logoRef = React.useRef(null);
   const [showForm, setShowForm] = useState(false);
+  const [modal, setModal] = useState(false);
 
   React.useEffect(() => {
     document.querySelector("body").classList.add("contact-page");
@@ -39,8 +40,8 @@ const Carrito = () => {
       <NavbarCart nr={navbarRef} lr={logoRef} theme="themeL" />
       <ContactHeader blackStar />
       <div className="main-content">
-        <CartComponent setShowForm={setShowForm} showForm={showForm} />
-        <FormCheckout show={showForm} />
+        <CartComponent setModal={setModal} modal={modal} />
+        <FormCheckout setModal={setModal} modal={modal} />
         <Footer2 />
       </div>
     </LightTheme>

@@ -1235,18 +1235,7 @@ body .swiper-pagination-bullets.swiper-pagination-horizontal,
 
 .shop .sidebar .tags a:hover {
   color: #fff;
-  background: #f45162;
-  background-image: -webkit-gradient(
-    linear,
-    right top,
-    left top,
-    from(#17c0e9),
-    color-stop(#c96ddd),
-    to(#f45162)
-  );
-  background-image: -webkit-linear-gradient(right, #17c0e9, #c96ddd, #f45162);
-  background-image: -o-linear-gradient(right, #17c0e9, #c96ddd, #f45162);
-  background-image: linear-gradient(to left, #17c0e9, #c96ddd, #f45162);
+  background: #ef8152ff;
 }
 
 .shop .store .top-area .filter-select select {
@@ -1302,18 +1291,8 @@ body .swiper-pagination-bullets.swiper-pagination-horizontal,
   border-radius: 4px;
   color: #fff;
   font-size: 14px;
-  background: #f45162;
-  background-image: -webkit-gradient(
-    linear,
-    right top,
-    left top,
-    from(#17c0e9),
-    color-stop(#c96ddd),
-    to(#f45162)
-  );
-  background-image: -webkit-linear-gradient(right, #17c0e9, #c96ddd, #f45162);
-  background-image: -o-linear-gradient(right, #17c0e9, #c96ddd, #f45162);
-  background-image: linear-gradient(to left, #17c0e9, #c96ddd, #f45162);
+  background: #ef8152ff;;
+
   z-index: 2;
 }
 
@@ -1338,18 +1317,7 @@ body .swiper-pagination-bullets.swiper-pagination-horizontal,
   border-radius: 4px;
   color: #fff;
   font-size: 14px;
-  background: #f45162;
-  background-image: -webkit-gradient(
-    linear,
-    right top,
-    left top,
-    from(#17c0e9),
-    color-stop(#c96ddd),
-    to(#f45162)
-  );
-  background-image: -webkit-linear-gradient(right, #17c0e9, #c96ddd, #f45162);
-  background-image: -o-linear-gradient(right, #17c0e9, #c96ddd, #f45162);
-  background-image: linear-gradient(to left, #17c0e9, #c96ddd, #f45162);
+  background: #ef8152ff;
 }
 
 .shop .store .item .img .add a span {
@@ -1368,7 +1336,7 @@ body .swiper-pagination-bullets.swiper-pagination-horizontal,
 }
 
 .shop .store .item .info span {
-  color: #f45162;
+  color:#ef8152ff;;
   margin-top: 10px;
 }
 
@@ -1398,6 +1366,7 @@ body .swiper-pagination-bullets.swiper-pagination-horizontal,
 .shop #range {
   -webkit-appearance: none;
   width: 100%;
+  color: #ef8152ff
 }
 
 .shop #range:focus {
@@ -1413,18 +1382,18 @@ body .swiper-pagination-bullets.swiper-pagination-horizontal,
     linear,
     left top,
     right top,
-    from(#f45162),
-    to(#dee4ec)
+    from(#000),
+    to(#e6e2e2)
   );
   background: -webkit-linear-gradient(
     left,
-    #f45162 var(--range-progress),
-    #dee4ec var(--range-progress)
+    #000 var(--range-progress) ,
+    #e6e2e2  var(--range-progress) 
   );
   background: linear-gradient(
     90deg,
-    #f45162 var(--range-progress),
-    #dee4ec var(--range-progress)
+    #000  var(--range-progress) ,
+    #e6e2e2  var(--range-progress) 
   );
   border-radius: 2px;
 }
@@ -1432,17 +1401,8 @@ body .swiper-pagination-bullets.swiper-pagination-horizontal,
 .shop #range::-webkit-slider-thumb {
   -webkit-appearance: none;
   border-radius: 50%;
-  background: #f45162;
-  background-image: -webkit-gradient(
-    linear,
-    right top,
-    left top,
-    from(#17c0e9),
-    color-stop(#c96ddd),
-    to(#f45162)
-  );
-  background-image: -webkit-linear-gradient(right, #17c0e9, #c96ddd, #f45162);
-  background-image: linear-gradient(to left, #17c0e9, #c96ddd, #f45162);
+  background: #ef8152ff;
+  
   cursor: pointer;
   height: 15px;
   width: 15px;
