@@ -1590,7 +1590,7 @@ span:hover {
   animation-delay: calc(30ms * var(--char-index));
 }
 
-.butn:hover{
+.butn:hover {
   border: 1px solid #000;
 }
 
@@ -1621,7 +1621,7 @@ span:hover {
   color: #333;
 }
 
-.butn2{
+.butn2 {
   padding: 15px 35px;
   font-size: 13px;
   border: 1px solid #000;
@@ -1641,10 +1641,9 @@ span:hover {
   animation-delay: calc(30ms * var(--char-index));
 }
 
-.butn2:hover{
+.butn2:hover {
   background-color: #ef8152ff;
   border: 1px solid #ef8152ff;
-  
 }
 .butn.color {
   background: -webkit-gradient(
@@ -8331,10 +8330,8 @@ footer .item .copy-right p a {
 
 .pagination-button:focus {
   outline: none;
- /*  outline: 5px auto -webkit-focus-ring-color; */
+  /*  outline: 5px auto -webkit-focus-ring-color; */
 }
-
-
 
 /* ====================== [ Start Form Admin ] ====================== */
 
@@ -8469,7 +8466,6 @@ de un input de tipo checkbox*/
   border-color: #ef8152ff;
 }
 
-
 .content-input input[type="checkbox"] + i:after {
   content: "OK";
   position: absolute;
@@ -8534,7 +8530,6 @@ de un input de tipo checkbox*/
   }
 }
 
-
 /* ====================== [ Start CarritoHome ] ====================== */
 
 .table-cart {
@@ -8568,7 +8563,6 @@ de un input de tipo checkbox*/
   border-bottom: none;
 }
 
-
 @media (max-width: 768px) {
   .table-cart tr td {
     display: row;
@@ -8584,13 +8578,15 @@ de un input de tipo checkbox*/
   .table-cart .btn-success {
     margin-left: 5px;
   }
-  #cantidad{
+  #cantidad {
     display: none;
   }
-
 }
-
-
+.img-responsive-detail {
+  width: 570px;
+  object-fit: cover;
+  height: 656px;
+}
 
 /* ====================== [ Start Responsive ] ====================== */
 .navbar .navbar-collapse.show-with-trans {
@@ -9005,6 +9001,10 @@ de un input de tipo checkbox*/
 }
 
 @media screen and (max-width: 767px) {
+  .img-responsive-detail {
+    width: 330px;
+    height: 380px;
+  }
   .nav-responsive {
     display: none;
   }
@@ -9400,6 +9400,10 @@ de un input de tipo checkbox*/
 }
 
 @media screen and (max-width: 480px) {
+  .img-responsive-detail {
+    width: 359px;
+    height: 413px;
+  }
   .nav-responsive {
     display: none;
   }

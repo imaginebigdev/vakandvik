@@ -8,6 +8,7 @@ const productsSlice = createSlice({
   initialState: {
     products: [],
     filterProducts: [],
+    productDetail: {},
     loading: false,
     error: null,
   },
@@ -27,6 +28,21 @@ const productsSlice = createSlice({
       state.error = action.payload;
     },
     // General GET //
+
+    // General GET by ID //
+    fetchProductByIdStart(state, action) {
+      state.loading = true;
+      state.error = null;
+    },
+    fetchProductByIdSuccesfull(state, action) {
+      state.loading = false;
+      state.productDetail = action.payload;
+    },
+    fetchProductByIdFailiure(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    // General GET by ID //
 
     // Create product //
     createProductStart(state, action) {
@@ -148,6 +164,9 @@ export const {
   fetchProductStart,
   fetchProductSuccesfull,
   fetchProductFailiure,
+  fetchProductByIdStart,
+  fetchProductByIdSuccesfull,
+  fetchProductByIdFailiure,
   createProductStart,
   createProductSuccesfull,
   createProductFailiure,
@@ -174,6 +193,16 @@ export const fetchProducts = () => async (dispatch) => {
     dispatch(fetchProductSuccesfull(response.data));
   } catch (error) {
     dispatch(fetchProductFailiure(error.message));
+  }
+};
+
+export const fetchProductsById = (id) => async (dispatch) => {
+  try {
+    dispatch(fetchProductByIdStart());
+    const response = await axios.get(`${url}products/${id}`);
+    dispatch(fetchProductByIdSuccesfull(response.data));
+  } catch (error) {
+    dispatch(fetchProductByIdFailiure());
   }
 };
 

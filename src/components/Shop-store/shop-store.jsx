@@ -7,6 +7,7 @@ import {
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { setItems } from "../../../redux/reducers/cart";
 import Swal from "sweetalert2";
+import Link from "next/dist/client/link";
 
 const ShopStore = ({
   products,
@@ -22,34 +23,6 @@ const ShopStore = ({
     if (type === "desc") return dispatch(orderByPriceDESC());
   };
 
-  const [itemCart, setItemCart] = useLocalStorage("cart", []);
-
-  const { itemsCart } = useSelector((state) => state.cart);
-
-  const handleAddToCart = (product) => {
-    const existingProduct = itemsCart?.find((p) => p.id === product.id);
-
-    if (existingProduct) {
-      const updatedCart = itemsCart.map((p) =>
-        p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
-      );
-      setItemCart(updatedCart);
-      dispatch(setItems(updatedCart));
-      Swal.fire({
-        icon: "success",
-        title: "Producto agregado correctamente",
-        text: "",
-      });
-    } else {
-      setItemCart([...itemsCart, { ...product, quantity: 1 }]);
-      dispatch(setItems([...itemsCart, { ...product, quantity: 1 }]));
-      Swal.fire({
-        icon: "success",
-        title: "Producto agregado correctamente",
-        text: "",
-      });
-    }
-  };
   return (
     <div className="store">
       <div className="top-area">
@@ -88,17 +61,17 @@ const ShopStore = ({
                 <img src={p.image} alt="" />
                 <span className="tag">{p.desing}</span>
                 <div className="add">
-                  <a
-                    onClick={(e) => handleAddToCart(p)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    Agregar al carrito
-                    <span className="pe-7s-angle-right"></span>
-                  </a>
+                  <Link href={`/shop/${p.id}`}>
+                    <a>
+                      Ver producto
+                      <span className="pe-7s-angle-right"></span>
+                    </a>
+                  </Link>
                 </div>
               </div>
               <div className="info">
                 <h6>{p.name}</h6>
+
                 <span>$ {p.price}</span>
               </div>
             </div>
