@@ -27,13 +27,13 @@ const Navbar = ({ lr, nr, theme }) => {
 
   const handleDeleteProduct = (id) => {
     Swal.fire({
-      title: "¿Estás seguro?",
-      text: "¿Quiere eliminar el producto?",
+      title: "Estás por sacar el producto",
+      text: "¿Quiere eliminarlo del carrito?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sí",
+      confirmButtonColor: "#6c757dff",
+      cancelButtonColor: "#ef8152ff",
+      confirmButtonText: "Sacar",
       cancelButtonText: "Cancelar",
     }).then((response) => {
       if (response.isConfirmed) {
@@ -60,13 +60,13 @@ const Navbar = ({ lr, nr, theme }) => {
 
   const handleCleanCart = () => {
     Swal.fire({
-      title: "¿Estás seguro?",
-      text: "¿Esta seguro que quiere limpiar el carrito?",
+      title: "Estás por vaciar el carrito",
+      text: "¿Quiere hacerlo?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sí",
+      confirmButtonColor: "#6c757dff",
+      cancelButtonColor: "#ef8152ff",
+      confirmButtonText: "Vaciar",
       cancelButtonText: "Cancelar",
     }).then((response) => {
       if (response.isConfirmed) {

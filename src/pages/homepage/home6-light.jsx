@@ -64,10 +64,11 @@ const Homepage1 = () => {
       <Navbar nr={navbarRef} lr={logoRef} theme="themeL" />
       <IntroWithSlider sliderRef={fixedSlider} />
       <div ref={MainContent} className="main-content">
-        <WorksStyle3 />
         <Works2 />
         <AboutUs />
+        <WorksStyle3 />
         <FullTestimonials />
+        <hr />
         <Footer2 />
       </div>
     </LightTheme>

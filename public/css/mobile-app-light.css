@@ -1415,13 +1415,13 @@ body .swiper-pagination-bullets.swiper-pagination-horizontal,
 .app-footer {
   padding: 100px 0 0;
   position: relative;
-  background: #131416;
+  background: #ffff;
 }
 
 .app-footer .circle-blur {
   width: 180px;
   height: 180px;
-  background: #f45162;
+  background: #ef8152ff;
   -webkit-filter: blur(120px);
   filter: blur(120px);
   left: 0;
@@ -1436,7 +1436,7 @@ body .swiper-pagination-bullets.swiper-pagination-horizontal,
   right: 0;
   top: auto;
   bottom: 0;
-  background: #d14add;
+  background: #ef8152ff;
 }
 
 .app-footer .logo-brand {
@@ -1478,7 +1478,7 @@ body .swiper-pagination-bullets.swiper-pagination-horizontal,
   content: "";
   position: absolute;
   border-radius: 50%;
-  background: #1e1f21;
+  background: #ef8152ff;
   z-index: -1;
 }
 
@@ -1494,17 +1494,7 @@ body .swiper-pagination-bullets.swiper-pagination-horizontal,
   left: -1px;
   right: -1px;
   bottom: -1px;
-  background-image: -webkit-gradient(
-    linear,
-    right top,
-    left top,
-    from(#17c0e9),
-    color-stop(#c96ddd),
-    to(#f45162)
-  );
-  background-image: -webkit-linear-gradient(right, #17c0e9, #c96ddd, #f45162);
-  background-image: -o-linear-gradient(right, #17c0e9, #c96ddd, #f45162);
-  background-image: linear-gradient(to left, #17c0e9, #c96ddd, #f45162);
+  background:"#ef8152ff";
   opacity: 0;
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;

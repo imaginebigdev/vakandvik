@@ -82,7 +82,30 @@ const IntroWithSlider = ({ sliderRef }) => {
                 <div
                   className="bg-img valign"
                   style={{ backgroundImage: `url(${slide.image})` }}
-                ></div>
+                  data-overlay-dark="2"
+                >
+                  <div className="container">
+                    <div className="row ">
+                      {/*  <div className="col-lg-6"></div> */}
+                      <div className="col-lg-4 valign">
+                        <div className="caption mt-30">
+                          <h1
+                            className="ls-2"
+                            style={{
+                              fontFamily: "Playfair Display, Sans-serif",
+                              color: "#fff",
+                            }}
+                          >
+                            {slide.title}
+                          </h1>
+                          {/* <p style={{ color: "#000", fontWeight: "bold" }}>
+                            {slide.content}
+                          </p> */}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>

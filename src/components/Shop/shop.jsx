@@ -51,6 +51,21 @@ const Shop = () => {
 
   return (
     <section className="shop section-padding">
+      <div className="section-head text-center pb-50 style-5 pt-80">
+        <div className="text-muted">
+          <a href="/" className="me-2">
+            Vakandvik
+          </a>{" "}
+          <span className="me-2"> / </span>{" "}
+          <a href="/" className="me-2">
+            Inicio
+          </a>{" "}
+          <span className="me-2"> / </span>{" "}
+          <a href="/shop" className="me-2" style={{ color: "#ef8152ff" }}>
+            Shop
+          </a>{" "}
+        </div>
+      </div>
       <div className="container">
         <div className="row">
           <div className="col-lg-3">

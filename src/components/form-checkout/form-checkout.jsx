@@ -90,9 +90,9 @@ const FormCheckout = ({ setModal, modal }) => {
       size="lg"
       aria-labelledby="contained-modal-title-center"
       centered
-      className="form-container"
+      className="form-containerp"
     >
-      <Modal.Header className="modal-header">
+      <Modal.Header className="modal-headerp">
         <Modal.Title id="contained-modal-title-vcenter">
           <img
             src="/img/admin/logo-vk.png"
@@ -130,7 +130,7 @@ const FormCheckout = ({ setModal, modal }) => {
                         name="clientName"
                         placeholder="Nombre *"
                         required
-                        className="formEmail"
+                        className="formEmailp"
                       />
                       {formProps.errors.clientName &&
                       formProps.touched.clientName ? (
@@ -147,7 +147,7 @@ const FormCheckout = ({ setModal, modal }) => {
                         name="phone"
                         placeholder="Telefono *"
                         required
-                        className="formEmail"
+                        className="formEmailp"
                       />
                       {formProps.errors.phone && formProps.touched.phone ? (
                         <div className="text-danger">
@@ -164,7 +164,7 @@ const FormCheckout = ({ setModal, modal }) => {
                         name="email"
                         placeholder="Email *"
                         required
-                        className="formEmail"
+                        className="formEmailp"
                       />
                       {formProps.errors.email && formProps.touched.email ? (
                         <div className="text-danger">
@@ -182,7 +182,7 @@ const FormCheckout = ({ setModal, modal }) => {
                         name="address"
                         placeholder="Dirección *"
                         required
-                        className="formEmail"
+                        className="formEmailp"
                       />
                       {formProps.errors.address && formProps.touched.address ? (
                         <div className="text-danger">
@@ -199,7 +199,7 @@ const FormCheckout = ({ setModal, modal }) => {
                         name="postalCode"
                         placeholder="Codigo postal"
                         required
-                        className="formEmail"
+                        className="formEmailp"
                       />
                       {formProps.errors.postalCode &&
                       formProps.touched.postalCode ? (
@@ -216,7 +216,7 @@ const FormCheckout = ({ setModal, modal }) => {
                         name="province"
                         placeholder="Provincia"
                         required
-                        className="formEmail"
+                        className="formEmailp"
                       />
                       {formProps.errors.province &&
                       formProps.touched.province ? (
@@ -231,7 +231,7 @@ const FormCheckout = ({ setModal, modal }) => {
                       {!readyToPay ? (
                         <button
                           type="submit"
-                          className="btn btn-success mt-30 full-width"
+                          className="btn btn-dark mt-30 full-width"
                           disabled={loading}
                         >
                           {loading

@@ -15,7 +15,7 @@ const FormAdmin = ({ setModal, modal }) => {
   const messageRef = React.useRef(null);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-
+  const [showOfferPrice, setShowOfferPrice] = useState(false);
   const { categories } = useSelector((state) => state.categories);
   React.useEffect(() => {
     dispatch(fetchCategories());
@@ -291,10 +291,31 @@ const FormAdmin = ({ setModal, modal }) => {
                             name="is_offer"
                             className="form-checkbox ml-5"
                             style={{ transform: "scale(1.2)" }}
+                            onClick={() => setShowOfferPrice(!showOfferPrice)}
                           />
                         </label>
                       </div>
-
+                      {showOfferPrice && (
+                        <div className="contenedorInpputs">
+                          <div className="form-group">
+                            <label className="tituloInput">
+                              Precio Oferta
+                              <span style={{ color: "red" }}> *</span>
+                            </label>
+                            <Field
+                              id="form_offer_price"
+                              type="number"
+                              name="offer_price"
+                              placeholder="Precio de oferta"
+                              className="formEmail"
+                            />
+                            {formProps.errors.offer_price &&
+                            formProps.touched.offer_price ? (
+                              <div>{formProps.errors.offer_price}</div>
+                            ) : null}
+                          </div>
+                        </div>
+                      )}
                       <div className="contenedorInpputs">
                         <label className="tituloInput">
                           Descripción <span style={{ color: "red" }}> *</span>

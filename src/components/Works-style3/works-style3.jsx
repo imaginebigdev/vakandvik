@@ -27,69 +27,57 @@ const WorksStyle3 = () => {
           <div className="gallery-mons full-width">
             <div className="items graphic wow fadeInUp" data-wow-delay=".4s">
               <div className="item-img">
-                <Link href={`/project-details2/project-details2-dark`}>
-                  <a className="imago wow">
-                    <img src="/img/portfolio/cr/1.jpg" alt="image" />
-                    <div className="item-img-overlay"></div>
-                  </a>
-                </Link>
+                <img
+                  className="imago wow"
+                  src="/img/portfolio/cr/disenio01.jpg"
+                  alt="image"
+                />
+                <div className="item-img-overlay"></div>
               </div>
               <div className="cont flex">
-                <h6 className="color-font">Creative Design</h6>
-                <span>
-                  <a href="#0">Graphic</a>
-                </span>
+                <h6 className="color-black">Creative Design</h6>
               </div>
             </div>
 
             <div className="items web brand wow fadeInUp">
               <div className="item-img">
-                <Link href={`/project-details2/project-details2-dark`}>
-                  <a className="imago wow">
-                    <img src="/img/portfolio/cr/2.jpg" alt="image" />
-                    <div className="item-img-overlay"></div>
-                  </a>
-                </Link>
+                <img
+                  className="imago wow"
+                  src="/img/portfolio/cr/disenio02.jpg"
+                  alt="image"
+                />
+                <div className="item-img-overlay"></div>
               </div>
               <div className="cont flex">
-                <h6 className="color-font">Modern Design</h6>
-                <span>
-                  <a href="#0">Brand</a>, <a href="#0">Web</a>
-                </span>
+                <h6 className="color-black">Modern Design</h6>
               </div>
             </div>
 
             <div className="items width2 brand wow fadeInUp">
               <div className="item-img">
-                <Link href={`/project-details2/project-details2-dark`}>
-                  <a className="imago wow">
-                    <img src="/img/portfolio/cr/3.jpg" alt="image" />
-                    <div className="item-img-overlay"></div>
-                  </a>
-                </Link>
+                <img
+                  className="imago wow"
+                  src="/img/portfolio/cr/disenio03.jpg"
+                  alt="image"
+                />
+                <div className="item-img-overlay"></div>
               </div>
               <div className="cont">
-                <h6 className="color-font">Creative Design</h6>
-                <span>
-                  <a href="#0">Website</a>
-                </span>
+                <h6 className="color-black">Creative Design</h6>
               </div>
             </div>
 
             <div className="items width2 graphic wow fadeInUp">
               <div className="item-img">
-                <Link href={`/project-details2/project-details2-dark`}>
-                  <a className="imago wow">
-                    <img src="/img/portfolio/cr/4.jpg" alt="image" />
-                    <div className="item-img-overlay"></div>
-                  </a>
-                </Link>
+                <img
+                  className="imago wow"
+                  src="/img/portfolio/cr/disenio04.jpg"
+                  alt="image"
+                />
+                <div className="item-img-overlay"></div>
               </div>
               <div className="cont">
-                <h6 className="color-font">Modern Design</h6>
-                <span>
-                  <a href="#0">Graphic</a>
-                </span>
+                <h6 className="color-black">Modern Design</h6>
               </div>
             </div>
           </div>
