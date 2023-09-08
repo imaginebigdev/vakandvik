@@ -36,7 +36,8 @@ class FullTestimonials extends React.Component {
             ? "section-padding bg-img"
             : this.props.withCOLOR
             ? "section-padding back-color"
-            : this.props.noPadding ? ""
+            : this.props.noPadding
+            ? ""
             : "section-padding"
         } ${this.props.classText ? this.props.classText : ""}`}
         style={{
@@ -51,10 +52,10 @@ class FullTestimonials extends React.Component {
               <div className="col-lg-8 col-md-10">
                 <div className="sec-head  text-center">
                   <h6 className="wow fadeIn" data-wow-delay=".5s">
-                    Testimonials
+                    Testimonios
                   </h6>
                   <h3 className="wow color-font">
-                    We love our clients from all over the world.
+                    Lo que nuestros clientes dicen...
                   </h3>
                 </div>
               </div>
@@ -105,7 +106,7 @@ class FullTestimonials extends React.Component {
                 <div className="item">
                   <div className="info valign">
                     <div className="cont">
-                      <div className="author">
+                      {/*      <div className="author">
                         <div className="img">
                           <img src="/img/clients/1.jpg" alt="" />
                         </div>
@@ -115,18 +116,22 @@ class FullTestimonials extends React.Component {
                         <span className="author-details">
                           Co-founder, Colabrio
                         </span>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <p>
-                    I would highly recommend Vie Digital. I worked with the team
-                    on an animation for our ‘Click &amp; Collect’ service.
+                    {'"'}Como viajero frecuente, necesito productos que sean
+                    duraderos y versátiles. Las mochilas de Vakandvik son
+                    ideales para mis aventuras. Tienen el espacio perfecto y un
+                    diseño que se adapta a cualquier entorno. Sin duda,
+                    Vakandvik se ha convertido en mi elección número uno para
+                    accesorios de viaje.{'"'}
                   </p>
                 </div>
                 <div className="item">
                   <div className="info valign">
                     <div className="cont">
-                      <div className="author">
+                      {/*   <div className="author">
                         <div className="img">
                           <img src="/img/clients/1.jpg" alt="" />
                         </div>
@@ -136,18 +141,21 @@ class FullTestimonials extends React.Component {
                         <span className="author-details">
                           Co-founder, Colabrio
                         </span>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <p>
-                    I would highly recommend Vie Digital. I worked with the team
-                    on an animation for our ‘Click &amp; Collect’ service.
+                    {'"'}La calidad y la artesanía de Vakandvik son
+                    excepcionales. Mi campera de Vakandvik me ha mantenido
+                    abrigada y con estilo durante todo el invierno. Además, me
+                    hace sentir bien saber que están comprometidos con la
+                    sostenibilidad y el comercio ético.{'"'}
                   </p>
                 </div>
                 <div className="item">
                   <div className="info valign">
                     <div className="cont">
-                      <div className="author">
+                      {/*    <div className="author">
                         <div className="img">
                           <img src="/img/clients/1.jpg" alt="" />
                         </div>
@@ -157,18 +165,21 @@ class FullTestimonials extends React.Component {
                         <span className="author-details">
                           Co-founder, Colabrio
                         </span>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <p>
-                    I would highly recommend Vie Digital. I worked with the team
-                    on an animation for our ‘Click &amp; Collect’ service.
+                    {'"'}Como amante de la moda y el diseño, siempre busco
+                    productos que se destaquen. Vakandvik no solo se destaca,
+                    ¡sino que supera mis expectativas! Mi bolso de Vakandvik es
+                    mi accesorio imprescindible, y no puedo esperar para agregar
+                    más productos de esta marca a mi colección.{'"'}
                   </p>
                 </div>
                 <div className="item">
                   <div className="info valign">
                     <div className="cont">
-                      <div className="author">
+                      {/*     <div className="author">
                         <div className="img">
                           <img src="/img/clients/1.jpg" alt="" />
                         </div>
@@ -178,12 +189,15 @@ class FullTestimonials extends React.Component {
                         <span className="author-details">
                           Co-founder, Colabrio
                         </span>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <p>
-                    I would highly recommend Vie Digital. I worked with the team
-                    on an animation for our ‘Click &amp; Collect’ service.
+                    {'"'}¡No puedo expresar lo encantada que estoy con mi
+                    mochila de Vakandvik! No solo es hermosa, sino que también
+                    es increíblemente resistente. La llevo a todas partes, desde
+                    la oficina hasta mis escapadas de fin de semana, y siempre
+                    recibo elogios por su diseño único.{'"'}
                   </p>
                 </div>
               </Slider>

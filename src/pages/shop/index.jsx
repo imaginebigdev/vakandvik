@@ -29,6 +29,7 @@ const About = () => {
   return (
     <LightTheme mobileappstyle>
       <Navbar nr={navbarRef} lr={logoRef} theme="themeL" />
+
       <Shop />
       <CallToAction />
       <Footer2 />

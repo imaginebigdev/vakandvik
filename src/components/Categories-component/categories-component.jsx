@@ -41,43 +41,25 @@ const CategoriesAdmin = () => {
 
   return (
     <section className="text-center">
-      <h2>Categorias</h2>
-
-      <h5 className="btn btn-primary">Crear una nueva categoria</h5>
-
-      <table
-        className="table table-bordered text-center"
-        style={{ margin: "100px 5%", maxWidth: "90%" }}
-      >
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Borrar</th>
-          </tr>
-        </thead>
-        <tbody className="text-center">
-          {categories
-            ?.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-
-                <td>{item.name}</td>
-
-                <td>
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    <i className="fa fa-trash" />
-                  </button>
-                </td>
-              </tr>
-            ))
-            .reverse()}
-        </tbody>
-      </table>
+      <h2 style={{ color: "#61218cff" }} className="pb-20">
+        Categorías
+      </h2>
+      <div>
+        {categories?.map((c) => (
+          <div className={`order container mb-20`} key={c.id}>
+            <div className="row justify-content-around align-items-center">
+              <h6>{c.name} </h6>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={() => handleDelete(c.id)}
+              >
+                <i className="fa fa-trash" />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 };

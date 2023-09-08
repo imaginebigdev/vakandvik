@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import Link from "next/link";
 import AboutUs1Date from "../../data/sections/about-us1.json";
 
 const AboutUs = () => {

@@ -6,6 +6,7 @@ import { handleDropdown, handleMobileDropdown } from "../../common/navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { setItems } from "../../../redux/reducers/cart";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import Swal from "sweetalert2";
 
 const Navbar = ({ lr, nr, theme }) => {
   const dispatch = useDispatch();
@@ -25,13 +26,26 @@ const Navbar = ({ lr, nr, theme }) => {
   }, [dispatch]);
 
   const handleDeleteProduct = (id) => {
-    const updateArray = itemsCart.filter((item) => item.id !== id);
-    setItemCart(updateArray);
-    dispatch(setItems(updateArray));
+    Swal.fire({
+      title: "Estás por sacar el producto",
+      text: "¿Quiere eliminarlo del carrito?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#6c757dff",
+      cancelButtonColor: "#ef8152ff",
+      confirmButtonText: "Sacar",
+      cancelButtonText: "Cancelar",
+    }).then((response) => {
+      if (response.isConfirmed) {
+        const updateArray = itemsCart.filter((item) => item.id !== id);
+        setItemCart(updateArray);
+        dispatch(setItems(updateArray));
+      }
+    });
   };
   const handleUpdateQuantity = (id, amount) => {
     const updatedCart = itemsCart
-      .map((item) => {
+      ?.map((item) => {
         if (item.id === id) {
           const newQuantity = item.quantity + amount;
           if (newQuantity <= 0) return null;
@@ -45,8 +59,21 @@ const Navbar = ({ lr, nr, theme }) => {
   };
 
   const handleCleanCart = () => {
-    setItemCart([]);
-    dispatch(setItems([]));
+    Swal.fire({
+      title: "Estás por vaciar el carrito",
+      text: "¿Quiere hacerlo?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#6c757dff",
+      cancelButtonColor: "#ef8152ff",
+      confirmButtonText: "Vaciar",
+      cancelButtonText: "Cancelar",
+    }).then((response) => {
+      if (response.isConfirmed) {
+        setItemCart([]);
+        dispatch(setItems([]));
+      }
+    });
   };
 
   return (
@@ -99,30 +126,28 @@ const Navbar = ({ lr, nr, theme }) => {
                   style={{ marginRight: "5px" }}
                 ></i>
                 {totalProductsInCart >= 0 && (
-                  <span className="badge badge-secondary">
+                  <span
+                    className="badge badge-secondary"
+                    style={{ background: "#ef8152ff" }}
+                  >
                     {totalProductsInCart}
                   </span>
                 )}
               </span>
               <div className="dropdown-menu table-container">
-                <table className="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>Imagen</th>
-                      <th>Nombre</th>
-                      <th>Cantidad</th>
-                      <th>Precio</th>
-                      <th>Eliminar</th>
-                    </tr>
-                  </thead>
+                <table className="table table-bordered table-cart">
                   <tbody className="text-center">
                     {itemsCart?.map((item) => (
                       <tr key={item.id}>
-                        <td style={{ width: "30px" }}>
-                          <img src={item.image} alt="itemImage" />
-                        </td>
-                        <td>{item.name}</td>
                         <td>
+                          <img
+                            style={{ width: "100px" }}
+                            src={item.image}
+                            alt="itemImage"
+                          />
+                        </td>
+                        {/*  <td>{item.name}</td> */}
+                        <td id="cantidad">
                           <div className="quantity-container">
                             <button
                               type="button"
@@ -142,10 +167,10 @@ const Navbar = ({ lr, nr, theme }) => {
                           </div>
                         </td>
                         <td>${item.price * item.quantity}</td>
-                        <td>
+                        <td id="cantidad">
                           <button
                             type="button"
-                            className="btn btn-danger"
+                            className="btn btn-dark"
                             onClick={() => handleDeleteProduct(item.id)}
                           >
                             <i className="fa fa-trash" />
@@ -153,28 +178,36 @@ const Navbar = ({ lr, nr, theme }) => {
                         </td>
                       </tr>
                     ))}
-                    <tr key="sadasdas">
-                      <td>Total:</td>
-                      <td> $ {0 || totalPrice?.toFixed(2)}</td>
-                      <td>
-                        <button
-                          type="button"
-                          className="btn btn-danger"
-                          onClick={() => handleCleanCart()}
-                        >
-                          Limpiar carrito
-                        </button>
-                      </td>
-                      <td>
-                        <button type="button" className="btn btn-success">
-                          <Link href="/carrito">Detalles</Link>
-                        </button>
-                      </td>
-                    </tr>
                   </tbody>
+                  <tr key="sadasdas">
+                    <td id="cantidad">Total:</td>
+                    <td id="cantidad"> $ {0 || totalPrice?.toFixed(2)}</td>
+                    <td>
+                      <button
+                        type="button"
+                        className="btn btn-dark"
+                        onClick={() => handleCleanCart()}
+                      >
+                        Vaciar
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        style={{
+                          background: "#ef8152ff",
+                          border: "1px solid #ef8152ff",
+                        }}
+                      >
+                        <Link href="/carrito">Ver Carrito</Link>
+                      </button>
+                    </td>
+                  </tr>
                 </table>
               </div>
             </li>
+
             <li className="nav-item">
               <h3
                 className="nav-link nav-responsive"

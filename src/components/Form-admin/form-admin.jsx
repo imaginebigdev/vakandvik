@@ -6,15 +6,17 @@ import * as Yup from "yup";
 import axios from "axios";
 import { createProduct } from "../../../redux/reducers/products";
 import Swal from "sweetalert2";
+import Modal from "react-bootstrap/Modal";
+import { Button } from "react-bootstrap";
 const preset_key = process.env.NEXT_APP_PRESET_KEY;
 const cloud_name = process.env.NEXT_APP_CLOUD_NAME;
 
-const FormAdmin = () => {
+const FormAdmin = ({ setModal, modal }) => {
   const messageRef = React.useRef(null);
   const dispatch = useDispatch();
-
+  const [loading, setLoading] = useState(false);
+  const [showOfferPrice, setShowOfferPrice] = useState(false);
   const { categories } = useSelector((state) => state.categories);
-  let loading = false;
   React.useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
@@ -29,7 +31,7 @@ const FormAdmin = () => {
   });
 
   const handleSubmitForm = async (values) => {
-    loading = true;
+    setLoading(true);
     let submitValues = {
       ...values,
       categoryId: Number(values.categoryId),
@@ -68,7 +70,6 @@ const FormAdmin = () => {
         .catch((err) => console.log(err));
     }
     submitValues = { ...submitValues, image_galery: newArr };
-    loading = false;
 
     dispatch(createProduct(submitValues))
       .then(() => {
@@ -81,17 +82,289 @@ const FormAdmin = () => {
       .catch((error) => {
         console.log("Error al crear el producto:", error);
       });
+    setLoading(false);
+    setModal(false);
+  };
+
+  const handleClose = () => {
+    setModal(false);
   };
 
   return (
-    <section
+    <Modal
+      show={modal}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      className="form-container"
+    >
+      <Modal.Header className="modal-header">
+        <Modal.Title id="contained-modal-title-vcenter">
+          <img
+            src="/img/admin/logo-ib.png"
+            alt="logo imagine big"
+            className="logo-modal"
+          />
+        </Modal.Title>
+        <Button variant="secondary" onClick={handleClose}>
+          x
+        </Button>
+      </Modal.Header>
+      <Modal.Body>
+        <div className="form">
+          <Formik
+            initialValues={{
+              name: "",
+              description: "",
+              image: "",
+              price: 0,
+              stock: 0,
+              categoryId: null,
+              image_galery: [],
+              design: "",
+              selled: 0,
+              is_relevant: false,
+              is_offer: false,
+              offer_price: 0,
+            }}
+            validationSchema={SignupSchema}
+            onSubmit={handleSubmitForm}
+          >
+            {(formProps) => (
+              <Form id="contact-form">
+                <div className="controls">
+                  <div className="row align-items-center justify-content-center">
+                    <div className="col-lg-6">
+                      <div className="contenedorInpputs">
+                        <label className="tituloInput">
+                          Nombre: <span style={{ color: "red" }}> *</span>
+                        </label>
+                        <Field
+                          id="form_name"
+                          type="text"
+                          name="name"
+                          placeholder="Nombre del producto"
+                          required="Obligatorio"
+                          className="formEmail"
+                        />
+                        {formProps.errors.name && formProps.touched.name ? (
+                          <div className="text-danger">
+                            {formProps.errors.name}
+                          </div>
+                        ) : null}
+                      </div>
+
+                      <div className="contenedorInpputs">
+                        <label className="tituloInput">
+                          {" "}
+                          Imagen Principal{" "}
+                          <span style={{ color: "red" }}> *</span>
+                        </label>
+                        <input
+                          id="form_image"
+                          type="file"
+                          name="image"
+                          placeholder="Imagen"
+                          className="formEmail"
+                          onChange={(e) =>
+                            formProps.setFieldValue("image", e.target.files[0])
+                          }
+                        />
+                      </div>
+
+                      <div className="contenedorInpputs">
+                        <label className="tituloInput">
+                          Galería <span style={{ color: "red" }}> *</span>
+                        </label>
+                        <input
+                          id="form_image_galery"
+                          type="file"
+                          name="image_galery"
+                          placeholder="Imagenes"
+                          className="formEmail"
+                          multiple
+                          onChange={(e) =>
+                            formProps.setFieldValue(
+                              "image_galery",
+                              e.target.files
+                            )
+                          }
+                        />
+                      </div>
+
+                      <div className="contenedorInpputs">
+                        <label className="tituloInput">
+                          Precio <span style={{ color: "red" }}> *</span>
+                        </label>
+                        <Field
+                          id="form_price"
+                          type="number"
+                          name="price"
+                          required="Obligatorio"
+                          className="formEmail"
+                        />
+                        {formProps.errors.price && formProps.touched.price ? (
+                          <div className="text-danger">
+                            {formProps.errors.price}
+                          </div>
+                        ) : null}
+                      </div>
+
+                      <div className="contenedorInpputs">
+                        <label className="tituloInput">
+                          Stock <span style={{ color: "red" }}> *</span>
+                        </label>
+                        <Field
+                          id="form_sotck"
+                          type="number"
+                          name="stock"
+                          className="formEmail"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-6">
+                      <div className="contenedorInpputs">
+                        <label className="tituloInput">
+                          Diseño <span style={{ color: "red" }}> *</span>
+                        </label>
+                        <Field
+                          id="form_desing"
+                          type="text"
+                          name="desing"
+                          placeholder="Colocar diseño del producto..."
+                          className="formEmail"
+                        />
+                        {formProps.errors.desing && formProps.touched.desing ? (
+                          <div className="text-danger">
+                            {formProps.errors.desing}
+                          </div>
+                        ) : null}
+                      </div>
+
+                      <div className="contenedorInpputs">
+                        <label className="tituloInput">
+                          {" "}
+                          Categoria <span style={{ color: "red" }}> *</span>
+                        </label>
+                        <Field
+                          as="select"
+                          name="categoryId"
+                          required="Obligatorio"
+                          className="formEmail"
+                        >
+                          <option defaultChecked disabled selected hidden>
+                            Seleccionar una categoria
+                          </option>
+                          {categories?.map((c) => (
+                            <option key={c.id} value={c.id}>
+                              {c.name}
+                            </option>
+                          ))}
+                        </Field>
+                        {formProps.errors.categoryId &&
+                        formProps.touched.categoryId ? (
+                          <div>{formProps.errors.categoryId}</div>
+                        ) : null}
+                      </div>
+
+                      <div className="contenedorInpputs">
+                        <div>
+                          <label className="tituloInput d-flex align-items-center">
+                            ¿Es un producto destacado?
+                            <Field
+                              type="checkbox"
+                              id="form_relevant"
+                              name="is_relevant"
+                              className="form-checkbox ml-5"
+                              style={{ transform: "scale(1.2)" }}
+                            />
+                          </label>
+                        </div>
+                      </div>
+
+                      <div className="contenedorInpputs">
+                        <label className="tituloInput d-flex align-items-center">
+                          ¿Es un producto en oferta?
+                          <Field
+                            type="checkbox"
+                            id="form_offer_price_check"
+                            name="is_offer"
+                            className="form-checkbox ml-5"
+                            style={{ transform: "scale(1.2)" }}
+                            onClick={() => setShowOfferPrice(!showOfferPrice)}
+                          />
+                        </label>
+                      </div>
+                      {showOfferPrice && (
+                        <div className="contenedorInpputs">
+                          <div className="form-group">
+                            <label className="tituloInput">
+                              Precio Oferta
+                              <span style={{ color: "red" }}> *</span>
+                            </label>
+                            <Field
+                              id="form_offer_price"
+                              type="number"
+                              name="offer_price"
+                              placeholder="Precio de oferta"
+                              className="formEmail"
+                            />
+                            {formProps.errors.offer_price &&
+                            formProps.touched.offer_price ? (
+                              <div>{formProps.errors.offer_price}</div>
+                            ) : null}
+                          </div>
+                        </div>
+                      )}
+                      <div className="contenedorInpputs">
+                        <label className="tituloInput">
+                          Descripción <span style={{ color: "red" }}> *</span>
+                        </label>
+                        <Field
+                          as="textarea"
+                          id="form_description"
+                          name="description"
+                          placeholder="Colocar descripción del producto..."
+                          rows="3"
+                          className="formEmail"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <div className="text-center">
+                        <button
+                          type="submit"
+                          className="btn btn-success mt-30 full-width"
+                          disabled={loading}
+                        >
+                          {loading
+                            ? "Cargando producto, por favor espere"
+                            : "Cargar Producto"}
+                        </button>
+                      </div>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </Modal.Body>
+    </Modal>
+  );
+};
+
+export default FormAdmin;
+/*  <section
       id="contact-arch"
-      className="contact-sec style2 section-padding position-re bg-img"
+      className="contact-sec style2 position-re bg-img"
     >
       <div className="container">
         <div className="row justify-content-center">
+          <h2 className="pb-50">Agregar Producto</h2>
           <div className="col-lg-10">
-            <div className="form wow fadeInUp" data-wow-delay=".5s">
+            <div className="form">
               <Formik
                 initialValues={{
                   name: "",
@@ -183,7 +456,8 @@ const FormAdmin = () => {
                             ) : null}
                           </div>
                         </div>
-                        <div className="col-lg-12">
+                        {/*    <div className="col-lg-12">
+                          <label>Diseño</label>
                           <div className="form-group">
                             <Field
                               id="form_desing"
@@ -198,7 +472,7 @@ const FormAdmin = () => {
                               </div>
                             ) : null}
                           </div>
-                        </div>
+                        </div> 
                         <div className="col-lg-12">
                           <div className="form-group">
                             <label>Stock</label>
@@ -253,7 +527,7 @@ const FormAdmin = () => {
                             />
                           </div>
                         </div>
-                        <div className="col-lg-12">
+                        {/*   <div className="col-lg-12">
                           <div className="form-group">
                             <Field
                               id="form_offer_price"
@@ -262,7 +536,7 @@ const FormAdmin = () => {
                               placeholder="Precio de oferta"
                             />
                           </div>
-                        </div>
+                        </div> 
 
                         <div className="col-12">
                           <div className="form-group">
@@ -280,13 +554,15 @@ const FormAdmin = () => {
                             <button
                               type="submit"
                               className="btn btn-success mt-30 full-width"
+                              disabled={loading}
                             >
-                              Cargar producto
+                              {loading
+                                ? "Cargando producto, por favor espere"
+                                : "Cargar producto"}
                             </button>
                           </div>
                         </div>
                         <br />
-                        <div className="messages" ref={messageRef}></div>
                       </div>
                     </div>
                   </Form>
@@ -296,8 +572,4 @@ const FormAdmin = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
-};
-
-export default FormAdmin;
+    </section> */

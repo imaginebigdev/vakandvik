@@ -6,8 +6,10 @@ import axios from "axios";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import Swal from "sweetalert2";
 import { useRouter } from "next/dist/client/router";
+import Modal from "react-bootstrap/Modal";
+import { Button } from "react-bootstrap";
 
-const FormCheckout = ({ show }) => {
+const FormCheckout = ({ setModal, modal }) => {
   const messageRef = React.useRef(null);
   const [dataUser, setDataUser] = useLocalStorage("user", []);
   console.log(dataUser);
@@ -78,164 +80,180 @@ const FormCheckout = ({ show }) => {
         setLoading(false);
       });
   };
+  const handleClose = () => {
+    setModal(false);
+  };
 
   return (
-    <section
-      id="contact-arch"
-      style={{ display: show ? "" : "none" }}
-      className="contact-sec style2 section-padding position-re bg-img"
+    <Modal
+      show={modal}
+      size="lg"
+      aria-labelledby="contained-modal-title-center"
+      centered
+      className="form-containerp"
     >
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-10">
-            <div className="form wow fadeInUp" data-wow-delay=".5s">
-              <Formik
-                initialValues={{
-                  clientName: "",
-                  address: "",
-                  province: "",
-                  phone: 0,
-                  postalCode: 0,
-                  email: "",
-                }}
-                validationSchema={SignupSchema}
-                onSubmit={handleSubmitForm}
-              >
-                {(formProps) => (
-                  <Form id="contact-form">
-                    <div className="controls">
-                      <div className="row">
-                        <div className="col-lg-12">
-                          <div className="form-group">
-                            <Field
-                              id="form_ClientName"
-                              type="text"
-                              name="clientName"
-                              placeholder="Nombre *"
-                              required="Obligatorio"
-                            />
-                            {formProps.errors.clientName &&
-                            formProps.touched.clientName ? (
-                              <div className="text-danger">
-                                {formProps.errors.clientName}
-                              </div>
-                            ) : null}
-                          </div>
+      <Modal.Header className="modal-headerp">
+        <Modal.Title id="contained-modal-title-vcenter">
+          <img
+            src="/img/admin/logo-vk.png"
+            alt="logo imagine big"
+            className="logo-modal"
+          />
+        </Modal.Title>
+        <Button variant="secondary" onClick={handleClose}>
+          x
+        </Button>
+      </Modal.Header>
+      <Modal.Body>
+        <div className="form">
+          <Formik
+            initialValues={{
+              clientName: "",
+              address: "",
+              province: "",
+              phone: 0,
+              postalCode: 0,
+              email: "",
+            }}
+            validationSchema={SignupSchema}
+            onSubmit={handleSubmitForm}
+          >
+            {(formProps) => (
+              <Form id="contact-form">
+                <div className="row align-items-center justify-content-center">
+                  <div className="col-lg-6">
+                    <div className="contenedorInpputs">
+                      <label className="tituloInput">Nombre:</label>
+                      <Field
+                        id="form_ClientName"
+                        type="text"
+                        name="clientName"
+                        placeholder="Nombre *"
+                        required
+                        className="formEmailp"
+                      />
+                      {formProps.errors.clientName &&
+                      formProps.touched.clientName ? (
+                        <div className="text-danger">
+                          {formProps.errors.clientName}
                         </div>
-                        <div className="col-lg-12">
-                          <div className="form-group">
-                            <Field
-                              id="form_address"
-                              type="text"
-                              name="address"
-                              placeholder="Dirección *"
-                              required="Obligatorio"
-                            />
-                            {formProps.errors.address &&
-                            formProps.touched.address ? (
-                              <div className="text-danger">
-                                {formProps.errors.address}
-                              </div>
-                            ) : null}
-                          </div>
-                        </div>
-                        <div className="col-lg-12">
-                          <div className="form-group">
-                            <Field
-                              id="form_address"
-                              type="number"
-                              name="postalCode"
-                              placeholder="Codigo postal"
-                              required="Obligatorio"
-                            />
-                            {formProps.errors.postalCode &&
-                            formProps.touched.postalCode ? (
-                              <div className="text-danger">
-                                {formProps.errors.postalCode}
-                              </div>
-                            ) : null}
-                          </div>
-                        </div>
-                        <div className="col-lg-12">
-                          <div className="form-group">
-                            <Field
-                              id="form_province"
-                              type="text"
-                              name="province"
-                              placeholder="Provincia"
-                              required="Obligatorio"
-                            />
-                            {formProps.errors.province &&
-                            formProps.touched.province ? (
-                              <div className="text-danger">
-                                {formProps.errors.province}
-                              </div>
-                            ) : null}
-                          </div>
-                        </div>
-                        <div className="col-lg-12">
-                          <div className="form-group">
-                            <Field
-                              id="form_phone"
-                              type="number"
-                              name="phone"
-                              placeholder="Telefono *"
-                              required="Obligatorio"
-                            />
-                            {formProps.errors.phone &&
-                            formProps.touched.phone ? (
-                              <div className="text-danger">
-                                {formProps.errors.phone}
-                              </div>
-                            ) : null}
-                          </div>
-                        </div>
-                        <div className="col-lg-12">
-                          <div className="form-group">
-                            <Field
-                              id="form_email"
-                              type="text"
-                              name="email"
-                              placeholder="Email *"
-                              required="Obligatorio"
-                            />
-                            {formProps.errors.email &&
-                            formProps.touched.email ? (
-                              <div className="text-danger">
-                                {formProps.errors.email}
-                              </div>
-                            ) : null}
-                          </div>
-                        </div>
-
-                        <div className="col-12">
-                          <div className="text-center">
-                            {!readyToPay && (
-                              <button
-                                type="submit"
-                                className="btn btn-success mt-30 full-width"
-                                disabled={!loading}
-                              >
-                                {loading
-                                  ? "Cargando datos, por favor espere"
-                                  : "Cargar datos / pagar"}
-                              </button>
-                            )}
-                          </div>
-                        </div>
-                        <br />
-                        <div className="messages" ref={messageRef}></div>
-                      </div>
+                      ) : null}
                     </div>
-                  </Form>
-                )}
-              </Formik>
-            </div>
-          </div>
+                    <div className="contenedorInpputs">
+                      <label className="tituloInput">Telefono:</label>
+                      <Field
+                        id="form_phone"
+                        type="number"
+                        name="phone"
+                        placeholder="Telefono *"
+                        required
+                        className="formEmailp"
+                      />
+                      {formProps.errors.phone && formProps.touched.phone ? (
+                        <div className="text-danger">
+                          {formProps.errors.phone}
+                        </div>
+                      ) : null}
+                    </div>
+
+                    <div className="contenedorInpputs">
+                      <label className="tituloInput">Email:</label>
+                      <Field
+                        id="form_email"
+                        type="email"
+                        name="email"
+                        placeholder="Email *"
+                        required
+                        className="formEmailp"
+                      />
+                      {formProps.errors.email && formProps.touched.email ? (
+                        <div className="text-danger">
+                          {formProps.errors.email}
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                  <div className="col-6">
+                    <div className="contenedorInpputs">
+                      <label className="tituloInput">Direccion:</label>
+                      <Field
+                        id="form_address"
+                        type="text"
+                        name="address"
+                        placeholder="Dirección *"
+                        required
+                        className="formEmailp"
+                      />
+                      {formProps.errors.address && formProps.touched.address ? (
+                        <div className="text-danger">
+                          {formProps.errors.address}
+                        </div>
+                      ) : null}
+                    </div>
+
+                    <div className="contenedorInpputs">
+                      <label className="tituloInput">Codigo Postal:</label>
+                      <Field
+                        id="form_postalCode"
+                        type="number"
+                        name="postalCode"
+                        placeholder="Codigo postal"
+                        required
+                        className="formEmailp"
+                      />
+                      {formProps.errors.postalCode &&
+                      formProps.touched.postalCode ? (
+                        <div className="text-danger">
+                          {formProps.errors.postalCode}
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="contenedorInpputs">
+                      <label className="tituloInput">Provincia</label>
+                      <Field
+                        id="form_province"
+                        type="text"
+                        name="province"
+                        placeholder="Provincia"
+                        required
+                        className="formEmailp"
+                      />
+                      {formProps.errors.province &&
+                      formProps.touched.province ? (
+                        <div className="text-danger">
+                          {formProps.errors.province}
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <div className="text-center">
+                      {!readyToPay ? (
+                        <button
+                          type="submit"
+                          className="btn btn-dark mt-30 full-width"
+                          disabled={loading}
+                        >
+                          {loading
+                            ? "Cargando datos, por favor espere"
+                            : "Cargar datos / pagar"}
+                        </button>
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+                <div className="messages" ref={messageRef}></div>
+              </Form>
+            )}
+          </Formik>
         </div>
-      </div>
-    </section>
+      </Modal.Body>
+    </Modal>
   );
 };
 
 export default FormCheckout;
+
+{
+  /*  */
+}

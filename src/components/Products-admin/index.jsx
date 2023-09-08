@@ -1,58 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteProduct,
-  fetchProducts,
-  modifyProduct,
-} from "../../../redux/reducers/products";
-import { fetchCategories } from "../../../redux/reducers/categories";
+import { deleteProduct, fetchProducts } from "../../../redux/reducers/products";
 import Swal from "sweetalert2";
+import FormEditProduct from "../FormEditProduct/formEditProduct";
 
 const ProductsAdmin = () => {
-  const Swal = require("sweetalert2");
   const dispatch = useDispatch();
-
   const { products } = useSelector((state) => state.products);
-  const { categories } = useSelector((state) => state.categories);
-  const category = categories;
+  const [selectedProductId, setSelectedProductId] = useState(null);
+  const productsPerPage = 6;
+  const [currentPage, setCurrentPage] = useState(1);
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(fetchProducts());
-    dispatch(fetchCategories());
   }, [dispatch]);
-
-  const [changeStock, setChangeStock] = useState(0);
-  const [changePrice, setChangePrice] = useState(0);
-
-  const handleModify = (id, modify) => {
-    if (modify.price > 0 || modify.stock > 0) {
-      Swal.fire({
-        title: "¿Estás seguro?",
-        text: "¿Quieres realizar la modificación?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Sí",
-        cancelButtonText: "Cancelar",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          dispatch(modifyProduct(id, modify));
-          Swal.fire(
-            "¡Modificación exitosa!",
-            "El producto ha sido modificado.",
-            "success"
-          );
-        }
-      });
-    } else {
-      Swal.fire(
-        "Ingrese un numero",
-        "Intente ingresando un numero positivo",
-        "warning"
-      );
-    }
-  };
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -76,93 +37,86 @@ const ProductsAdmin = () => {
     });
   };
 
+  const handleEdit = (productId) => {
+    setSelectedProductId(productId);
+  };
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <section className="text-center">
-      <h2>Productos</h2>
-      <button className="btn btn-primary">Crear un nuevo producto</button>
-      <table
-        className="table table-bordered text-center"
-        style={{ margin: "100px 5%", maxWidth: "90%" }}
-      >
-        <thead>
-          <tr>
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Categoria</th>
-            <th>Stock</th>
-            <th>Diseño</th>
-            <th>Precio</th>
-            <th>Eliminar</th>
-          </tr>
-        </thead>
-        <tbody className="text-center">
-          {products
-            ?.map((item) => (
-              <tr key={item.id}>
-                <td style={{ width: "30px" }}>
-                  <img src={item.image} alt="itemImage" />
-                </td>
-                <td>{item.name}</td>
-                <td>
-                  {category?.find((c) => c.id === item.categoryId)?.name ||
-                    "No se encontro categoria"}
-                </td>
-                <td>
-                  <div>
-                    <h6>{item.stock}</h6>
-                    <input
-                      id="stock"
-                      type="number"
-                      onChange={(e) => setChangeStock(e.target.value)}
-                    />
+      <h2 style={{ color: "#61218cff" }}>Productos</h2>
 
-                    <button
-                      className="btn btn-info"
-                      onClick={() =>
-                        handleModify(item.id, {
-                          stock: changeStock,
-                        })
-                      }
-                    >
-                      Modificar
-                    </button>
-                  </div>
-                </td>
-                <td>{item.desing}</td>
-                <td>
-                  <div>
-                    <h6>${item.price}</h6>
-                    <input
-                      type="number"
-                      id="price"
-                      onChange={(e) => setChangePrice(e.target.value)}
-                    />
-                    <button
-                      className="btn btn-info"
-                      onClick={() =>
-                        handleModify(item.id, {
-                          price: changePrice,
-                        })
-                      }
-                    >
-                      Modificar
-                    </button>
-                  </div>
-                </td>
-                <td>
+      <div className="store pt-50">
+        <div className="row justify-content-center">
+          {currentProducts.map((p) => (
+            <div className="col-md-4 col-sm-6 col-xs-12 mb-4" key={p.id}>
+              <div className="card">
+                <div className="card-header-delete">
                   <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(item.id)}
+                    className="btn btn-danger delete-button float-right"
+                    onClick={() => handleDelete(p.id)}
                   >
                     <i className="fa fa-trash" />
                   </button>
-                </td>
-              </tr>
-            ))
-            .reverse()}
-        </tbody>
-      </table>
+                </div>
+                <div className="card-body">
+                  <div className="image-container">
+                    <img src={p.image} alt="" />
+                  </div>
+                  <h4>{p.name}</h4>
+                  <h6 style={{ color: p.stock < 10 ? "red" : null }}>
+                    stock: {p.stock}
+                  </h6>
+                  <span className="price">$ {p.price}</span>
+                </div>
+
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleEdit(p.id)}
+                  style={{
+                    backgroundColor: "#8068f0ff",
+                    borderColor: "#8068f0ff",
+                  }}
+                >
+                  Editar
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="pagination-container">
+          {Array.from({
+            length: Math.ceil(products.length / productsPerPage),
+          }).map((_, index) => (
+            <button
+              key={index}
+              className={`pagination-button ${
+                currentPage === index + 1 ? "active" : ""
+              }`}
+              onClick={() => paginate(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+        {selectedProductId !== null && (
+          <FormEditProduct
+            setModal={() => setSelectedProductId(null)}
+            modal={selectedProductId !== null}
+            selectedProductId={selectedProductId}
+          />
+        )}
+      </div>
     </section>
   );
 };

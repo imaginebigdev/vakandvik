@@ -25,108 +25,84 @@ const BlogDetails = ({ theme }) => {
             <div className="post">
               <div className="content pt-60">
                 <div className="row justify-content-center">
-                  <div className="col-lg-10">
+                  <div className="col-lg-10 text-center">
                     <div className="cont">
                       <h4 className="extra-title">
-                        Priorities that will pop up in any particular month.
+                        ¿Qué hace que sus productos de diseño sean únicos?
                       </h4>
                       <div className="spacial">
                         <p>
-                          Never ever think of giving up. Winners never quit and
-                          quitters never win. Take all negative words out of
-                          your mental dictionary and focus on the solutions with
-                          utmost conviction and patience. The battle is never
-                          lost until you’ve abandon your vision.
+                          Nuestros productos de diseño son únicos gracias a la
+                          cuidadosa selección de materiales de alta calidad, el
+                          talento de nuestros diseñadores y la atención
+                          meticulosa a los detalles. Cada artículo es creado con
+                          pasión y creatividad para ofrecerte productos
+                          excepcionales que destacan.
                         </p>
                       </div>
-                      <p>
-                        the main component of a healthy environment for self
-                        esteem is that it needs be nurturing. The main compont
-                        of a healthy environment for self esteem is that it
-                        needs be nurturing. The main component of a healthy env
-                        for self esteem The main compont be nurturing It should
-                        provide unconditional warmth. The main component of a
-                        healthy env for self esteem The main compont be
-                        nurturing It should provide unconditional
-                      </p>
-
-                      <h6>- We all intend to plan ahead.</h6>
+                      <h4 className="extra-title">
+                        ¿Puedo personalizar un producto con mi propio diseño?
+                      </h4>
 
                       <p>
-                        We all intend to plan ahead, but too often let the
-                        day-to-day minutia get in the way of making a calendar
-                        for the year. Sure, you can’t know every detail to
-                        anticipate. Heck, you can’t know half the priorities
-                        that will pop up in any particular month. But you can
-                        plan for big picture seasonality, busy-times, and
-                        events.
+                        ¡Absolutamente! Ofrecemos la opción de personalizar
+                        muchos de nuestros productos con tu diseño o logotipo
+                        personal. Simplemente contáctanos y trabajaremos contigo
+                        para llevar a cabo tu idea y crear un producto exclusivo
+                        que se ajuste a tus necesidades.
                       </p>
-
-                      <ul>
-                        <li>
-                          <span>01</span> Integer in volutpat libero.
-                        </li>
-                        <li>
-                          <span>02</span> Vivamus maximus ultricies pulvinar.
-                        </li>
-                        <li>
-                          <span>03</span> priorities that will pop up in any
-                          particular month.
-                        </li>
-                        <li>
-                          <span>04</span> We all intend to plan ahead.
-                        </li>
-                        <li>
-                          <span>05</span> The main component of a healthy env
-                          for self esteem.
-                        </li>
-                      </ul>
+                      <h4 className="extra-title">
+                        ¿Cómo puedo cuidar y mantener mis productos de diseño en
+                        buen estado?
+                      </h4>
+                      <p>
+                        Para mantener tus productos de diseño en óptimas
+                        condiciones, te recomendamos seguir las instrucciones de
+                        cuidado específicas que proporcionamos con cada
+                        artículo. En general, evita la exposición prolongada a
+                        la luz solar directa, la humedad excesiva y líquidos
+                        derramados. Limpia las manchas suavemente con un paño
+                        húmedo y, si es necesario, consulta con nosotros para
+                        obtener recomendaciones adicionales de cuidado.
+                      </p>
 
                       <div className="quotes text-center">
                         <p>
-                          Never ever think of giving up. Winners never quit and
-                          quitters never win. Take all negative words out of
-                          your mental dictionary and focus on the solutions with
-                          utmost conviction and patience. The battle is never
-                          lost until you’ve abandon your vision.
+                          {'"'}El ARTE tiene la capacidad de transformar un
+                          espacio cualquiera en un lugar que sea verdaderamente
+                          tuyo, impregnado de tu personalidad... Lo mismo pasa
+                          con los elementos que usamos en el día a día.{'"'}
                         </p>
                       </div>
                       <div className="row">
                         <div className="col-md-6">
                           <div className="mb-10">
-                            <img src="/img/blog/2.jpg" alt="" />
+                            <img src="/img/blog/1.jpg" alt="" />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="mb-10">
-                            <img src="/img/blog/3.jpg" alt="" />
+                            <img src="/img/blog/2.jpg" alt="" />
                           </div>
                         </div>
                       </div>
-                      <p>
-                        We all intend to plan ahead, but too often let the
-                        day-to-day minutia get in the way of making a calendar
-                        for the year. Sure, you can’t know every detail to
-                        anticipate. Heck, you can’t know half the priorities
-                        that will pop up in any particular month. But you can
-                        plan for big picture seasonality, busy-times, and
-                        events.
-                      </p>
+
                       <div className="share-info">
                         <div className="social">
-                          <a href="#0">
-                            <i className="fab fa-facebook-f"></i>
+                          <a
+                            href="https://www.instagram.com/vakandvik_/"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <i className="fab fa-instagram"></i>
                           </a>
-                          <a href="#0">
-                            <i className="fab fa-twitter"></i>
+                          <a
+                            href="https://wa.me/5493513864255"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <i className="fab fa-whatsapp"></i>
                           </a>
-                          <a href="#0">
-                            <i className="fab fa-behance"></i>
-                          </a>
-                        </div>
-                        <div className="tags">
-                          <a href="#0">Web</a>,<a href="#0">Themeforest</a>,
-                          <a href="#0">ThemesCamp</a>
                         </div>
                       </div>
                     </div>

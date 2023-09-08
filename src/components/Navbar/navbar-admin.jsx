@@ -47,16 +47,20 @@ const NavbarAdmin = ({ lr, nr, theme }) => {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
-            <li className="nav-link d-none d-sm-block">
-              <h4>Bienvenido Admin</h4>
-            </li>
+            {/*  <li className="nav-link text-center">
+              <h6>Bienvenido Admin</h6>
+            </li> */}
             <li className="nav-link">
-              <button className="btn btn-info" onClick={() => signOut(auth)}>
-                Cerrar sesion
+              <button
+                className="btn btn-info"
+                onClick={() => signOut(auth)}
+                style={{
+                  backgroundColor: "#8068f0ff",
+                  borderColor: "#8068f0ff",
+                }}
+              >
+                Cerrar sesión
               </button>
-            </li>
-            <li className="nav-link">
-              <Link href="/">Ir al inicio</Link>
             </li>
           </ul>
         </div>

@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import ProductsAdmin from "../Products-admin";
+import FormAdmin from "../Form-admin/form-admin";
+import CategoriesAdmin from "../Categories-component/categories-component";
+import FormAdminCategories from "../Categories-component/form-admin-categories";
 
 const AdminSidebar = ({ setShow, show }) => {
+  const [modal, setModal] = useState(false);
+  const abrirModal = (e) => {
+    e.preventDefault();
+    setModal(true);
+  };
   return (
     <div className="sidebar md-mb50">
       <div className="row">
@@ -14,7 +23,7 @@ const AdminSidebar = ({ setShow, show }) => {
                   style={{ cursor: "pointer" }}
                   className={show === "orders" ? "font-weight-bold fz-18" : ""}
                 >
-                  Ordenes
+                  Órdenes
                 </a>
               </li>
               <li>
@@ -33,12 +42,50 @@ const AdminSidebar = ({ setShow, show }) => {
                   onClick={() => setShow("categories")}
                   style={{ cursor: "pointer" }}
                   className={
-                    show === "categories" ? "font-weight-bold fz-18" : ""
+                    show === "categories" ? "font-weight-bold fz-18 " : ""
                   }
                 >
-                  Categorias
+                  Categoría
                 </a>
               </li>
+              {show === "products" && (
+                <button
+                  className="btn btn-primary mt-3"
+                  onClick={(e) => abrirModal(e)}
+                  style={{
+                    backgroundColor: "#8068f0ff",
+                    borderColor: "#8068f0ff",
+                  }}
+                >
+                  Agregar Producto
+                </button>
+              )}
+              {show === "categories" && (
+                <button
+                  className="btn btn-primary mt-3"
+                  style={{
+                    backgroundColor: "#8068f0ff",
+                    borderColor: "#8068f0ff",
+                  }}
+                  onClick={(e) => abrirModal(e)}
+                >
+                  Nueva Categoría
+                </button>
+              )}
+              {show === "products" && (
+                <>
+                  {/*     <ProductsAdmin /> */}
+
+                  <FormAdmin setModal={setModal} modal={modal} />
+                </>
+              )}
+              {show === "categories" && (
+                <>
+                  {/*  <CategoriesAdmin /> */}
+
+                  <FormAdminCategories setModal={setModal} modal={modal} />
+                </>
+              )}
             </ul>
           </div>
         </div>

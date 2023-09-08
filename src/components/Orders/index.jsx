@@ -38,6 +38,7 @@ const OrdersComponent = () => {
         );
       }
     });
+    setModifyOrder();
   };
   const [showProductDetails, setShowProductDetails] = useState({});
   const [showClient, setShowClient] = useState({});
@@ -56,130 +57,115 @@ const OrdersComponent = () => {
   };
   return (
     <section className="text-center">
-      <h2>Ordenes</h2>
-      <table
-        className="table table-bordered text-center"
-        style={{ margin: "100px 5%", maxWidth: "90%" }}
-      >
-        <thead>
-          <tr>
-            <th>Id de pago</th>
-            <th>Productos</th>
-            <th>Datos del cliente</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody className="text-center">
-          {orders
-            ?.map((orden) => (
-              <React.Fragment key={orden.id}>
-                <tr>
-                  <td>{orden.paymentId}</td>
-                  <td>
-                    <button
-                      className="btn btn-secondary"
-                      onClick={() => toggleProductDetails(orden.id)}
-                    >
-                      {showProductDetails[orden.id] ? "Cerrar" : "Mostrar"}
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => toggleClient(orden.id)}
-                    >
-                      {showClient[orden.id] ? "Cerrar" : "Mostrar"}
-                    </button>
-                  </td>
-                  <td>
-                    <h6
-                      className={orden.pending ? "text-danger" : "text-success"}
-                    >
-                      {orden.pending ? "Pendiente" : "Finalizada"}
-                    </h6>
-                    <select
-                      onChange={(e) =>
-                        setModifyOrder(
-                          e.target.value === "Pendiente"
-                            ? { pending: true, succesfull: false }
-                            : { pending: false, succesfull: true }
-                        )
-                      }
-                    >
-                      <option defaultChecked disabled selected hidden>
-                        Modificar estado...
-                      </option>
-                      <option>Pendiente</option>
-                      <option>Finalizada</option>
-                    </select>
-                    <button
-                      className="btn btn-secondary"
-                      onClick={() => handleModifyOrder(orden.paymentId)}
-                    >
-                      Aplicar
-                    </button>
-                  </td>
-                </tr>
-                {showProductDetails[orden.id] && (
-                  <tr>
-                    <td colSpan={4}>
-                      <table className="table table-bordered">
-                        <thead>
-                          <tr>
-                            <th>Producto Id</th>
-                            <th>Nombre</th>
-                            <th>Cantidad</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {orden.products.map((product) => (
-                            <tr key={product.id}>
-                              <td>{product.id}</td>
-                              <td>{product.name}</td>
-                              <td>
-                                {product.quantity ||
-                                  "No se especifico cantidad"}
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                )}
-                {showClient[orden.id] && (
-                  <tr>
-                    <td colSpan={4}>
-                      <table className="table table-bordered">
-                        <thead>
-                          <tr>
-                            <th>Nombre</th>
-                            <th>email</th>
-                            <th>direccion</th>
-                            <th>provincia</th>
-                            <th>Codigo Postal</th>
-                            <th>telefono</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>{orden.clientName}</td>
-                            <td>{orden.email}</td>
-                            <td>{orden.address}</td>
-                            <td>{orden.province}</td>
-                            <td>{orden.postalCode}</td>
-                            <td>{orden.phone}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                )}
-              </React.Fragment>
-            ))
-            .reverse()}
-        </tbody>
-      </table>
+      <h2 style={{ color: "#61218cff" }} className="pb-80">
+        Órdenes
+      </h2>
+      <div className="order-container">
+        {orders?.map((orden) => (
+          <div
+            className={`order ${orden.pending ? "pending" : "completed"}`}
+            key={orden.id}
+          >
+            <div className="order-header">
+              <h6>Id de pago: {orden.paymentId}</h6>
+              <h6
+                className={`order-status ${
+                  orden.pending ? "text-danger" : "text-success"
+                }`}
+              >
+                {orden.pending ? "Pendiente" : "Finalizada"}
+              </h6>
+            </div>
+            <div className="order-content">
+              <div className="order-buttons">
+                <div className="button-container">
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => toggleProductDetails(orden.id)}
+                  >
+                    {showProductDetails[orden.id] ? "Cerrar" : "Mostrar"}{" "}
+                    Productos
+                  </button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => toggleClient(orden.id)}
+                  >
+                    {showClient[orden.id] ? "Cerrar" : "Mostrar"} Cliente
+                  </button>
+                </div>
+                <div className="modify-container">
+                  <select
+                    onChange={(e) =>
+                      setModifyOrder(
+                        e.target.value === "Pendiente"
+                          ? { pending: true, succesfull: false }
+                          : { pending: false, succesfull: true }
+                      )
+                    }
+                  >
+                    <option disabled selected hidden>
+                      Modificar estado...
+                    </option>
+                    <option>Pendiente</option>
+                    <option>Finalizada</option>
+                  </select>
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => handleModifyOrder(orden.paymentId)}
+                  >
+                    Aplicar
+                  </button>
+                </div>
+              </div>
+              {showProductDetails[orden.id] && (
+                <div className="order-details">
+                  <div className="product-list">
+                    <h6>Detalles de Productos</h6>
+                    <ul className="text-justify">
+                      {orden.products.map((product) => (
+                        <li key={product.id}>
+                          <strong>Producto Id:</strong> {product.id}
+                          <br />
+                          <strong>Nombre:</strong> {product.name}
+                          <br />
+                          <strong>Cantidad:</strong>{" "}
+                          {product.quantity || "No se especifico cantidad"}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+              {showClient[orden.id] && (
+                <div className="order-details">
+                  <div className="product-list">
+                    <h6>Datos del cliente</h6>
+                    <ul className="text-justify">
+                      <li>
+                        <strong>Nombre: </strong> {orden.clientName}
+                        <br />
+                        <strong>Email: </strong> {orden.email}
+                        <br />
+                        <strong>Dirección: </strong>
+                        {orden.address}
+                        <br />
+                        <strong>Provincia: </strong>
+                        {orden.province}
+                        <br />
+                        <strong>Codigo Postal: </strong>
+                        {orden.postalCode}
+                        <br />
+                        <strong>Telefono: </strong>
+                        {orden.phone}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 };

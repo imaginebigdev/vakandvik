@@ -115,7 +115,14 @@ const ShopSidebar = ({ setCurrentPage }) => {
                   placeholder="Search"
                   onChange={(e) => setSearchParameter(e.target.value)}
                 />
-                <button onClick={handleSearchBar} style={{ cursor: "pointer" }}>
+                <button
+                  onClick={handleSearchBar}
+                  style={{
+                    cursor: "pointer",
+                    background: "#ef8152ff",
+                    color: "#000",
+                  }}
+                >
                   <span className="icon pe-7s-search"></span>
                 </button>
               </div>
@@ -130,7 +137,10 @@ const ShopSidebar = ({ setCurrentPage }) => {
               {categories?.map((c) => (
                 <li key={c.id}>
                   <input
-                    style={{ marginRight: "5px" }}
+                    className="custom-checkbox"
+                    style={{
+                      marginRight: "5px",
+                    }}
                     type="checkbox"
                     name={c.name}
                     value={c.id}
@@ -164,10 +174,10 @@ const ShopSidebar = ({ setCurrentPage }) => {
                 id="range"
                 type="range"
                 step="10"
-                min="300"
+                min="5000"
                 max="100000"
               />
-              <div className="start-pointe">$300</div>
+              <div className="start-pointe">$5000</div>
             </div>
             <div className="text-center">
               <button
@@ -179,7 +189,7 @@ const ShopSidebar = ({ setCurrentPage }) => {
             </div>
           </div>
           <div className="text-center">
-            <button className="butn bord mt-20 fz-15" onClick={handleClean}>
+            <button className="butn2 bord mt-20 fz-15" onClick={handleClean}>
               Limpiar filtros
             </button>
           </div>
