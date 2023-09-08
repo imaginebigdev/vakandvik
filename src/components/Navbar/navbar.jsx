@@ -45,7 +45,7 @@ const Navbar = ({ lr, nr, theme }) => {
   };
   const handleUpdateQuantity = (id, amount) => {
     const updatedCart = itemsCart
-      .map((item) => {
+      ?.map((item) => {
         if (item.id === id) {
           const newQuantity = item.quantity + amount;
           if (newQuantity <= 0) return null;
