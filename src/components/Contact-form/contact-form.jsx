@@ -125,16 +125,7 @@ const ContactForm = () => {
                 </h5>
                 <h5>{ContactFromDate.phone}</h5>
               </div>
-              <h3 className="wow" data-splitting>
-                Visitanos!.
-              </h3>
-              <div className="item">
-                <h6>
-                  {ContactFromDate.location.first}
-                  <br />
-                  {ContactFromDate.location.second}
-                </h6>
-              </div>
+
               <div className="social mt-50">
                 <a
                   href="https://www.instagram.com/vakandvik_/"
