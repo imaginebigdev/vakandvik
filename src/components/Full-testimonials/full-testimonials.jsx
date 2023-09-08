@@ -120,12 +120,12 @@ class FullTestimonials extends React.Component {
                     </div>
                   </div>
                   <p>
-                    "Como viajero frecuente, necesito productos que sean
+                    {'"'}Como viajero frecuente, necesito productos que sean
                     duraderos y versátiles. Las mochilas de Vakandvik son
                     ideales para mis aventuras. Tienen el espacio perfecto y un
                     diseño que se adapta a cualquier entorno. Sin duda,
                     Vakandvik se ha convertido en mi elección número uno para
-                    accesorios de viaje."
+                    accesorios de viaje.{'"'}
                   </p>
                 </div>
                 <div className="item">
@@ -145,11 +145,11 @@ class FullTestimonials extends React.Component {
                     </div>
                   </div>
                   <p>
-                    "La calidad y la artesanía de Vakandvik son excepcionales.
-                    Mi campera de Vakandvik me ha mantenido abrigada y con
-                    estilo durante todo el invierno. Además, me hace sentir bien
-                    saber que están comprometidos con la sostenibilidad y el
-                    comercio ético."
+                    {'"'}La calidad y la artesanía de Vakandvik son
+                    excepcionales. Mi campera de Vakandvik me ha mantenido
+                    abrigada y con estilo durante todo el invierno. Además, me
+                    hace sentir bien saber que están comprometidos con la
+                    sostenibilidad y el comercio ético.{'"'}
                   </p>
                 </div>
                 <div className="item">
@@ -169,11 +169,11 @@ class FullTestimonials extends React.Component {
                     </div>
                   </div>
                   <p>
-                    "Como amante de la moda y el diseño, siempre busco productos
-                    que se destaquen. Vakandvik no solo se destaca, ¡sino que
-                    supera mis expectativas! Mi bolso de Vakandvik es mi
-                    accesorio imprescindible, y no puedo esperar para agregar
-                    más productos de esta marca a mi colección."
+                    {'"'}Como amante de la moda y el diseño, siempre busco
+                    productos que se destaquen. Vakandvik no solo se destaca,
+                    ¡sino que supera mis expectativas! Mi bolso de Vakandvik es
+                    mi accesorio imprescindible, y no puedo esperar para agregar
+                    más productos de esta marca a mi colección.{'"'}
                   </p>
                 </div>
                 <div className="item">
@@ -193,11 +193,11 @@ class FullTestimonials extends React.Component {
                     </div>
                   </div>
                   <p>
-                    "¡No puedo expresar lo encantada que estoy con mi mochila de
-                    Vakandvik! No solo es hermosa, sino que también es
-                    increíblemente resistente. La llevo a todas partes, desde la
-                    oficina hasta mis escapadas de fin de semana, y siempre
-                    recibo elogios por su diseño único."
+                    {'"'}¡No puedo expresar lo encantada que estoy con mi
+                    mochila de Vakandvik! No solo es hermosa, sino que también
+                    es increíblemente resistente. La llevo a todas partes, desde
+                    la oficina hasta mis escapadas de fin de semana, y siempre
+                    recibo elogios por su diseño único.{'"'}
                   </p>
                 </div>
               </Slider>

@@ -3,6 +3,7 @@ import ShopSidebar from "../Shop-sidebar/shop-sidebar";
 import ShopStore from "../Shop-store/shop-store";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../../redux/reducers/products";
+import Link from "next/link";
 
 const Shop = () => {
   /* ====================== [ Start REDUX ] ====================== */
@@ -53,17 +54,17 @@ const Shop = () => {
     <section className="shop section-padding">
       <div className="section-head text-center pb-50 style-5 pt-80">
         <div className="text-muted">
-          <a href="/" className="me-2">
+          <Link href="/" className="me-2">
             Vakandvik
-          </a>{" "}
+          </Link>{" "}
           <span className="me-2"> / </span>{" "}
-          <a href="/" className="me-2">
+          <Link href="/" className="me-2">
             Inicio
-          </a>{" "}
+          </Link>{" "}
           <span className="me-2"> / </span>{" "}
-          <a href="/shop" className="me-2" style={{ color: "#ef8152ff" }}>
+          <Link href="/shop" className="me-2" style={{ color: "#ef8152ff" }}>
             Shop
-          </a>{" "}
+          </Link>{" "}
         </div>
       </div>
       <div className="container">
