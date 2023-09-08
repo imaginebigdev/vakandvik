@@ -3,15 +3,21 @@ import LightTheme from "../../layouts/Light";
 import Navbar from "../../components/Navbar/navbar";
 import Footer2 from "../../components/Footer2/footer2";
 import BlogDetails from "../../components/Blog-details/blog-details";
+
 import Intro5 from "../../components/Intro5/intro5";
 import ProductDetail from "../../components/Product-detail/product-detail";
 import { useRouter } from "next/dist/client/router";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsById } from "../../../redux/reducers/products";
+import { ClipLoader } from "react-spinners";
 
+const override = {
+  borderColor: "#ef8152",
+};
 const Detaills = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  let [color, setColor] = React.useState("#ffffff");
   const [product, setProduct] = React.useState(null);
   const { productDetail } = useSelector((state) => state.products);
   const fixedSlider = React.useRef(null);
@@ -60,8 +66,11 @@ const Detaills = () => {
         {product !== null ? (
           <ProductDetail product={product} />
         ) : (
-          <div>
-            <h1>Cargando...</h1>
+          <div
+            className="text-center row justify-content-center pt-100 pb-100"
+            style={{ minHeight: "70vh", alignContent: "center" }}
+          >
+            <ClipLoader color={color} cssOverride={override} size={150} />
           </div>
         )}
 

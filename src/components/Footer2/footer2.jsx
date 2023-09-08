@@ -101,17 +101,19 @@ const Footer2 = () => {
                 <h6 style={{ color: "#000" }}>support@gmail.com</h6>
               </div>
               <div className="social mt-30">
-                <a href="#0">
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a href="#0">
-                  <i className="fab fa-twitter"></i>
-                </a>
-                <a href="#0">
+                <a
+                  href="https://www.instagram.com/vakandvik_/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <i className="fab fa-instagram"></i>
                 </a>
-                <a href="#0">
-                  <i className="fab fa-youtube"></i>
+                <a
+                  href="https://wa.me/5493513864255"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <i className="fab fa-whatsapp"></i>
                 </a>
               </div>
             </div>

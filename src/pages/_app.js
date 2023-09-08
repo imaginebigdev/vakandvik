@@ -8,12 +8,13 @@ import "../styles/main.scss";
 import { Provider } from "react-redux";
 
 import reduxStore from "../../redux/store";
+import WhatsappButton from "../components/whatsapp-icon/whatsapp-icon";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Vie</title>
+        <title>Vakandvik</title>
         <link rel="icon" href="/img/favicon.ico" />
       </Head>
       <Cursor />
@@ -21,6 +22,7 @@ function MyApp({ Component, pageProps }) {
       <Provider store={reduxStore}>
         <Component {...pageProps} />
       </Provider>
+      <WhatsappButton />
       <ScrollToTop />
       <Script id="wow" src="/js/wow.min.js"></Script>
       <Script

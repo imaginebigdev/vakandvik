@@ -2,10 +2,6 @@ import React, { useEffect } from "react";
 import Navbar from "../../components/Navbar/navbar";
 import LightTheme from "../../layouts/Light";
 import Footer2 from "../../components/Footer2/footer2";
-
-import AboutUs3 from "../../components/About-us3/about-us3";
-import AboutUs5 from "../../components/About-us5/about-us5";
-import AboutUs from "../../components/About-us/about-us";
 import Swal from "sweetalert2";
 
 import axios from "axios";
@@ -13,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { setItems } from "../../../redux/reducers/cart";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useRouter } from "next/dist/client/router";
+import MinimalArea2 from "../../components/Minimal-Area2/minimal-area2";
 const url = process.env.NEXT_APP_URL_BACK;
 
 const Homepage1 = () => {
@@ -78,8 +75,10 @@ const Homepage1 = () => {
   return (
     <LightTheme mobileappstyle>
       <Navbar nr={navbarRef} lr={logoRef} theme="themeL" />
-      <AboutUs />
-      <Footer2 />
+      <div className="main-content">
+        <MinimalArea2 />
+        <Footer2 />
+      </div>
     </LightTheme>
   );
 };

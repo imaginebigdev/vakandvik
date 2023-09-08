@@ -8,7 +8,7 @@ const LoadingScreen = () => {
     let bodyEl = document.querySelector("body");
     if (appData.showLoading) {
       loadingPace();
-      
+
       if (bodyEl.classList.contains("hideX")) {
         bodyEl.classList.remove("hideX");
       }
@@ -20,13 +20,14 @@ const LoadingScreen = () => {
     <>
       <div className={`${appData.showLoading === true ? "showX" : "hideX"}`}>
         <div className="loading">
-          <span>L</span>
-          <span>o</span>
+          <span>C</span>
           <span>a</span>
-          <span>d</span>
-          <span>i</span>
-          <span>n</span>
+          <span>r</span>
           <span>g</span>
+          <span>a</span>
+          <span>n</span>
+          <span>d</span>
+          <span>o</span>
         </div>
         <div id="preloader"></div>
       </div>

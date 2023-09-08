@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { setItems } from "../../../redux/reducers/cart";
 import Works2 from "../Works2/works2";
+import Link from "next/dist/client/link";
 
 const ProductDetail = ({ product }) => {
   const dispatch = useDispatch();
@@ -74,31 +75,21 @@ const ProductDetail = ({ product }) => {
     }
   };
 
-  /*   const handleMouseLeave = () => {
-    const img = document.querySelector(".img-responsive-detail");
-    img.style.transform = "scale(1)";
-    img.style.transformOrigin = "center";
-    setZoomed(false);
-  };
-
-  const handleMouseEnter = () => {
-    setZoomed(true);
-  }; */
   return (
     <section className="section-padding">
       <div className="section-head text-center pb-50 style-5 pt-80">
         <div className="text-muted">
-          <a href="/" className="me-2">
+          <Link href="/" className="me-2">
             Vakandvik
-          </a>{" "}
+          </Link>{" "}
           <span className="me-2"> / </span>{" "}
-          <a href="/" className="me-2">
+          <Link href="/" className="me-2">
             Inicio
-          </a>{" "}
+          </Link>{" "}
           <span className="me-2"> / </span>{" "}
-          <a href="/shop" className="me-2">
+          <Link href="/shop" className="me-2">
             Shop
-          </a>{" "}
+          </Link>{" "}
           <span className="me-2"> / </span>{" "}
           <a href="#" className="color-000" style={{ color: "#ef8152ff" }}>
             {product.name}
@@ -127,10 +118,19 @@ const ProductDetail = ({ product }) => {
             </div>
             <div className="image-gallery">
               <div className="thumbnail-container">
+                <img
+                  ref={imageRef}
+                  className="thumbnail"
+                  style={{ objectFit: "cover" }}
+                  src={product.image}
+                  alt={product.name}
+                  onClick={() => handleImageClick(product.image)}
+                />
                 {product.image_galery?.map((image, index) => (
                   <img
                     key={index}
                     className="thumbnail"
+                    style={{ objectFit: "cover" }}
                     src={image}
                     alt={`Thumbnail ${index}`}
                     onClick={() => handleImageClick(image)}

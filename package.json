@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@mercadopago/sdk-react": "^0.0.13",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^0.25.0",
@@ -26,10 +27,12 @@
     "react-redux": "^8.1.0",
     "react-scroll": "^1.8.4",
     "react-slick": "^0.28.1",
+    "react-spinners": "^0.13.8",
     "react-tsparticles": "^1.37.4",
     "react-visibility-sensor": "^5.1.1",
     "sass": "^1.45.0",
     "slick-carousel": "^1.8.1",
+    "spinners-react": "^1.0.7",
     "sweetalert2": "^11.7.20",
     "swiper": "^7.3.0",
     "typewriter-effect": "^2.18.2",

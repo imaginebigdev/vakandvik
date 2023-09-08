@@ -29,8 +29,8 @@ const BlogDetailsLight = () => {
     <LightTheme mobileappstyle>
       <Navbar nr={navbarRef} lr={logoRef} theme="themeL" />
       <PageHeader
-        title="Blog Details."
-        paragraph="All the most current news and events of our creative team."
+        title="Vakandvik"
+        paragraph="Preguntas Frecuentes sobre Nuestros Productos de Diseño"
       />
       <BlogDetails theme="light" blog={"blog"} />
       <Footer2 />
